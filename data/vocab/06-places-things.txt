@@ -1,0 +1,210 @@
+# Places, home, school, work, community, transport, travel, money, technology.
+
+@ places
+place            | 地方      | noun |
+home             | 家        | noun | id=home-place kw=house cat=home
+house            | 房子      | noun | cat=home
+school           | 学校      | noun | cat=school
+work             | 工作;上班的地方 | noun | id=work-place cat=work
+shop             | 商店      | noun | cat=money kw=store
+supermarket      | 超市      | noun | cat=money
+mall             | 商场      | noun | cat=money
+park             | 公园      | noun |
+playground       | 游乐场    | noun |
+beach            | 海滩;海边 | noun | cat=nature
+pool             | 游泳池    | noun | kw=swimming_pool cat=sports sym=3142
+library          | 图书馆    | noun | pl=libraries cat=school
+restaurant       | 饭店;餐厅 | noun | cat=food
+cafe             | 咖啡店    | noun | cat=food
+church           | 教堂      | noun | cat=culture
+temple           | 寺庙      | noun | cat=culture
+mosque           | 清真寺    | noun | cat=culture
+marae            | 毛利会堂  | noun | cat=culture
+outside          | 外面      | noun | id=outside-place
+inside           | 里面;室内 | noun | id=inside-place
+garden           | 花园;院子 | noun | cat=home
+city             | 城市      | noun | pl=cities
+town             | 镇        | noun |
+country          | 国家      | noun | pl=countries
+New Zealand      | 新西兰    | noun | id=new-zealand kw=NZ,Aotearoa
+China            | 中国      | noun | id=china
+Auckland         | 奥克兰    | noun | id=auckland
+cinema           | 电影院    | noun | kw=movies cat=hobbies
+museum           | 博物馆    | noun | cat=hobbies
+zoo              | 动物园    | noun | cat=animals
+farm             | 农场      | noun | cat=animals
+gym              | 健身房    | noun | cat=sports
+airport          | 机场      | noun | cat=travel
+station          | 车站      | noun | kw=train_station,bus_stop cat=transport
+hotel            | 酒店      | noun | cat=travel
+office           | 办公室    | noun | cat=work
+bank             | 银行      | noun | cat=money
+post office      | 邮局      | noun | id=post-office cat=community
+police station   | 警察局    | noun | id=police-station cat=safety
+doctor's         | 诊所      | noun | id=doctors-clinic kw=clinic,medical_centre say=doctor's cat=health
+upstairs         | 楼上      | adv  |
+downstairs       | 楼下      | adv  |
+
+@ home
+room             | 房间      | noun |
+bedroom          | 卧室      | noun |
+bathroom         | 浴室;卫生间 | noun | kw=toilet
+lounge           | 客厅      | noun | kw=living_room
+door             | 门        | noun |
+bed              | 床        | noun |
+chair            | 椅子      | noun |
+couch            | 沙发      | noun | kw=sofa
+blanket          | 毯子;被子 | noun |
+pillow           | 枕头      | noun |
+light            | 灯        | noun | id=light-lamp kw=lamp sym=4936
+key              | 钥匙      | noun |
+stairs           | 楼梯      | noun | id=stairs
+cupboard         | 柜子      | noun |
+drawer           | 抽屉      | noun |
+mirror           | 镜子      | noun |
+rubbish          | 垃圾      | noun | unc kw=trash,garbage,bin
+washing machine  | 洗衣机    | noun | id=washing-machine
+dishes           | 碗;盘子   | noun | id=dishes
+box              | 盒子;箱子 | noun | pl=boxes
+toy              | 玩具      | noun | cat=hobbies
+pet              | 宠物      | noun | cat=animals
+-                | 家里      | noun | gloss=at_home id=zh-jiali
+
+@ school
+class            | 班;课     | noun | pl=classes
+classroom        | 教室      | noun |
+lesson           | 课        | noun |
+homework         | 作业      | noun | unc
+assignment       | 作业;任务 | noun |
+test             | 考试;测验 | noun | kw=exam,quiz
+exam             | 考试      | noun |
+break            | 休息      | noun | id=break-time kw=recess,interval,playtime sym=27339
+book             | 书        | noun | cat=hobbies
+pen              | 笔        | noun |
+pencil           | 铅笔      | noun |
+paper            | 纸        | noun | unc
+scissors         | 剪刀      | noun | id=scissors
+glue             | 胶水      | noun | unc
+ruler            | 尺子      | noun |
+bag (school)     | 书包      | noun | id=schoolbag say=bag
+whiteboard       | 白板      | noun |
+question         | 问题      | noun | cat=questions
+answer           | 答案      | noun | id=answer-noun cat=questions
+word             | 词;字     | noun |
+letter           | 字母;信   | noun |
+reading          | 阅读      | noun | unc id=reading-noun
+writing          | 写作      | noun | unc id=writing-noun
+maths            | 数学      | noun | unc kw=math,mathematics
+science          | 科学      | noun | unc
+English          | 英语      | noun | unc id=english-subject
+Chinese          | 中文;汉语 | noun | unc id=chinese-subject kw=Mandarin
+art              | 美术      | noun | unc cat=hobbies
+music            | 音乐      | noun | unc cat=hobbies
+PE               | 体育      | noun | unc id=pe kw=sport,physical_education
+project          | 项目;作业 | noun |
+group            | 小组      | noun |
+mistake          | 错误      | noun |
+idea             | 主意;想法 | noun | cat=ideas
+practice         | 练习      | noun |
+example          | 例子      | noun |
+more time        | 更多时间  | noun | id=more-time
+help             | 帮助      | noun | id=help-noun
+principal        | 校长      | noun | cat=people
+lunchtime        | 午饭时间  | noun |
+assembly         | 集会;朝会 | noun | pl=assemblies
+
+@ work
+job              | 工作      | noun |
+meeting          | 会议;开会 | noun |
+computer         | 电脑      | noun | cat=technology
+email            | 邮件      | noun | cat=technology
+desk             | 书桌;办公桌 | noun |
+task             | 任务      | noun |
+shift            | 班        | noun |
+break (work)     | 休息时间  | noun | id=work-break say=break
+money            | 钱        | noun | unc cat=money
+deadline         | 截止日期  | noun |
+customer         | 顾客      | noun |
+uniform          | 工作服    | noun | id=work-uniform
+interview        | 面试      | noun |
+day off          | 休息日    | noun | id=day-off
+
+@ community
+bus stop         | 公交车站  | noun | id=bus-stop cat=transport
+road             | 马路;路   | noun |
+footpath         | 人行道    | noun | kw=sidewalk
+crossing         | 人行横道  | noun | kw=pedestrian_crossing
+traffic lights   | 红绿灯    | noun | id=traffic-lights
+neighbourhood    | 社区;小区 | noun |
+library card     | 借书证    | noun | id=library-card
+community centre | 社区中心  | noun | id=community-centre
+volunteer        | 志愿者    | noun | sym=none
+club             | 俱乐部    | noun | sym=none
+party            | 派对;聚会 | noun | pl=parties cat=hobbies
+
+@ transport
+car              | 汽车;车   | noun |
+bus              | 公交车;巴士 | noun | pl=buses
+train            | 火车      | noun |
+taxi             | 出租车    | noun | kw=uber,cab
+plane            | 飞机      | noun | cat=travel
+boat             | 船        | noun |
+ferry            | 渡轮      | noun | pl=ferries
+bike             | 自行车    | noun | kw=bicycle cat=sports
+scooter          | 滑板车    | noun |
+truck            | 卡车      | noun |
+seatbelt         | 安全带    | noun | cat=safety
+ticket           | 票        | noun | cat=travel
+hop card         | 交通卡    | noun | id=hop-card kw=AT_HOP,bus_card
+mobility taxi    | 无障碍出租车 | noun | id=mobility-taxi kw=accessible_taxi,total_mobility
+ramp             | 坡道      | noun |
+lift             | 电梯      | noun | kw=elevator
+-                | 地铁      | noun | gloss=subway,_metro id=zh-ditie
+
+@ travel
+trip             | 旅行      | noun | kw=journey
+suitcase         | 行李箱    | noun |
+passport         | 护照      | noun |
+map              | 地图      | noun |
+holiday          | 度假      | noun | id=holiday-travel
+camping          | 露营      | noun | unc cat=hobbies
+visit family     | 看家人    | verb | id=visit-family
+far away         | 很远      | adj  | id=far-away
+are we there yet | 我们到了吗 | phrase | id=are-we-there-yet
+
+@ money
+dollars          | 块钱;元   | noun | id=dollars kw=dollar,money py=kuài_qián
+cents            | 分        | noun | id=cents
+price            | 价格      | noun |
+cost             | 多少钱    | verb | past=cost pp=cost
+cheap            | 便宜      | adj  |
+expensive        | 贵        | adj  |
+card             | 卡;银行卡 | noun | kw=eftpos,credit_card
+cash             | 现金      | noun | unc
+change           | 找零      | noun | id=change-money kw=coins
+receipt          | 收据;小票 | noun |
+shopping         | 购物;买东西 | noun | unc
+trolley          | 购物车    | noun | kw=cart
+sale             | 打折      | noun |
+want to buy      | 想买      | verb | id=want-to-buy
+
+@ technology
+phone            | 手机;电话 | noun |
+tablet           | 平板电脑  | noun | kw=iPad
+TV               | 电视      | noun | id=tv kw=television
+video            | 视频      | noun |
+game             | 游戏      | noun | cat=hobbies
+internet         | 网络      | noun | unc kw=wifi
+wifi             | 无线网    | noun | unc
+battery          | 电池;电量 | noun | pl=batteries
+charger          | 充电器    | noun |
+headphones       | 耳机      | noun | id=headphones
+camera           | 相机      | noun |
+photo            | 照片      | noun |
+password         | 密码      | noun |
+app              | 应用;软件 | noun |
+YouTube          | 油管      | noun | id=youtube
+volume           | 音量      | noun |
+louder           | 大声一点  | adj  | id=louder
+quieter          | 小声一点  | adj  | id=quieter
+it's not working | 坏了;不能用了 | phrase | id=not-working

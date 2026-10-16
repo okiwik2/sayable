@@ -1,0 +1,237 @@
+# Actions (verbs). English | Chinese | part of speech | options
+# Irregular English forms: past= pp= (past participle) ing= s= (he/she/it form)
+
+@ actions-requests
+want             | 要;想要   | verb | py=yào
+need             | 需要      | verb |
+like             | 喜欢      | verb |
+don't like       | 不喜欢    | verb | id=dont-like kw=dislike essential sym=22005
+love             | 爱;很喜欢 | verb |
+have             | 有        | verb | past=had pp=had s=has sym=32761
+get              | 拿;得到   | verb | past=got pp=got ing=getting
+give             | 给        | verb | past=gave pp=given py=gěi
+take             | 拿走;拿   | verb | past=took pp=taken sym=6139
+put              | 放        | verb | past=put pp=put ing=putting
+make             | 做;制作   | verb | past=made pp=made
+do               | 做        | verb | past=did pp=done s=does
+help             | 帮;帮助   | verb | py=bāng essential
+stop             | 停;停下   | verb | ing=stopping past=stopped essential sym=7196
+start            | 开始      | verb |
+finish           | 完成;做完 | verb | kw=done,finished sym=28429
+wait             | 等        | verb |
+choose           | 选        | verb | past=chose pp=chosen kw=pick
+change           | 换;改变   | verb |
+share            | 分享      | verb |
+try              | 试试;试   | verb | past=tried s=tries sym=26144
+fix              | 修;修理   | verb | s=fixes
+find             | 找;找到   | verb | past=found pp=found
+keep             | 留着;保留 | verb | past=kept pp=kept
+bring            | 带来      | verb | past=brought pp=brought
+send             | 寄;发送   | verb | past=sent pp=sent
+hold             | 拿着;抱   | verb | past=held pp=held
+carry            | 拿;搬     | verb | past=carried s=carries
+use              | 用        | verb |
+borrow           | 借        | verb |
+let              | 让        | verb | past=let pp=let ing=letting
+allow            | 允许      | verb |
+can I have       | 我可以要  | phrase | id=can-i-have
+more please      | 还要;请再给我 | phrase | id=more-please
+
+@ actions-movement
+go               | 去        | verb | past=went pp=gone s=goes
+come             | 来        | verb | past=came pp=come
+walk             | 走;走路   | verb |
+run              | 跑        | verb | past=ran pp=run ing=running
+sit              | 坐        | verb | past=sat pp=sat ing=sitting
+sit down         | 坐下      | verb | id=sit-down past=sat_down pp=sat_down ing=sitting_down
+stand            | 站        | verb | past=stood pp=stood
+stand up         | 站起来    | verb | id=stand-up past=stood_up pp=stood_up ing=standing_up
+get up           | 起来;起床 | verb | id=get-up past=got_up pp=got_up ing=getting_up
+lie down         | 躺下      | verb | past=lay_down pp=lain_down ing=lying_down
+turn             | 转        | verb |
+turn around      | 转过来    | verb | id=turn-around
+move             | 动;移动   | verb |
+climb            | 爬        | verb |
+jump             | 跳        | verb |
+leave            | 离开;走   | verb | past=left pp=left
+return           | 回;回来   | verb | kw=go_back,come_back
+go home          | 回家      | verb | id=go-home past=went_home pp=gone_home s=goes_home
+go out           | 出去      | verb | id=go-out past=went_out pp=gone_out s=goes_out sym=2806
+come in          | 进来      | verb | id=come-in past=came_in pp=come_in
+come here        | 过来      | verb | id=come-here
+follow           | 跟着      | verb |
+push             | 推        | verb |
+pull             | 拉        | verb |
+throw            | 扔        | verb | past=threw pp=thrown
+catch            | 接住      | verb | past=caught pp=caught s=catches
+fall             | 摔倒;掉   | verb | past=fell pp=fallen
+swim             | 游泳      | verb | past=swam pp=swum ing=swimming
+dance            | 跳舞      | verb |
+ride             | 骑        | verb | past=rode pp=ridden
+drive            | 开车      | verb | past=drove pp=driven sym=2712
+hurry            | 快点;赶快 | verb | past=hurried s=hurries
+slow down        | 慢一点    | verb | id=slow-down
+go to            | 去        | verb | id=go-to past=went_to pp=gone_to s=goes_to
+
+@ actions-talking
+say              | 说        | verb | past=said pp=said
+tell             | 告诉      | verb | past=told pp=told
+ask              | 问        | verb |
+answer           | 回答      | verb |
+talk             | 说话;聊天 | verb | kw=speak
+speak            | 讲;说话   | verb | past=spoke pp=spoken
+listen           | 听        | verb |
+show             | 给...看;展示 | verb | pp=shown
+explain          | 解释      | verb |
+write            | 写        | verb | past=wrote pp=written
+read             | 读;看     | verb | past=read pp=read
+call             | 打电话;叫 | verb | kw=phone,ring
+message          | 发信息    | verb | id=message-verb kw=text
+sing             | 唱;唱歌   | verb | past=sang pp=sung
+shout            | 喊;大声说 | verb |
+whisper          | 小声说    | verb | s=whispers
+repeat           | 重复;再说一遍 | verb |
+spell            | 拼        | verb |
+point            | 指        | verb |
+sign             | 打手语    | verb | id=sign-verb kw=sign_language
+type             | 打字      | verb | id=type-verb
+mean             | 意思是    | verb | past=meant pp=meant
+agree            | 同意      | verb |
+disagree         | 不同意    | verb |
+complain         | 抱怨;投诉 | verb |
+joke             | 开玩笑    | verb | id=joke-verb
+promise          | 答应;保证 | verb |
+
+@ actions-daily
+eat              | 吃        | verb | past=ate pp=eaten
+drink            | 喝        | verb | past=drank pp=drunk
+sleep            | 睡觉;睡   | verb | past=slept pp=slept
+wake up          | 醒来;起床 | verb | id=wake-up past=woke_up pp=woken_up
+wash             | 洗        | verb | s=washes
+brush            | 刷        | verb | s=brushes
+get dressed      | 穿衣服    | verb | id=get-dressed past=got_dressed pp=got_dressed ing=getting_dressed
+put on           | 穿上;戴上 | verb | id=put-on past=put_on pp=put_on ing=putting_on
+take off         | 脱;脱下   | verb | id=take-off past=took_off pp=taken_off
+open             | 开;打开   | verb | py=dǎ_kāi
+close            | 关;关上   | verb | kw=shut
+turn on          | 打开;开   | verb | id=turn-on
+turn off         | 关掉;关   | verb | id=turn-off
+clean            | 打扫;清洁 | verb |
+tidy up          | 收拾      | verb | id=tidy-up past=tidied_up s=tidies_up
+cook             | 做饭      | verb |
+play             | 玩        | verb |
+work             | 工作      | verb | id=work-verb
+study            | 学习      | verb | past=studied s=studies
+rest             | 休息      | verb |
+watch            | 看        | verb | s=watches kw=TV
+look             | 看        | verb | kw=look_at
+cut              | 切;剪     | verb | past=cut pp=cut ing=cutting
+draw             | 画        | verb | past=drew pp=drawn sym=8088
+build            | 搭;建     | verb | past=built pp=built
+pour             | 倒        | verb |
+fill             | 装满      | verb |
+shower           | 洗澡      | verb | id=shower-verb kw=bath
+go to the toilet | 上厕所    | verb | id=go-toilet kw=bathroom,loo,wee,poo cat=care
+buy              | 买        | verb | past=bought pp=bought
+pay              | 付钱      | verb | past=paid pp=paid
+sleep in         | 睡懒觉    | verb | id=sleep-in past=slept_in
+charge           | 充电      | verb | kw=battery
+feed             | 喂        | verb | past=fed pp=fed
+water            | 浇水      | verb | id=water-verb
+hang up          | 挂        | verb | id=hang-up past=hung_up sym=none
+
+@ actions-thinking
+think            | 想;觉得   | verb | past=thought pp=thought py=xiǎng
+know             | 知道      | verb | past=knew pp=known
+don't know       | 不知道    | verb | id=dont-know essential sym=7180
+understand       | 明白;懂   | verb | past=understood pp=understood
+don't understand | 不明白;不懂 | verb | id=dont-understand essential
+remember         | 记得      | verb |
+happen           | 发生      | verb |
+forget           | 忘记;忘了 | verb | past=forgot pp=forgotten ing=forgetting
+see              | 看见;看到 | verb | past=saw pp=seen
+hear             | 听见;听到 | verb | past=heard pp=heard
+feel             | 觉得;感觉 | verb | past=felt pp=felt
+smell            | 闻        | verb |
+taste            | 尝        | verb |
+touch            | 摸;碰     | verb | s=touches
+imagine          | 想象      | verb |
+decide           | 决定      | verb |
+learn            | 学;学习   | verb |
+guess            | 猜        | verb | s=guesses
+wonder           | 想知道    | verb |
+believe          | 相信      | verb |
+hope             | 希望      | verb |
+wish             | 希望;但愿 | verb | s=wishes
+worry            | 担心      | verb | past=worried s=worries
+care             | 在乎;关心 | verb |
+notice           | 注意到    | verb |
+plan             | 计划      | verb | id=plan-verb ing=planning past=planned
+prefer           | 更喜欢    | verb | ing=preferring past=preferred
+miss             | 想念      | verb | s=misses
+check            | 检查;看一下 | verb | s=checks sym=39555
+can              | 能;可以   | verb | py=néng modal sym=11750
+can't            | 不能;不可以 | verb | id=cant modal
+will             | 会;要     | verb | py=huì modal sym=9829
+won't            | 不会      | verb | id=wont modal sym=5526
+would            | 会        | verb | modal sym=none
+could            | 可以;能   | verb | modal sym=7221
+should           | 应该      | verb | modal sym=none
+must             | 必须      | verb | modal sym=none
+may              | 可以      | verb | modal kw=might sym=7221
+is               | 是        | verb | id=is py=shì kw=be sym=3423
+are              | 是        | verb | id=are sym=3423
+am               | 是        | verb | id=am sym=3423
+was              | 是;以前是 | verb | id=was sym=9839
+were             | 是;以前是 | verb | id=were sym=9839
+be               | 是        | verb | id=be sym=3423
+isn't            | 不是      | verb | id=isnt sym=5526
+don't            | 不        | verb | id=dont kw=do_not sym=5526
+didn't           | 没有      | verb | id=didnt kw=did_not sym=5526
+doesn't          | 不        | verb | id=doesnt sym=5526
+-                | 是        | verb | gloss=is,_am,_are py=shì id=zh-shi sym=3423
+-                | 不是      | verb | gloss=is_not id=zh-bushi
+-                | 有        | verb | gloss=have,_there_is id=zh-you sym=32761
+-                | 没有      | verb | gloss=don't_have,_didn't id=zh-meiyou
+-                | 要        | verb | gloss=want,_will py=yào id=zh-yao
+-                | 不要      | verb | gloss=don't_want,_don't id=zh-buyao essential
+-                | 想        | verb | gloss=want_to,_think,_miss py=xiǎng id=zh-xiang sym=5441
+-                | 会        | verb | gloss=can_(skill),_will py=huì id=zh-hui sym=11750
+-                | 能        | verb | gloss=can,_able_to id=zh-neng sym=11750
+-                | 可以      | verb | gloss=may,_can id=zh-keyi sym=7221
+-                | 不可以    | verb | gloss=may_not id=zh-bukeyi
+-                | 帮        | verb | gloss=help id=zh-bang
+-                | 给        | verb | gloss=give,_for py=gěi id=zh-gei
+-                | 让        | verb | gloss=let,_make_(someone) id=zh-rang
+-                | 带        | verb | gloss=bring,_take_along id=zh-dai
+-                | 用        | verb | gloss=use id=zh-yong
+-                | 叫        | verb | gloss=be_called,_call id=zh-jiao
+-                | 玩儿      | verb | gloss=play_(northern) id=zh-wanr
+
+@ actions-social
+hug              | 抱;拥抱   | verb | ing=hugging past=hugged
+kiss             | 亲        | verb | s=kisses
+thank            | 感谢      | verb |
+apologize        | 道歉      | verb | kw=apologise,sorry
+invite           | 邀请      | verb |
+visit            | 看望;拜访 | verb |
+join             | 加入;一起 | verb |
+meet             | 见面;见   | verb | past=met pp=met
+laugh            | 笑        | verb |
+cry              | 哭        | verb | past=cried s=cries
+smile            | 微笑;笑   | verb |
+hit              | 打        | verb | past=hit pp=hit ing=hitting
+hurt             | 弄疼;伤害 | verb | id=hurt-verb past=hurt pp=hurt
+fight            | 打架;吵架 | verb | past=fought pp=fought
+win              | 赢        | verb | past=won pp=won ing=winning
+lose             | 输;丢     | verb | past=lost pp=lost
+take turns       | 轮流      | verb | id=take-turns past=took_turns pp=taken_turns
+dislike          | 讨厌;不喜欢 | verb | sym=6155
+hate             | 讨厌;恨   | verb |
+leave me alone   | 别管我;让我一个人待着 | phrase | id=leave-me-alone essential
+celebrate        | 庆祝      | verb |
+look after       | 照顾      | verb | id=look-after
+tickle           | 挠痒痒    | verb |
+cuddle           | 抱抱      | verb |
+high five        | 击掌      | verb | id=high-five
+wave             | 挥手      | verb | sym=5896

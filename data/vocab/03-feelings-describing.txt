@@ -1,0 +1,214 @@
+# Feelings, describing words, questions and chatting.
+
+@ feelings
+happy            | 开心;高兴 | adj  |
+sad              | 难过;伤心 | adj  |
+angry            | 生气      | adj  | kw=mad,cross
+frustrated       | 沮丧;烦   | adj  |
+worried          | 担心      | adj  |
+anxious          | 焦虑;紧张 | adj  | kw=nervous
+excited          | 兴奋;激动 | adj  |
+calm             | 平静;冷静 | adj  |
+scared           | 害怕      | adj  | kw=afraid,frightened
+confused         | 困惑;糊涂 | adj  |
+embarrassed      | 不好意思;尴尬 | adj |
+lonely           | 孤单;寂寞 | adj  |
+proud            | 骄傲;自豪 | adj  |
+tired            | 累        | adj  | kw=exhausted
+bored            | 无聊      | adj  |
+overwhelmed      | 受不了;压力太大 | adj |
+comfortable      | 舒服      | adj  |
+uncomfortable    | 不舒服    | adj  |
+okay             | 还好;没事 | adj  | id=okay kw=ok,fine,alright
+good             | 好        | adj  | py=hǎo
+bad              | 不好;坏   | adj  |
+great            | 很好;太好了 | adj |
+upset            | 难受;不开心 | adj |
+grumpy           | 心情不好  | adj  |
+shy              | 害羞      | adj  |
+jealous          | 嫉妒;吃醋 | adj  |
+surprised        | 惊讶      | adj  |
+silly            | 傻;调皮   | adj  |
+relaxed          | 放松      | adj  |
+safe             | 安全      | adj  | cat=safety sym=none
+unsafe           | 不安全    | adj  | cat=safety essential
+loved            | 被爱      | adj  |
+grateful         | 感激      | adj  | kw=thankful
+hopeful          | 有希望    | adj  |
+disappointed     | 失望      | adj  |
+hurt (feelings)  | 受伤;伤心 | adj  | id=hurt-feelings say=hurt
+annoyed          | 烦;不耐烦 | adj  |
+stressed         | 有压力    | adj  |
+ignored          | 被忽视    | adj  |
+left out         | 被冷落    | adj  | id=left-out
+brave            | 勇敢      | adj  |
+sleepy           | 困        | adj  |
+mixed feelings   | 心情很复杂 | noun | id=mixed-feelings kw=both,unsure,not_sure
+not sure         | 不确定    | adj  | id=not-sure kw=unsure
+a little         | 有点;有一点 | adv | id=a-little cat=describing kw=bit,slightly sym=27093
+so               | 好;真     | adv  | id=so-very kw=very
+kind of          | 有点儿    | adv  | id=kind-of kw=sort_of
+feeling          | 感觉;心情 | noun |
+mood             | 心情      | noun |
+
+@ describing
+big              | 大        | adj  | kw=large
+little           | 小        | adj  | kw=small
+long             | 长        | adj  | py=cháng
+short            | 短;矮     | adj  |
+tall             | 高        | adj  |
+fast             | 快        | adj  | kw=quick
+slow             | 慢        | adj  |
+hot              | 热;烫     | adj  | cat=weather
+cold             | 冷;凉     | adj  | cat=weather
+warm             | 暖和;温   | adj  | cat=weather
+new              | 新        | adj  |
+old              | 旧;老     | adj  |
+same             | 一样;同样 | adj  |
+different        | 不一样;不同 | adj |
+easy             | 容易;简单 | adj  |
+hard             | 难;硬     | adj  | kw=difficult
+soft             | 软        | adj  |
+loud             | 大声;吵   | adj  | kw=noisy cat=weather
+quiet            | 安静;小声 | adj  | cat=weather
+clean            | 干净      | adj  | id=clean-adj
+dirty            | 脏        | adj  |
+wet              | 湿        | adj  | cat=weather
+dry              | 干        | adj  | cat=weather
+heavy            | 重        | adj  |
+light            | 轻        | adj  | id=light-weight kw=not_heavy sym=none
+nice             | 好;不错   | adj  |
+yummy            | 好吃      | adj  | kw=delicious,tasty cat=food sym=32340
+yucky            | 难吃;恶心 | adj  | kw=gross,disgusting cat=food sym=32338
+beautiful        | 漂亮;美   | adj  | kw=pretty
+ugly             | 丑        | adj  |
+funny            | 好笑;有意思 | adj |
+boring           | 无聊      | adj  |
+interesting      | 有意思;有趣 | adj |
+fun              | 好玩      | adj  |
+important        | 重要      | adj  |
+right            | 对        | adj  | kw=correct py=duì
+wrong            | 错;不对   | adj  |
+true             | 真的      | adj  |
+false            | 假的      | adj  |
+ready            | 准备好了  | adj  |
+finished         | 完了;做完了 | adj | kw=done,all_done sym=28429
+broken           | 坏了      | adj  |
+open             | 开着      | adj  | id=open-adj
+closed           | 关着      | adj  | id=closed-adj
+busy             | 忙        | adj  |
+free             | 有空;免费 | adj  |
+early            | 早        | adj  | cat=time
+late             | 晚;迟到   | adj  | cat=time
+first            | 第一      | adj  | cat=numbers
+last             | 最后      | adj  |
+next             | 下一个    | adj  |
+favourite        | 最喜欢的  | adj  | kw=favorite
+best             | 最好      | adj  |
+worse            | 更差      | adj  |
+better           | 更好      | adj  |
+strong           | 强壮;有力 | adj  |
+weak             | 弱;没力气 | adj  |
+bright           | 亮        | adj  | cat=weather
+dark             | 黑;暗     | adj  | cat=weather
+sharp            | 尖;锋利   | adj  |
+sticky           | 黏        | adj  |
+smooth           | 光滑      | adj  |
+rough            | 粗糙      | adj  |
+crunchy          | 脆        | adj  | cat=food
+spicy            | 辣        | adj  | cat=food
+sweet            | 甜        | adj  | cat=food
+salty            | 咸        | adj  | cat=food
+sour             | 酸        | adj  | cat=food
+bitter           | 苦        | adj  | cat=food
+cute             | 可爱      | adj  |
+cool             | 酷;凉快   | adj  | id=cool kw=awesome
+kind             | 友善;好心 | adj  |
+mean             | 刻薄      | adj  | id=mean-adj
+polite           | 有礼貌    | adj  |
+rude             | 没礼貌    | adj  |
+fair             | 公平      | adj  | sym=none
+unfair           | 不公平    | adj  |
+possible         | 可能      | adj  |
+impossible       | 不可能    | adj  |
+missing          | 不见了    | adj  | kw=lost sym=none
+lost             | 迷路了    | adj  | cat=safety
+-                | 多        | adj  | gloss=many,_much id=zh-duo
+-                | 少        | adj  | gloss=few,_little py=shǎo id=zh-shao
+
+@ questions
+what             | 什么      | q    | py=shén_me
+where            | 哪里;哪儿 | q    |
+who              | 谁        | q    | py=shéi sym=9853
+why              | 为什么    | q    | py=wèi_shén_me
+when             | 什么时候  | q    | py=shén_me_shí_hou
+how              | 怎么;怎么样 | q  | py=zěn_me
+which            | 哪个      | q    | py=nǎ_ge
+how many         | 多少;几个 | q    | id=how-many
+how much         | 多少;多少钱 | q  | id=how-much
+how long         | 多久      | q    | id=how-long
+whose            | 谁的      | q    | py=shéi_de
+what time        | 几点      | q    | id=what-time cat=time
+can you          | 你可以... | q    | id=can-you say=can_you py=nǐ_kě_yǐ
+do you           | 你...吗   | q    | id=do-you say=do_you py=nǐ_ma
+is it            | 是不是    | q    | id=is-it
+are you          | 你是不是  | q    | id=are-you
+-                | 几        | q    | gloss=how_many_(small_number) py=jǐ id=zh-ji
+-                | 怎么办    | q    | gloss=what_should_I_do? id=zh-zenmeban
+-                | 干什么    | q    | gloss=do_what? py=gàn_shén_me id=zh-ganshenme
+-                | 有没有    | q    | gloss=is_there?,_do_you_have? id=zh-youmeiyou
+-                | 要不要    | q    | gloss=do_you_want? py=yào_bu_yào id=zh-yaobuyao
+
+@ social
+yes              | 是;对     | interj | py=shì essential sym=5584
+no               | 不;不是   | interj | py=bù essential sym=5526
+please           | 请        | interj | essential
+thank you        | 谢谢      | interj | id=thank-you kw=thanks
+you're welcome   | 不客气    | interj | id=youre-welcome
+sorry            | 对不起    | interj | kw=apology
+excuse me        | 不好意思;请问 | interj | id=excuse-me
+hello            | 你好      | interj | kw=hi
+hi               | 嗨        | interj |
+goodbye          | 再见      | interj | kw=bye
+see you later    | 回头见    | interj | id=see-you-later
+good morning     | 早上好;早 | interj | id=good-morning cat=time
+good night       | 晚安      | interj | id=good-night cat=time
+good afternoon   | 下午好    | interj | id=good-afternoon
+how are you      | 你好吗;你怎么样 | phrase | id=how-are-you
+I'm fine         | 我很好    | phrase | id=im-fine
+nice to meet you | 很高兴认识你 | phrase | id=nice-to-meet-you
+my name is       | 我叫      | phrase | id=my-name-is
+what's your name | 你叫什么名字 | phrase | id=whats-your-name
+okay             | 好的;行   | interj | id=ok-interj kw=ok,alright
+maybe            | 可能吧    | interj | id=maybe-interj
+I don't mind     | 我无所谓;都可以 | phrase | id=i-dont-mind
+wow              | 哇        | interj |
+oh no            | 糟糕;天哪 | interj | id=oh-no
+cool!            | 太棒了    | interj | id=cool-interj say=cool
+awesome          | 太好了    | interj |
+yuck             | 好恶心    | interj |
+ouch             | 哎哟;好疼 | interj | cat=safety
+oops             | 哎呀      | interj |
+uh oh            | 糟了      | interj | id=uh-oh
+haha             | 哈哈      | interj |
+well done        | 做得好    | interj | id=well-done kw=good_job
+congratulations  | 恭喜      | interj |
+happy birthday   | 生日快乐  | interj | id=happy-birthday cat=culture
+cheers           | 干杯      | interj |
+bless you        | -         | interj | id=bless-you
+of course        | 当然      | interj | id=of-course
+no thanks        | 不用了,谢谢 | interj | id=no-thanks
+never mind       | 算了;没事 | interj | id=never-mind
+me too           | 我也是    | interj | id=me-too
+really?          | 真的吗    | interj | id=really-q say=really
+I think so       | 我觉得是  | phrase | id=i-think-so
+I don't think so | 我觉得不是 | phrase | id=i-dont-think-so
+good luck        | 祝你好运;加油 | interj | id=good-luck
+take care        | 保重      | interj | id=take-care
+welcome          | 欢迎      | interj |
+-                | 加油      | interj | gloss=you_can_do_it! id=zh-jiayou
+-                | 行        | interj | gloss=okay,_fine py=xíng id=zh-xing
+-                | 是的      | interj | gloss=yes id=zh-shide
+-                | 辛苦了    | interj | gloss=thanks_for_your_hard_work id=zh-xinkule
+-                | 慢走      | interj | gloss=take_care_(goodbye) id=zh-manzou
+-                | 吃饭了吗  | interj | gloss=have_you_eaten?_(greeting) id=zh-chifanlema

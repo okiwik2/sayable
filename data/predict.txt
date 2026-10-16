@@ -1,0 +1,98 @@
+# Starter "next word" suggestions. The app also learns from the user's own messages
+# (only on this device, and only if they allow it).
+# Format:  item-id: next-item-id, next-item-id, ...
+
+@lang en
+i: want, need, like, dont-like, feel, am, can, cant, have, dont, think, know, love, will, was, go
+me: too, please, help, a-little
+you: want, like, can, are, need, have, know, help, go, look, feel
+he: want+s, is, like+s, can, was
+she: is, can, was
+it: is, was, hurt-verb+s, will, too
+we: want, can, are, go, need, will, have
+they: are, want, can, were, have
+want: to, more, that, this, a, some, help, water, food, it, you, go-home
+need: to, help, a, more, the, water
+like: it, that, this, to, you, play+ing, music, food
+dont-like: it, that, this, the, food, when-conj
+love: you, it, that, my
+have: a, to, my, some, no, finished
+to: go, eat, drink, play, sleep, watch, talk, see, have, get, read, listen, go-home, go-out, rest
+go: to, home-place, outside-place, out, now, later, with, away, back-adv
+come: here, with, back-adv, in, now
+get: it, that, up, my, a, some, more
+give: me, it, that, more, you, a
+put: it, that, on, in, down, away
+make: it, a, me, something
+look: at, that, here, there, good
+is: it, that, good, bad, not, my, a, the, hot, cold, okay, here, there
+are: you, we, they, not, here, there, okay
+am: happy, sad, tired, hungry, okay, not, finished, ready, sick
+can: i, you, we, have, go, help, play, eat
+cant: find, see, hear, do, go
+will: you, i, go, be, help
+dont: want, like, know, understand, go, need, have, feel
+not: good, okay, now, that, this, happy, ready, finished
+more: please, food, water, time, help, juice
+the: toilet, park, shop, door, window, light-lamp, tv, ball
+a: drink-noun, break-time, ball, book, cup, hug, little, minute, question
+please: help, stop, wait, give, come, go-away, can
+help: me, please, with
+eat: food, more, now, please, lunch, breakfast, dinner, something
+drink: water, milk, juice, tea, please, more
+play: with, outside, game, ball, music, again
+stop: please, it, that, now, talk+ing
+feel: happy, sad, tired, sick, angry, okay, good, bad, scared, worried, better
+think: so, about, that, it, you
+know: that, it, what, how, where
+what: is, are, do, time, happen+past, about
+where: is, are, do, my, we
+who: is, are, will
+when: is, are, can, will
+why: not, is, are, can
+how: are, is, do, can
+and: i, you, then, my, the
+because: i, it, you, we
+but: i, it, not, you
+in: the, my, here, there
+on: the, my, top
+up: please, now, here
+with: me, you, my, the
+good: morning, night, job
+thank-you: very
+that: is, was, hurt-verb+s, please
+this: is, please, hurt-verb+s
+my: turn, mum, dad, friend, phone, bag, head, tummy, back
+
+@lang zh
+i: zh-yao, zh-xiang, like, dont-like, zh-buyao, zh-you, zh-meiyou, zh-shi, feel, zh-hui, zh-neng, very, not, need, go, eat, know
+you: zh-yao, zh-xiang, like, zh-you, zh-shi, zh-keyi, zh-hui, very, go
+he: zh-shi, zh-yao, zh-xiang, very, zh-zai
+she: zh-shi, zh-yao, zh-xiang, very, zh-zai
+we: go, zh-yao, zh-xiang, zh-keyi, together, zh-dou
+zh-yao: eat, drink, go, play, zh-zhege, zh-nage, water, zh-yidian, look
+zh-xiang: go, eat, drink, play, look, sleep, go-home, rest, zh-yao
+zh-buyao: zh-zhege, zh-nage, go, eat, zh-le
+like: zh-zhege, zh-nage, eat, play, you, zh-ma
+dont-like: zh-zhege, zh-nage, eat, zh-le
+zh-you: zh-meiyou, what, problem, zh-yidian, question
+zh-meiyou: zh-le, what, problem, zh-you
+go: school, home-place, park, toilet, shop, outside-place, zh-le, zh-ba, zh-ma
+eat: food, rice, noodles, fruit, zh-le, zh-yidian, zh-ma, what
+drink: water, milk, juice, tea, zh-le, zh-yidian
+very: good, happy, tired, angry, sad, big, little
+zh-zhege: zh-shi, good, bad, zh-bushi, very, zh-ma
+zh-nage: zh-shi, good, bad, zh-bushi, very
+zh-shi: zh-zhege, zh-nage, what, who, i, you, zh-ma
+not: zh-yao, like, go, good, zh-shi, zh-xiang, zh-hui, zh-neng, zh-keyi, know
+zh-keyi: zh-ma, go, eat, play, zh-bang
+zh-hui: zh-ma, go, zh-le
+zh-zai: home-place, school, here, there, zh-zhengzai
+feel: very, good, bad, tired, sick, zh-yidian
+zh-bang: i, you, zh-yixia
+play: zh-yixia, zh-le, zh-ba, zh-ma, game
+look: zh-yixia, zh-zhege, zh-nage, tv, book
+zh-le: zh-ma, zh-ba
+what: zh-ne, zh-ma, time, place
+where: zh-ne
+help: i, you, zh-yixia

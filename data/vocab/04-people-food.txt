@@ -1,0 +1,195 @@
+# People, food and drink.
+
+@ people
+mum              | 妈妈      | noun | kw=mom,mother,mama
+dad              | 爸爸      | noun | kw=father,papa
+parents          | 父母;爸爸妈妈 | noun |
+brother          | -         | noun | kw=older_brother,younger_brother
+sister           | -         | noun | kw=older_sister,younger_sister
+grandma          | -         | noun | kw=grandmother,nana,granny
+grandpa          | -         | noun | kw=grandfather,grandad,pop
+baby             | 宝宝;婴儿 | noun |
+family           | 家人;家庭 | noun |
+friend           | 朋友      | noun |
+best friend      | 最好的朋友 | noun | id=best-friend
+boyfriend        | 男朋友    | noun |
+girlfriend       | 女朋友    | noun |
+partner          | 伴侣;另一半 | noun |
+husband          | 丈夫;老公 | noun |
+wife             | 妻子;老婆 | noun | pl=wives
+son              | 儿子      | noun |
+daughter         | 女儿      | noun |
+aunt             | -         | noun | kw=aunty,auntie
+uncle            | -         | noun |
+cousin           | 表哥;堂姐 | noun |
+child            | 孩子;小孩 | noun | pl=children kw=kid
+children         | 孩子们    | noun | id=children kw=kids
+person           | 人        | noun | pl=people
+people           | 人们      | noun | id=people-noun
+man              | 男人;男的 | noun | pl=men
+woman            | 女人;女的 | noun | pl=women
+boy              | 男孩      | noun |
+girl             | 女孩      | noun |
+teacher          | 老师      | noun | cat=school
+teacher aide     | 助教      | noun | id=teacher-aide kw=teacher_assistant,TA cat=school
+classmate        | 同学      | noun | cat=school
+carer            | 护工;照顾我的人 | noun | kw=caregiver,support_worker
+doctor           | 医生      | noun | cat=health
+nurse            | 护士      | noun | cat=health
+therapist        | 治疗师    | noun | kw=speech_therapist,SLT,OT,physio cat=health
+neighbour        | 邻居      | noun | kw=neighbor
+boss             | 老板      | noun | cat=work
+coworker         | 同事      | noun | kw=colleague cat=work
+police officer   | 警察      | noun | id=police-officer kw=police cat=safety
+firefighter      | 消防员    | noun | cat=safety
+driver           | 司机      | noun | cat=transport
+stranger         | 陌生人    | noun | cat=safety
+guest            | 客人      | noun |
+everybody        | 每个人;大家 | pron | id=everybody
+nobody           | 没有人    | pron |
+somebody         | 有人      | pron | id=somebody
+-                | 哥哥      | noun | gloss=older_brother id=zh-gege
+-                | 弟弟      | noun | gloss=younger_brother id=zh-didi
+-                | 姐姐      | noun | gloss=older_sister id=zh-jiejie
+-                | 妹妹      | noun | gloss=younger_sister id=zh-meimei
+-                | 外婆      | noun | gloss=grandma_(mum's_mum) id=zh-waipo
+-                | 外公      | noun | gloss=grandpa_(mum's_dad) id=zh-waigong
+-                | 奶奶      | noun | gloss=grandma_(dad's_mum) id=zh-nainai
+-                | 爷爷      | noun | gloss=grandpa_(dad's_dad) id=zh-yeye
+-                | 阿姨      | noun | gloss=aunty_(also_polite_for_women) id=zh-ayi
+-                | 叔叔      | noun | gloss=uncle_(also_polite_for_men) id=zh-shushu
+
+@ food-meals
+food             | 食物;吃的 | noun | unc
+breakfast        | 早饭;早餐 | noun | unc cat=time
+lunch            | 午饭;午餐 | noun | unc cat=time
+dinner           | 晚饭;晚餐 | noun | unc cat=time
+snack            | 零食;点心 | noun | cat=food-snacks
+meal             | 饭        | noun |
+rice             | 米饭      | noun | unc
+noodles          | 面条      | noun | unc
+bread            | 面包      | noun | unc
+toast            | 吐司;烤面包 | noun | unc
+sandwich         | 三明治    | noun | pl=sandwiches
+pizza            | 比萨      | noun | unc
+pasta            | 意大利面  | noun | unc
+soup             | 汤        | noun | unc
+salad            | 沙拉      | noun | unc
+cereal           | 麦片      | noun | unc
+egg              | 鸡蛋      | noun |
+chicken          | 鸡肉      | noun | unc id=chicken-meat kw=chicken
+meat             | 肉        | noun | unc
+fish             | 鱼        | noun | unc id=fish-food kw=fish
+beef             | 牛肉      | noun | unc
+pork             | 猪肉      | noun | unc
+sausage          | 香肠      | noun |
+burger           | 汉堡      | noun |
+chips            | 薯条      | noun | kw=fries,hot_chips
+dumplings        | 饺子      | noun | kw=jiaozi
+bun              | 包子      | noun | kw=steamed_bun,bao
+fried rice       | 炒饭      | noun | id=fried-rice unc
+porridge         | 粥;燕麦粥 | noun | unc kw=congee
+sushi            | 寿司      | noun | unc
+curry            | 咖喱      | noun | unc
+tofu             | 豆腐      | noun | unc
+cheese           | 奶酪      | noun | unc
+butter           | 黄油      | noun | unc
+jam              | 果酱      | noun | unc
+sauce            | 酱;酱汁   | noun | unc kw=tomato_sauce,ketchup
+salt             | 盐        | noun | unc
+sugar            | 糖        | noun | unc
+something else   | 别的东西  | noun | id=something-else kw=other cat=food
+-                | 馒头      | noun | gloss=steamed_bread id=zh-mantou
+
+@ food-fruit
+fruit            | 水果      | noun | unc
+apple            | 苹果      | noun |
+banana           | 香蕉      | noun |
+orange           | 橙子;橘子 | noun | id=orange-fruit kw=mandarin
+grapes           | 葡萄      | noun |
+strawberry       | 草莓      | noun | pl=strawberries
+watermelon       | 西瓜      | noun |
+pear             | 梨        | noun |
+kiwifruit        | 猕猴桃;奇异果 | noun | kw=kiwi
+mango            | 芒果      | noun | pl=mangoes
+pineapple        | 菠萝      | noun |
+peach            | 桃子      | noun | pl=peaches
+blueberries      | 蓝莓      | noun | id=blueberries
+lemon            | 柠檬      | noun |
+cherry           | 樱桃      | noun | pl=cherries
+feijoa           | 菲油果    | noun |
+
+@ food-vegetables
+vegetables       | 蔬菜;菜   | noun | id=vegetables kw=veges,veggies
+carrot           | 胡萝卜    | noun |
+potato           | 土豆      | noun | pl=potatoes
+kumara           | 红薯      | noun | kw=sweet_potato
+tomato           | 西红柿;番茄 | noun | pl=tomatoes
+broccoli         | 西兰花    | noun | unc
+corn             | 玉米      | noun | unc
+peas             | 豌豆      | noun | id=peas
+cucumber         | 黄瓜      | noun |
+lettuce          | 生菜      | noun | unc
+onion            | 洋葱      | noun |
+mushroom         | 蘑菇      | noun |
+pumpkin          | 南瓜      | noun |
+bok choy         | 青菜;小白菜 | noun | unc kw=pak_choi
+beans            | 豆子      | noun | id=beans
+
+@ food-snacks
+biscuit          | 饼干      | noun | kw=cookie,cracker
+chocolate        | 巧克力    | noun | unc
+lollies          | 糖果      | noun | id=lollies kw=candy,sweets
+ice cream        | 冰淇淋    | noun | unc id=ice-cream
+cake             | 蛋糕      | noun |
+crisps           | 薯片      | noun | id=crisps kw=chips,potato_chips
+popcorn          | 爆米花    | noun | unc
+yoghurt          | 酸奶      | noun | unc kw=yogurt
+muffin           | 松饼      | noun |
+nuts             | 坚果      | noun | id=nuts
+dessert          | 甜点      | noun |
+-                | 月饼      | noun | gloss=mooncake id=zh-yuebing cat=culture
+
+@ food-drinks
+drink            | 饮料;喝的 | noun | id=drink-noun kw=beverage
+water            | 水        | noun | unc
+milk             | 牛奶      | noun | unc
+juice            | 果汁      | noun | unc
+tea              | 茶        | noun | unc
+coffee           | 咖啡      | noun | unc
+hot chocolate    | 热巧克力  | noun | unc id=hot-chocolate
+fizzy drink      | 汽水      | noun | id=fizzy-drink kw=soda,soft_drink,coke
+smoothie         | 奶昔;果昔 | noun |
+soy milk         | 豆浆      | noun | unc id=soy-milk
+bubble tea       | 奶茶;珍珠奶茶 | noun | unc id=bubble-tea
+ice              | 冰        | noun | unc
+straw            | 吸管      | noun |
+cup              | 杯子      | noun | cat=food-kitchen
+bottle           | 瓶子      | noun | cat=food-kitchen
+-                | 开水      | noun | gloss=boiled_water id=zh-kaishui
+-                | 温水      | noun | gloss=warm_water id=zh-wenshui
+
+@ food-kitchen
+hungry           | 饿        | adj  | cat=feelings,body
+thirsty          | 渴        | adj  | cat=feelings,body
+full (food)      | 吃饱了    | adj  | id=full-food say=full kw=full
+plate            | 盘子      | noun |
+bowl             | 碗        | noun |
+spoon            | 勺子      | noun |
+fork             | 叉子      | noun |
+knife            | 刀        | noun | pl=knives
+chopsticks       | 筷子      | noun |
+napkin           | 餐巾纸    | noun | kw=serviette,tissue
+table            | 桌子      | noun | cat=home
+fridge           | 冰箱      | noun | cat=home
+microwave        | 微波炉    | noun | cat=home
+oven             | 烤箱      | noun | cat=home
+kitchen          | 厨房      | noun | cat=home
+allergy          | 过敏      | noun | pl=allergies cat=health,safety
+allergic         | 过敏      | adj  | cat=health,safety
+vegetarian       | 素食;吃素 | adj  |
+halal            | 清真      | adj  | cat=culture
+another one      | 再来一个  | phrase | id=another-one
+hot (food)       | 烫        | adj  | id=hot-food say=hot
+cold (food)      | 凉        | adj  | id=cold-food say=cold
+-                | 饱        | adj  | gloss=full_(after_eating) id=zh-bao

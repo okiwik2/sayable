@@ -1,0 +1,199 @@
+# Vocabulary source file. See data/README.md for the full format.
+# English | Chinese | part of speech | options
+# "-" = not used in that language. Alternatives after ";" are searchable.
+
+@ pronouns
+I                | 我        | pron | person=1 kw=me,myself
+me               | 我        | pron | person=1 id=me
+my               | 我的      | det  | person=1
+mine             | 我的      | pron | person=1 id=mine sym=none
+myself           | 我自己    | pron | person=1
+you              | 你        | pron | person=2 kw=your
+your             | 你的      | det  | person=2
+yours            | 你的      | pron | person=2 id=yours
+you all          | 你们      | pron | person=2 kw=you,everyone sym=none
+he               | 他        | pron | person=3
+him              | 他        | pron | person=3 id=him
+his              | 他的      | det  | person=3
+she              | 她        | pron | person=3
+her              | 她;她的   | pron | person=3
+it               | 它;这个   | pron | person=3
+its              | 它的      | det  | person=3
+we               | 我们      | pron | person=1
+us               | 我们      | pron | person=1 id=us
+our              | 我们的    | det  | person=1
+they             | 他们;她们 | pron | person=3
+them             | 他们      | pron | person=3 id=them
+their            | 他们的    | det  | person=3
+this             | 这;这个   | det  |
+that             | 那;那个   | det  |
+these            | 这些      | det  |
+those            | 那些      | det  |
+someone          | 有人;某人 | pron | kw=somebody
+everyone         | 大家;每个人 | pron | kw=everybody,all
+something        | 东西;什么东西 | pron | kw=thing
+everything       | 一切;所有东西 | pron |
+nothing          | 什么都没有 | pron |
+anything         | 任何东西  | pron |
+somewhere        | 某个地方  | adv  |
+each other       | 互相      | pron |
+-                | 自己      | pron | gloss=self py=zì_jǐ id=zh-ziji
+-                | 别人      | pron | gloss=other_people id=zh-bieren
+-                | 人家      | pron | gloss=others;_me_(playful) id=zh-renjia
+
+@ joining-words
+and              | 和        | conj | py=hé
+but              | 但是;可是 | conj |
+or               | 或者;还是 | conj | py=huò_zhě
+because          | 因为      | conj |
+so               | 所以      | conj | sym=none
+if               | 如果      | conj |
+then             | 然后      | adv  |
+when             | 的时候    | conj | id=when-conj kw=while
+also             | 也        | adv  | py=yě
+too              | 太        | adv  | id=too kw=too_much,very
+with             | 跟;和     | prep | py=gēn
+without          | 没有      | prep |
+for              | 给;为了   | prep | py=gěi
+of               | 的        | prep | py=de
+about            | 关于      | prep |
+like (as)        | 像        | prep | id=like-as say=like
+than             | 比        | prep |
+even             | 甚至      | adv  |
+still            | 还        | adv  | py=hái sym=none
+already          | 已经      | adv  |
+just             | 只是;刚   | adv  |
+only             | 只        | adv  | py=zhǐ
+maybe            | 也许;可能 | adv  | kw=perhaps,might
+really           | 真的      | adv  |
+very             | 很;非常   | adv  | py=hěn
+almost           | 差不多;几乎 | adv |
+together         | 一起      | adv  |
+alone            | 一个人;单独 | adv |
+by myself        | 我自己来  | adv  | id=by-myself
+to               | -         | prep | kw=go_to
+the              | -         | det  |
+a                | -         | det  | id=a kw=an
+an               | -         | det  |
+not              | 不        | adv  | py=bù sym=5526
+-                | 没        | adv  | gloss=not_(did_not,_have_not) py=méi id=zh-mei sym=5526
+-                | 别        | adv  | gloss=don't_(command) py=bié id=zh-bie
+-                | 就        | adv  | gloss=then,_just,_right_away py=jiù id=zh-jiu
+-                | 才        | adv  | gloss=only_then,_only py=cái id=zh-cai
+-                | 又        | adv  | gloss=again_(already_happened) py=yòu id=zh-you-again
+-                | 再        | adv  | gloss=again_(future) py=zài id=zh-zai-again
+-                | 都        | adv  | gloss=all,_both py=dōu id=zh-dou
+-                | 更        | adv  | gloss=more,_even_more py=gèng id=zh-geng
+-                | 最        | adv  | gloss=most py=zuì id=zh-zui
+-                | 比较      | adv  | gloss=rather,_comparatively id=zh-bijiao
+-                | 一点      | adv  | gloss=a_little py=yì_diǎn id=zh-yidian sym=27093
+-                | 一下      | adv  | gloss=a_bit,_briefly py=yí_xià id=zh-yixia
+-                | 一起      | adv  | gloss=together id=zh-yiqi
+-                | 而且      | conj | gloss=and_also id=zh-erqie
+-                | 还是      | conj | gloss=or_(in_questions) py=hái_shì id=zh-haishi
+-                | 虽然      | conj | gloss=although id=zh-suiran
+-                | 那么      | conj | gloss=then,_in_that_case id=zh-name
+
+@ position-words
+in               | 里;里面   | prep | py=lǐ
+on               | 上;上面   | prep | py=shàng
+under            | 下面      | prep | kw=below,underneath
+over             | 上方      | prep | kw=above
+next to          | 旁边      | prep | kw=beside
+behind           | 后面      | prep |
+in front of      | 前面      | prep |
+between          | 中间      | prep |
+inside           | 里面      | adv  |
+outside          | 外面      | adv  |
+up               | 上        | adv  | id=up py=shàng
+down             | 下        | adv  | id=down py=xià
+out              | 出去      | adv  | id=out sym=2806
+off              | 关        | adv  | id=off
+at               | 在        | prep | py=zài
+from             | 从        | prep |
+into             | 进        | prep |
+here             | 这里      | adv  | kw=this_place
+there            | 那里      | adv  | kw=that_place
+near             | 近;附近   | adj  |
+far              | 远        | adj  |
+left             | 左边      | adj  | id=left-side kw=left
+right            | 右边      | adj  | id=right-side kw=right
+top              | 上面      | noun |
+bottom           | 下面      | noun | id=bottom sym=none
+middle           | 中间      | noun | id=middle
+around           | 周围      | prep |
+through          | 穿过      | prep |
+across           | 对面      | prep |
+away             | 走开      | adv  |
+back             | 回来      | adv  | id=back-adv kw=return
+-                | 在        | prep | gloss=at,_in;_is_doing py=zài id=zh-zai
+-                | 到        | prep | gloss=to,_arrive_at py=dào id=zh-dao
+-                | 往        | prep | gloss=towards py=wǎng id=zh-wang
+-                | 对        | prep | gloss=to,_towards_(someone) py=duì id=zh-dui-prep
+
+@ amount-words
+more             | 更多;还要 | adj  | kw=again,another
+less             | 少一点    | adj  |
+all              | 全部;所有 | det  |
+some             | 一些      | det  |
+many             | 很多      | adj  | kw=lots
+a lot            | 很多      | adv  | id=a-lot
+few              | 几个      | adj  |
+little bit       | 一点点    | adj  | kw=bit
+enough           | 够了;足够 | adj  |
+too much         | 太多了    | adj  |
+any              | 任何      | det  |
+none             | 一个也没有 | pron |
+half             | 一半      | noun |
+both             | 两个都    | det  |
+each             | 每个      | det  | kw=every
+other            | 别的;其他 | adj  | kw=else
+another          | 另一个    | det  | kw=one_more
+only one         | 只有一个  | adj  |
+empty            | 空        | adj  |
+full             | 满        | adj  |
+-                | 多少      | q    | gloss=how_much,_how_many id=zh-duoshao
+-                | 些        | det  | gloss=some_(plural) py=xiē id=zh-xie
+
+@ zh-particles
+-                | 了        | particle | gloss=(done,_changed) py=le id=zh-le
+-                | 的        | particle | gloss=(of,_'s) py=de id=zh-de
+-                | 吗        | particle | gloss=(yes/no_question) py=ma id=zh-ma
+-                | 呢        | particle | gloss=(what_about...?) py=ne id=zh-ne
+-                | 吧        | particle | gloss=(let's,_suggestion) py=ba id=zh-ba
+-                | 啊        | particle | gloss=(oh!) py=a id=zh-a
+-                | 过        | particle | gloss=(have_ever_done) py=guo id=zh-guo
+-                | 着        | particle | gloss=(is_doing,_ongoing) py=zhe id=zh-zhe
+-                | 得        | particle | gloss=(how_well_done) py=de id=zh-de-degree
+-                | 把        | particle | gloss=(take_something_and...) py=bǎ id=zh-ba-object
+-                | 被        | particle | gloss=(was_done_by) py=bèi id=zh-bei
+-                | 正在      | adv      | gloss=(right_now_doing) id=zh-zhengzai
+-                | 是不是    | particle | gloss=(is_it_or_not?) id=zh-shibushi
+-                | 好不好    | particle | gloss=(okay?) id=zh-haobuhao
+-                | 可不可以  | particle | gloss=(may_I?,_can_you?) id=zh-kebukeyi
+
+@ measure-words
+-                | 个        | measure | gloss=(general_counter) py=gè id=zh-ge
+-                | 杯        | measure | gloss=a_cup_of,_a_glass_of py=bēi id=zh-bei-cup
+-                | 碗        | measure | gloss=a_bowl_of py=wǎn id=zh-wan-bowl
+-                | 瓶        | measure | gloss=a_bottle_of py=píng id=zh-ping
+-                | 块        | measure | gloss=a_piece_of;_dollars py=kuài id=zh-kuai
+-                | 张        | measure | gloss=(flat_things:_paper,_tickets) py=zhāng id=zh-zhang
+-                | 本        | measure | gloss=(books) py=běn id=zh-ben
+-                | 只        | measure | gloss=(animals,_one_of_a_pair) py=zhī id=zh-zhi-animal
+-                | 件        | measure | gloss=(clothes,_matters) py=jiàn id=zh-jian
+-                | 次        | measure | gloss=times_(how_often) py=cì id=zh-ci
+-                | 点        | measure | gloss=o'clock py=diǎn id=zh-dian
+-                | 位        | measure | gloss=(polite,_for_people) py=wèi id=zh-wei
+-                | 双        | measure | gloss=a_pair_of py=shuāng id=zh-shuang
+-                | 份        | measure | gloss=a_portion_of py=fèn id=zh-fen
+
+@ pronouns
+-                | 这个      | det  | gloss=this_one py=zhè_ge id=zh-zhege sym=7095
+-                | 那个      | det  | gloss=that_one py=nà_ge id=zh-nage sym=6906
+-                | 这些      | det  | gloss=these id=zh-zhexie
+-                | 那些      | det  | gloss=those id=zh-naxie
+
+@ amount-words
+-                | 还要      | verb | gloss=want_more,_more py=hái_yào id=zh-haiyao sym=5508
+-                | 完了      | adj  | gloss=finished,_all_done py=wán_le id=zh-wanle sym=28429

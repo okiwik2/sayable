@@ -1,0 +1,218 @@
+# Hobbies, sports, animals, nature, numbers, colours, shapes, culture, ideas and safety.
+
+@ hobbies
+song             | 歌        | noun |
+movie            | 电影      | noun | kw=film
+TV show          | 电视节目  | noun | id=tv-show
+cartoon          | 动画片    | noun |
+story            | 故事      | noun | pl=stories
+drawing          | 画画      | noun | unc sym=11238
+painting         | 画        | noun |
+puzzle           | 拼图      | noun |
+board game       | 桌游      | noun | id=board-game
+cards            | 扑克牌    | noun | id=cards-game
+Lego             | 乐高      | noun | id=lego
+ball             | 球        | noun | cat=sports
+doll             | 娃娃      | noun |
+bubbles          | 泡泡      | noun | id=bubbles
+craft            | 手工      | noun |
+cooking          | 做饭      | noun | unc id=cooking-hobby
+baking           | 烘焙      | noun | unc
+gardening        | 种花;园艺 | noun | unc
+singing          | 唱歌      | noun | unc
+dancing          | 跳舞      | noun | unc
+walk             | 散步      | noun | id=walk-noun
+swing            | 秋千      | noun |
+slide            | 滑梯      | noun |
+trampoline       | 蹦床      | noun |
+iPad time        | 玩平板的时间 | noun | id=ipad-time kw=screen_time
+my turn          | 轮到我了  | phrase | id=my-turn
+your turn        | 轮到你了  | phrase | id=your-turn
+let's play       | 我们玩吧  | phrase | id=lets-play
+again!           | 再来一次  | interj | id=again-interj say=again
+all done         | 结束了;玩完了 | interj | id=all-done sym=28429
+
+@ sports
+sport            | 运动      | noun |
+football         | 足球      | noun | unc kw=soccer
+rugby            | 橄榄球    | noun | unc
+netball          | 无板篮球  | noun | unc
+basketball       | 篮球      | noun | unc
+cricket          | 板球      | noun | unc
+tennis           | 网球      | noun | unc
+swimming         | 游泳      | noun | unc
+running          | 跑步      | noun | unc
+cycling          | 骑自行车  | noun | unc
+team             | 队;球队   | noun |
+goal             | 进球;球门 | noun |
+score            | 比分      | noun |
+winner           | 赢的人    | noun |
+exercise         | 锻炼      | noun | unc
+yoga             | 瑜伽      | noun | unc
+-                | 乒乓球    | noun | gloss=table_tennis id=zh-pingpang
+-                | 羽毛球    | noun | gloss=badminton id=zh-yumaoqiu
+
+@ animals
+animal           | 动物      | noun |
+dog              | 狗        | noun |
+cat              | 猫        | noun |
+bird             | 鸟        | noun |
+fish             | 鱼        | noun | id=fish-animal
+horse            | 马        | noun |
+cow              | 牛        | noun |
+sheep            | 羊        | noun | pl=sheep
+pig              | 猪        | noun |
+chicken          | 鸡        | noun | id=chicken-animal
+duck             | 鸭子      | noun |
+rabbit           | 兔子      | noun |
+mouse            | 老鼠      | noun | pl=mice
+spider           | 蜘蛛      | noun |
+bee              | 蜜蜂      | noun |
+butterfly        | 蝴蝶      | noun | pl=butterflies
+frog             | 青蛙      | noun |
+snake            | 蛇        | noun |
+lion             | 狮子      | noun |
+tiger            | 老虎      | noun |
+elephant         | 大象      | noun |
+monkey           | 猴子      | noun |
+panda            | 熊猫      | noun |
+bear             | 熊        | noun |
+dolphin          | 海豚      | noun |
+whale            | 鲸鱼      | noun |
+shark            | 鲨鱼      | noun |
+dinosaur         | 恐龙      | noun |
+kiwi             | 几维鸟    | noun | id=kiwi-bird kw=kiwi_bird
+penguin          | 企鹅      | noun |
+insect           | 虫子;昆虫 | noun | kw=bug
+
+@ nature
+tree             | 树        | noun |
+flower           | 花        | noun |
+grass            | 草        | noun | unc
+leaf             | 叶子      | noun | pl=leaves
+sea              | 大海;海   | noun | kw=ocean
+river            | 河        | noun |
+lake             | 湖        | noun |
+mountain         | 山        | noun |
+bush             | 树林;灌木丛 | noun | kw=forest,native_bush
+sky              | 天空      | noun | pl=skies
+moon             | 月亮      | noun |
+star             | 星星      | noun |
+rock             | 石头      | noun |
+sand             | 沙子      | noun | unc
+water (nature)   | 水        | noun | id=water-nature say=water unc
+fire             | 火        | noun | cat=safety
+earth            | 地球      | noun | unc kw=world
+plant            | 植物      | noun |
+shell            | 贝壳      | noun |
+mud              | 泥        | noun | unc
+
+@ numbers
+zero             | 零        | num  |
+one              | 一        | num  | py=yī
+two              | 二;两     | num  | py=èr
+three            | 三        | num  |
+four             | 四        | num  |
+five             | 五        | num  | sym=2631
+six              | 六        | num  |
+seven            | 七        | num  |
+eight            | 八        | num  |
+nine             | 九        | num  |
+ten              | 十        | num  |
+eleven           | 十一      | num  |
+twelve           | 十二      | num  |
+fifteen          | 十五      | num  |
+twenty           | 二十      | num  |
+thirty           | 三十      | num  |
+fifty            | 五十      | num  |
+hundred          | 一百      | num  | sym=29256
+thousand         | 一千      | num  |
+number           | 数字;号码 | noun |
+count            | 数        | verb | py=shǔ
+second           | 第二      | adj  | id=second-num
+third            | 第三      | adj  | id=third-num
+-                | 两        | num  | gloss=two_(before_a_measure_word) py=liǎng id=zh-liang
+
+@ colours
+colour           | 颜色      | noun | kw=color
+red              | 红色      | adj  |
+orange           | 橙色      | adj  | id=orange-colour
+yellow           | 黄色      | adj  |
+green            | 绿色      | adj  |
+blue             | 蓝色      | adj  |
+purple           | 紫色      | adj  |
+pink             | 粉红色;粉色 | adj |
+brown            | 棕色;咖啡色 | adj |
+black            | 黑色      | adj  |
+white            | 白色      | adj  |
+grey             | 灰色      | adj  | kw=gray
+gold             | 金色      | adj  |
+silver           | 银色      | adj  |
+
+@ shapes
+shape            | 形状      | noun |
+circle           | 圆形;圆圈 | noun |
+square           | 正方形    | noun |
+triangle         | 三角形    | noun |
+rectangle        | 长方形    | noun | py=cháng_fāng_xíng
+star             | 星形      | noun | id=star-shape
+heart            | 心形      | noun | id=heart-shape
+line             | 线        | noun |
+
+@ culture
+celebration      | 庆祝活动  | noun |
+Christmas        | 圣诞节    | noun | id=christmas
+Easter           | 复活节    | noun | id=easter
+Chinese New Year | 春节;过年 | noun | id=chinese-new-year kw=Lunar_New_Year,Spring_Festival
+Mid-Autumn Festival | 中秋节 | noun | id=mid-autumn kw=mooncake_festival
+Diwali           | 排灯节    | noun | id=diwali
+Eid              | 开斋节    | noun | id=eid
+Matariki         | 毛利新年  | noun | id=matariki kw=Maori_New_Year
+present          | 礼物      | noun | kw=gift
+pray             | 祈祷      | verb |
+God              | 上帝;神   | noun | id=god sym=none
+red envelope     | 红包      | noun | id=red-envelope kw=hongbao,lucky_money
+festival         | 节日      | noun |
+church service   | 礼拜      | noun | id=church-service
+-                | 端午节    | noun | gloss=Dragon_Boat_Festival id=zh-duanwu
+
+@ ideas
+reason           | 原因      | noun |
+problem          | 问题;麻烦 | noun | kw=issue,trouble
+choice           | 选择      | noun |
+chance           | 机会      | noun |
+plan             | 计划      | noun |
+rule             | 规则      | noun |
+secret           | 秘密      | noun |
+dream            | 梦;梦想   | noun |
+future           | 未来;将来 | noun | unc sym=9829
+past             | 过去      | noun | unc sym=9839
+truth            | 真相;实话 | noun | unc
+opinion          | 意见;看法 | noun |
+right (fair)     | 权利      | noun | id=rights kw=rights
+freedom          | 自由      | noun | unc
+respect          | 尊重      | noun | unc
+consent          | 同意      | noun | unc
+difference       | 不同;区别 | noun |
+thing            | 东西;事情 | noun |
+stuff            | 东西      | noun | unc
+way              | 方法;办法 | noun | sym=none
+-                | 事情      | noun | gloss=matter,_thing_(to_do) id=zh-shiqing
+-                | 办法      | noun | gloss=way,_solution id=zh-banfa sym=none
+
+@ safety
+help!            | 救命;帮帮我 | interj | id=help-urgent essential say=help
+emergency        | 紧急情况  | noun | essential
+stop!            | 停!       | interj | id=stop-urgent essential say=stop sym=8289
+danger           | 危险      | noun | unc
+dangerous        | 危险      | adj  |
+police           | 警察      | noun | unc
+fire!            | 着火了    | interj | id=fire-urgent say=fire
+call 111         | 打111     | verb | id=call-111 kw=emergency_number,ambulance,police,fire
+call my family   | 给我家人打电话 | verb | id=call-my-family essential
+no!              | 不!;不要! | interj | id=no-urgent say=no essential sym=5526
+go away          | 走开      | verb | id=go-away essential
+I'm not safe     | 我不安全  | phrase | id=im-not-safe essential
+my phone number  | 我的电话号码 | noun | id=my-phone-number
+my address       | 我的地址  | noun | id=my-address
+careful          | 小心      | adj  | kw=be_careful

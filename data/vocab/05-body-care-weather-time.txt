@@ -1,0 +1,210 @@
+# Body, health, personal care, clothes, weather and time.
+
+@ body-parts
+body             | 身体      | noun |
+head             | 头        | noun |
+face             | 脸        | noun |
+eyes             | 眼睛      | noun | id=eyes kw=eye
+ears             | 耳朵      | noun | id=ears kw=ear
+nose             | 鼻子      | noun |
+mouth            | 嘴巴;嘴   | noun |
+teeth            | 牙齿;牙   | noun | id=teeth kw=tooth
+tongue           | 舌头      | noun |
+hair             | 头发      | noun | unc
+neck             | 脖子      | noun |
+throat           | 喉咙      | noun |
+shoulder         | 肩膀      | noun |
+arm              | 胳膊;手臂 | noun |
+hand             | 手        | noun |
+fingers          | 手指      | noun | id=fingers kw=finger
+chest            | 胸口      | noun |
+back             | 背        | noun |
+tummy            | 肚子      | noun | kw=stomach,belly
+bottom           | 屁股      | noun | id=bottom-body kw=bum,butt sym=26030
+leg              | 腿        | noun |
+knee             | 膝盖      | noun |
+foot             | 脚        | noun | pl=feet
+toes             | 脚趾      | noun | id=toes
+skin             | 皮肤      | noun | unc
+heart            | 心脏      | noun |
+
+@ health
+pain             | 疼;痛     | noun | unc essential cat=safety
+hurt             | 疼;受伤   | adj  | essential cat=safety,feelings
+sick             | 生病;不舒服 | adj | kw=ill,unwell cat=feelings
+headache         | 头疼      | noun |
+tummy ache       | 肚子疼    | noun | id=tummy-ache kw=stomach_ache
+sore throat      | 嗓子疼    | noun | id=sore-throat
+toothache        | 牙疼      | noun |
+itchy            | 痒        | adj  |
+dizzy            | 头晕      | adj  | cat=feelings
+sore             | 酸痛;疼   | adj  |
+cough            | 咳嗽      | noun |
+cold (illness)   | 感冒      | noun | id=cold-illness say=cold kw=flu
+fever            | 发烧      | noun | kw=temperature
+sneeze           | 打喷嚏    | verb |
+bleeding         | 流血      | adj  | cat=safety
+vomit            | 吐;想吐   | verb | kw=throw_up,sick,spew
+feel sick        | 恶心;想吐 | verb | id=feel-sick kw=nauseous
+blood            | 血        | noun | unc
+medicine         | 药        | noun | unc kw=pills,tablets
+injection        | 打针      | noun | kw=needle,vaccine
+plaster          | 创可贴    | noun | kw=band-aid,bandage sym=8331
+hospital         | 医院      | noun | cat=places
+ambulance        | 救护车    | noun | cat=safety,transport
+appointment      | 预约      | noun | cat=time
+wheelchair       | 轮椅      | noun |
+glasses          | 眼镜      | noun | id=glasses
+hearing aid      | 助听器    | noun | id=hearing-aid
+seizure          | 癫痫发作;抽搐 | noun | cat=safety
+breathe          | 呼吸      | verb |
+can't breathe    | 不能呼吸;喘不过气 | phrase | id=cant-breathe essential cat=safety
+asthma           | 哮喘      | noun | unc
+inhaler          | 吸入器    | noun |
+better           | 好一点了  | adj  | id=feel-better kw=feeling_better
+worse            | 更难受了  | adj  | id=feel-worse kw=feeling_worse
+pharmacy         | 药店      | noun | kw=chemist cat=places
+dentist          | 牙医      | noun | cat=people
+temperature      | 体温      | noun | id=body-temperature
+
+@ care
+toilet           | 厕所;洗手间 | noun | kw=bathroom,loo,restroom essential
+wee              | 尿尿;小便 | verb | kw=pee,urinate
+poo              | 拉屎;大便 | verb | kw=poop
+bath             | 泡澡;洗澡 | noun |
+shower           | 淋浴      | noun |
+wash hands       | 洗手      | verb | id=wash-hands
+brush teeth      | 刷牙      | verb | id=brush-teeth
+brush hair       | 梳头      | verb | id=brush-hair
+toothbrush       | 牙刷      | noun |
+toothpaste       | 牙膏      | noun | unc
+soap             | 肥皂;香皂 | noun | unc
+towel            | 毛巾      | noun |
+tissue           | 纸巾      | noun | kw=hanky
+nappy            | 尿布;纸尿裤 | noun | kw=diaper,pad
+pad              | 卫生巾    | noun | id=sanitary-pad kw=period,tampon sym=3018
+period           | 月经;例假 | noun | id=period-menstrual sym=8165
+shave            | 刮胡子    | verb |
+haircut          | 理发;剪头发 | noun |
+comb             | 梳子      | noun |
+cream            | 乳液;面霜 | noun | kw=lotion,moisturiser
+sunscreen        | 防晒霜    | noun | unc
+private          | 隐私;私人 | adj  | kw=privacy
+privacy          | 隐私      | noun | unc
+don't touch me   | 别碰我    | phrase | id=dont-touch-me essential cat=safety
+I need help in the bathroom | 我上厕所需要帮忙 | phrase | id=bathroom-help
+I can do it myself | 我可以自己来 | phrase | id=do-it-myself
+change           | 换        | noun | id=change-clothes kw=change_my_clothes,change_pad
+
+@ clothing
+clothes          | 衣服      | noun | id=clothes
+shirt            | 衬衫      | noun |
+T-shirt          | T恤       | noun | id=t-shirt
+jumper           | 毛衣      | noun | kw=sweater,pullover
+jacket           | 外套;夹克 | noun | kw=coat
+raincoat         | 雨衣      | noun | cat=weather
+pants            | 裤子      | noun | id=pants kw=trousers
+shorts           | 短裤      | noun | id=shorts
+skirt            | 裙子      | noun |
+dress            | 连衣裙    | noun | id=dress pl=dresses
+pyjamas          | 睡衣      | noun | id=pyjamas kw=pajamas,PJs
+underwear        | 内衣;内裤 | noun | unc
+socks            | 袜子      | noun | id=socks
+shoes            | 鞋;鞋子   | noun | id=shoes
+jandals          | 拖鞋      | noun | id=jandals kw=flip-flops,thongs,slippers
+boots            | 靴子      | noun | id=boots
+hat              | 帽子      | noun |
+gloves           | 手套      | noun | id=gloves
+scarf            | 围巾      | noun | pl=scarves
+uniform          | 校服;制服 | noun | cat=school
+swimsuit         | 泳衣      | noun | kw=togs
+watch            | 手表      | noun | id=watch-noun
+bag              | 包        | noun |
+pocket           | 口袋      | noun |
+button           | 扣子      | noun |
+zip              | 拉链      | noun | kw=zipper sym=2723
+too big          | 太大了    | adj  | id=too-big
+too small        | 太小了    | adj  | id=too-small
+too tight        | 太紧了    | adj  | id=too-tight
+
+@ weather
+weather          | 天气      | noun | unc
+sunny            | 晴天;阳光很好 | adj |
+cloudy           | 多云;阴天 | adj  |
+rainy            | 下雨      | adj  | kw=raining
+rain             | 雨        | noun | unc
+windy            | 刮风      | adj  |
+stormy           | 暴风雨    | adj  | kw=thunder,storm
+snow             | 雪;下雪   | noun | unc
+cool             | 凉快      | adj  | id=cool-weather
+humid            | 潮湿;闷热 | adj  |
+rainbow          | 彩虹      | noun |
+sun              | 太阳      | noun | cat=nature
+cloud            | 云        | noun | cat=nature
+fog              | 雾        | noun | unc
+thunder          | 打雷      | noun | unc
+lightning        | 闪电      | noun | unc
+umbrella         | 雨伞      | noun |
+too hot          | 太热了    | adj  | id=too-hot
+too cold         | 太冷了    | adj  | id=too-cold
+too loud         | 太吵了    | adj  | id=too-loud cat=feelings
+too bright       | 太亮了    | adj  | id=too-bright
+noise            | 噪音;声音 | noun |
+smelly           | 臭        | adj  |
+window           | 窗户      | noun | cat=home
+fresh air        | 新鲜空气  | noun | unc id=fresh-air
+air conditioning | 空调      | noun | unc id=air-conditioning kw=heater,heat_pump
+heater           | 暖气;取暖器 | noun | cat=home
+fan              | 电扇;风扇 | noun | cat=home
+
+@ time
+now              | 现在      | adv  |
+later            | 以后;等一下 | adv |
+soon             | 马上;很快 | adv  |
+today            | 今天      | adv  |
+tomorrow         | 明天      | adv  |
+yesterday        | 昨天      | adv  |
+again            | 再;又     | adv  | py=zài
+before           | 以前;之前 | adv  |
+after            | 以后;之后 | adv  |
+always           | 总是;一直 | adv  |
+never            | 从来不;从不 | adv |
+sometimes        | 有时候    | adv  |
+often            | 经常      | adv  |
+every day        | 每天      | adv  | id=every-day
+morning          | 早上      | noun |
+afternoon        | 下午      | noun |
+evening          | 晚上      | noun |
+night            | 夜里;晚上 | noun |
+tonight          | 今天晚上;今晚 | adv |
+weekend          | 周末      | noun |
+week             | 星期;周   | noun |
+month            | 月        | noun |
+year             | 年        | noun |
+day              | 天        | noun |
+hour             | 小时      | noun |
+minute           | 分钟      | noun |
+a few minutes    | 几分钟    | noun | id=a-few-minutes
+time             | 时间      | noun | unc
+clock            | 钟;时钟   | noun |
+birthday         | 生日      | noun | cat=culture
+holiday          | 假期;放假 | noun | kw=vacation cat=travel
+Monday           | 星期一    | noun | id=monday
+Tuesday          | 星期二    | noun | id=tuesday
+Wednesday        | 星期三    | noun | id=wednesday
+Thursday         | 星期四    | noun | id=thursday
+Friday           | 星期五    | noun | id=friday
+Saturday         | 星期六    | noun | id=saturday
+Sunday           | 星期天;星期日 | noun | id=sunday
+summer           | 夏天      | noun |
+autumn           | 秋天      | noun | kw=fall
+winter           | 冬天      | noun |
+spring           | 春天      | noun |
+schedule         | 日程;时间表 | noun | kw=timetable,routine
+wait a minute    | 等一下    | phrase | id=wait-a-minute
+not yet          | 还没      | adv  | id=not-yet
+finished         | 结束了    | adj  | id=finished-time kw=over,ended
+-                | 刚才      | adv  | gloss=just_now id=zh-gangcai
+-                | 已经      | adv  | gloss=already id=zh-yijing
+-                | 一会儿    | adv  | gloss=a_little_while py=yí_huìr id=zh-yihuir
+-                | 中午      | noun | gloss=noon id=zh-zhongwu

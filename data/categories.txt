@@ -1,0 +1,57 @@
+# Category list.
+# Format:  id | parent | English name | Chinese name | hue | ARASAAC symbol search term
+# hue is one of: yellow green blue orange pink purple red teal brown grey
+# Order here is the default order in the category browser.
+
+safety            | -        | Safety & emergency   | 安全和紧急情况 | red    | emergency
+feelings          | -        | Feelings             | 感受           | pink   | feelings
+people            | -        | People               | 人             | yellow | people
+actions           | -        | Actions              | 动作           | green  | actions
+actions-movement  | actions  | Moving               | 移动           | green  | walk
+actions-talking   | actions  | Talking & sharing    | 说话和交流     | green  | talk
+actions-daily     | actions  | Everyday actions     | 日常动作       | green  | daily activities
+actions-requests  | actions  | Asking & getting     | 请求和得到     | green  | give
+actions-thinking  | actions  | Thinking & senses    | 思考和感官     | green  | think
+actions-social    | actions  | With other people    | 和别人一起     | green  | hug
+describing        | -        | Describing           | 描述           | blue   | 4658
+questions         | -        | Questions            | 问题           | purple | question
+social            | -        | Chatting             | 聊天           | pink   | conversation
+little-words      | -        | Little words         | 小词           | grey   | word
+pronouns          | little-words | I, you & others  | 我、你和别人   | yellow | pronoun
+joining-words     | little-words | Joining words    | 连接词         | grey   | and
+position-words    | little-words | Where things are | 位置           | grey   | position
+amount-words      | little-words | How much         | 多少           | grey   | quantity
+zh-particles      | little-words | Mandarin grammar words | 汉语语法词 | grey  | grammar
+measure-words     | little-words | Mandarin measure words | 量词       | grey   | quantity
+food              | -        | Food & drink         | 食物和饮料     | orange | food
+food-meals        | food     | Meals                | 饭菜           | orange | meal
+food-fruit        | food     | Fruit                | 水果           | orange | fruit
+food-vegetables   | food     | Vegetables           | 蔬菜           | orange | vegetables
+food-snacks       | food     | Snacks & treats      | 零食           | orange | snack
+food-drinks       | food     | Drinks               | 饮料           | orange | drinks
+food-kitchen      | food     | Eating & kitchen     | 吃饭和厨房     | orange | cutlery
+body              | -        | Body & health        | 身体和健康     | red    | body
+body-parts        | body     | Body parts           | 身体部位       | red    | body
+health            | body     | Health & doctor      | 健康和看医生   | red    | doctor
+care              | -        | Personal care        | 个人护理       | teal   | hygiene
+clothing          | -        | Clothes              | 衣服           | teal   | clothes
+weather           | -        | Weather & senses     | 天气和感觉     | blue   | weather
+time              | -        | Time                 | 时间           | purple | time
+places            | -        | Places               | 地方           | brown  | place
+home              | -        | Home                 | 家             | brown  | house
+school            | -        | School & learning    | 学校和学习     | brown  | school
+work              | -        | Work                 | 工作           | brown  | work
+community         | -        | Community            | 社区           | brown  | community
+transport         | -        | Transport            | 交通           | teal   | transport
+travel            | -        | Travel               | 旅行           | teal   | travel
+money             | -        | Money & shopping     | 钱和购物       | yellow | money
+technology        | -        | Technology           | 科技           | grey   | technology
+hobbies           | -        | Hobbies & fun        | 爱好和娱乐     | green  | leisure
+sports            | -        | Sports               | 运动           | green  | sport
+animals           | -        | Animals              | 动物           | orange | animals
+nature            | -        | Nature               | 大自然         | green  | nature
+numbers           | -        | Numbers              | 数字           | grey   | numbers
+colours           | -        | Colours              | 颜色           | grey   | colours
+shapes            | -        | Shapes               | 形状           | grey   | shapes
+culture           | -        | Beliefs & culture    | 信仰和文化     | purple | celebration
+ideas             | -        | Ideas & big words    | 想法和概念     | purple | idea

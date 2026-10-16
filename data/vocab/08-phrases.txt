@@ -1,0 +1,215 @@
+# Ready-made phrases. They live in their category alongside the single words.
+# English | Chinese | phrase | options
+
+@ feelings
+I feel happy                      | 我很开心            | phrase |
+I feel sad                        | 我很难过            | phrase |
+I feel angry                      | 我很生气            | phrase |
+I feel overwhelmed                | 我受不了了          | phrase | id=i-feel-overwhelmed
+I feel tired                      | 我累了              | phrase |
+I feel a little upset             | 我有点不开心        | phrase |
+I'm very frustrated               | 我非常烦            | phrase |
+I don't feel okay                 | 我感觉不太好        | phrase | essential
+I need a break                    | 我需要休息一下      | phrase | id=i-need-a-break essential
+I don't know how I feel           | 我不知道我是什么感觉 | phrase |
+I have mixed feelings             | 我的心情很复杂      | phrase |
+I need help explaining how I feel | 我需要帮忙说出我的感受 | phrase |
+I need some quiet time            | 我需要安静一会儿    | phrase |
+I'm scared                        | 我害怕              | phrase |
+I'm worried about something       | 我在担心一件事      | phrase |
+I'm excited                       | 我好兴奋            | phrase |
+I'm bored                         | 我好无聊            | phrase |
+I'm feeling better                | 我感觉好多了        | phrase |
+Please give me a hug              | 请抱抱我            | phrase |
+I want to be alone                | 我想一个人待着      | phrase |
+That makes me happy               | 这让我很开心        | phrase |
+That hurt my feelings             | 这让我很伤心        | phrase |
+
+@ actions-requests
+I want that                       | 我要那个            | phrase |
+I want something else             | 我想要别的          | phrase | id=i-want-something-else
+I need help                       | 我需要帮忙          | phrase | id=i-need-help essential
+Help me                           | 帮帮我              | phrase | id=help-me
+Can you help me, please?          | 你可以帮我吗?       | phrase | id=can-you-help-me
+Please help me with this          | 请帮我做这个        | phrase |
+I can do it myself                | 我可以自己做        | phrase | id=i-can-do-it-myself
+Please give me a few minutes      | 请给我几分钟        | phrase |
+Can I have a turn?                | 我可以玩一下吗?     | phrase |
+Can I have some more?             | 我可以再要一点吗?   | phrase |
+I'm finished                      | 我做完了            | phrase | id=im-finished sym=28429
+Not that one                      | 不是那个            | phrase |
+This one                          | 这个                | phrase | id=this-one
+Stop, please                      | 请停下来            | phrase | id=stop-please essential
+Wait for me                       | 等等我              | phrase |
+Let's go                          | 我们走吧            | phrase | id=lets-go
+Come with me                      | 跟我来              | phrase |
+Can you get it for me?            | 你可以帮我拿吗?     | phrase |
+Please turn it off                | 请关掉              | phrase |
+Please turn it on                 | 请打开              | phrase |
+Please move                       | 请让一下            | phrase |
+
+@ actions-movement
+I want to go outside              | 我想出去            | phrase | id=i-want-to-go-outside
+I want to go home                 | 我想回家            | phrase | id=i-want-to-go-home
+I want to get up                  | 我想起来            | phrase |
+I want to sit down                | 我想坐下            | phrase |
+I want to lie down                | 我想躺下            | phrase |
+Can we go now?                    | 我们现在可以走了吗? | phrase |
+Where are we going?               | 我们去哪里?         | phrase | id=where-are-we-going
+I need to leave                   | 我需要离开          | phrase | id=i-need-to-leave essential
+Please move my chair              | 请帮我移一下椅子    | phrase |
+
+@ social
+How are you?                      | 你好吗?             | phrase | id=how-are-you-q
+I'm good, thanks                  | 我很好,谢谢         | phrase |
+What did you do today?            | 你今天做了什么?     | phrase |
+Tell me about your day            | 跟我说说你的一天    | phrase |
+I like your shirt                 | 我喜欢你的衣服      | phrase |
+You look nice                     | 你看起来很好看      | phrase |
+That's funny                      | 真好笑              | phrase |
+I have a joke                     | 我有一个笑话        | phrase |
+Do you want to play with me?      | 你想和我一起玩吗?   | phrase |
+I missed you                      | 我想你了            | phrase |
+I love you                        | 我爱你              | phrase |
+Nice to see you                   | 很高兴见到你        | phrase |
+See you tomorrow                  | 明天见              | phrase |
+Have a good day                   | 祝你今天愉快        | phrase |
+Can we talk about something else? | 我们可以聊点别的吗? | phrase | id=change-subject
+I have to go now                  | 我现在得走了        | phrase | id=i-have-to-go
+It was nice talking to you        | 跟你聊天很开心      | phrase |
+What do you think?                | 你觉得呢?           | phrase |
+I think that's a good idea        | 我觉得这是个好主意  | phrase |
+I don't think that's a good idea  | 我觉得这不是好主意  | phrase |
+I'm sorry                         | 对不起              | phrase | id=im-sorry
+It's okay                         | 没关系              | phrase | id=its-okay
+Thank you for helping me          | 谢谢你帮我          | phrase |
+Can I join in?                    | 我可以一起吗?       | phrase |
+Do you want to come?              | 你想来吗?           | phrase |
+I'd like that                     | 我很愿意            | phrase |
+Hello, my name is…                | 你好,我叫……         | phrase | id=hello-my-name-is
+I use this app to talk            | 我用这个应用说话    | phrase | id=i-use-this-app
+Please wait while I type          | 请等我打字          | phrase | id=please-wait-while-i-type
+
+@ food
+I want water                      | 我要水              | phrase |
+I'm hungry                        | 我饿了              | phrase | id=im-hungry
+I'm thirsty                       | 我渴了              | phrase | id=im-thirsty
+I don't like this food            | 我不喜欢这个菜      | phrase |
+Can I have another drink?         | 我可以再喝一杯吗?   | phrase |
+I'm allergic to this              | 我对这个过敏        | phrase | id=im-allergic essential cat=safety,health
+I would like something else       | 我想要点别的        | phrase |
+I'm full                          | 我吃饱了            | phrase | id=im-full
+It's too hot                      | 太烫了              | phrase | id=food-too-hot
+Can you cut it up for me?         | 你可以帮我切一下吗? | phrase |
+I want a snack                    | 我想吃零食          | phrase |
+More, please                      | 请再给我一些        | phrase | id=more-please-phrase
+This is yummy                     | 这个很好吃          | phrase |
+What's for dinner?                | 晚饭吃什么?         | phrase |
+I'd like to order                 | 我想点菜            | phrase |
+
+@ body
+I am hurt                         | 我受伤了            | phrase | id=i-am-hurt essential cat=safety
+I am in pain                      | 我很疼              | phrase | id=i-am-in-pain essential cat=safety
+It hurts here                     | 这里疼              | phrase | id=it-hurts-here essential
+I feel sick                       | 我不舒服            | phrase | id=i-feel-sick
+I need my medicine                | 我需要吃药          | phrase |
+I need to see a doctor            | 我需要看医生        | phrase |
+I'm too hot                       | 我太热了            | phrase | id=im-too-hot
+I'm too cold                      | 我太冷了            | phrase | id=im-too-cold
+I need to rest                    | 我需要休息          | phrase |
+I'm tired, I need to sleep        | 我累了,我要睡觉     | phrase |
+I need to change position         | 我需要换个姿势      | phrase |
+Please be gentle                  | 请轻一点            | phrase |
+I need to go to the toilet        | 我要上厕所          | phrase | id=i-need-the-toilet essential cat=care
+I need to wash my hands           | 我要洗手            | phrase | cat=care
+I need a tissue                   | 我需要纸巾          | phrase | cat=care
+I need help getting dressed       | 我穿衣服需要帮忙    | phrase | cat=care,clothing
+I want privacy, please            | 请给我一点隐私      | phrase | cat=care
+Please knock first                | 请先敲门            | phrase | cat=care
+
+@ weather
+It is sunny                       | 今天是晴天          | phrase | id=it-is-sunny
+It is raining                     | 下雨了              | phrase |
+It is too hot                     | 太热了              | phrase | id=it-is-too-hot
+It is too cold                    | 太冷了              | phrase | id=it-is-too-cold
+I don't like the rain             | 我不喜欢下雨        | phrase |
+Can we close the window?          | 我们可以关窗吗?     | phrase |
+Can we open the window?           | 我们可以开窗吗?     | phrase |
+It's too loud in here             | 这里太吵了          | phrase | id=its-too-loud cat=feelings
+It's too bright                   | 太亮了              | phrase |
+Can you turn the light off?       | 你可以关灯吗?       | phrase |
+I need my headphones              | 我需要耳机          | phrase | cat=feelings
+It smells bad                     | 好臭                | phrase |
+
+@ school
+I don't understand the question   | 我不明白这个问题    | phrase |
+Can you explain that again?       | 你可以再解释一遍吗? | phrase |
+I need more time                  | 我需要更多时间      | phrase | id=i-need-more-time essential
+I have finished my work           | 我做完作业了        | phrase |
+I know the answer                 | 我知道答案          | phrase |
+I have a question                 | 我有一个问题        | phrase | id=i-have-a-question
+Can you show me?                  | 你可以给我看看吗?   | phrase |
+I don't want to do this           | 我不想做这个        | phrase |
+Can I work with a friend?         | 我可以和朋友一起做吗? | phrase |
+Can I have a break?               | 我可以休息一下吗?   | phrase |
+That's too hard                   | 太难了              | phrase |
+That's too easy                   | 太容易了            | phrase |
+I need a pencil                   | 我需要一支铅笔      | phrase |
+What page?                        | 第几页?             | phrase |
+
+@ time
+What are we doing today?          | 我们今天做什么?     | phrase |
+What's next?                      | 接下来做什么?       | phrase | id=whats-next
+How long until we go?             | 还有多久才走?       | phrase |
+Not now, later                    | 现在不要,等一下     | phrase | id=not-now-later
+I want to do it now               | 我想现在做          | phrase |
+What time is it?                  | 现在几点?           | phrase |
+
+@ places
+I want to go to the park          | 我想去公园          | phrase |
+I want to go to the shop          | 我想去商店          | phrase |
+Can we go to the beach?           | 我们可以去海边吗?   | phrase |
+I want to stay here               | 我想待在这里        | phrase |
+I live in Auckland                | 我住在奥克兰        | phrase |
+
+@ money
+How much is this?                 | 这个多少钱?         | phrase | id=how-much-is-this
+I'd like to buy this              | 我想买这个          | phrase |
+Can I pay by card?                | 可以刷卡吗?         | phrase |
+Can I have a bag, please?         | 可以给我一个袋子吗? | phrase |
+I'm just looking                  | 我只是看看          | phrase |
+Where is the toilet?              | 洗手间在哪里?       | phrase | id=where-is-the-toilet cat=care
+
+@ hobbies
+I want to watch TV                | 我想看电视          | phrase |
+I want to play a game             | 我想玩游戏          | phrase |
+I want to listen to music         | 我想听音乐          | phrase |
+Can you read me a story?          | 你可以给我讲个故事吗? | phrase |
+Can we play outside?              | 我们可以去外面玩吗? | phrase |
+I want to draw                    | 我想画画            | phrase |
+Turn it up, please                | 请大声一点          | phrase | cat=technology
+Turn it down, please              | 请小声一点          | phrase | cat=technology
+The battery is flat               | 没电了              | phrase | cat=technology
+
+@ safety
+This is an emergency              | 这是紧急情况!       | phrase | id=emergency-phrase essential
+I need medical help               | 我需要医疗帮助      | phrase | id=i-need-medical-help essential
+Call an ambulance                 | 叫救护车            | phrase | id=call-ambulance essential
+Call someone                      | 找人来              | phrase | id=call-someone essential
+Please call my family             | 请给我的家人打电话  | phrase | id=please-call-my-family essential
+I cannot speak                    | 我不能说话          | phrase | id=i-cannot-speak essential
+Please read this message          | 请看这条信息        | phrase | id=please-read-this essential
+I need more time to communicate   | 我需要更多时间来表达 | phrase | id=more-time-to-communicate essential
+Please do not touch me            | 请不要碰我          | phrase | id=please-do-not-touch-me essential
+I do not understand               | 我不明白            | phrase | id=i-do-not-understand essential
+I am not safe                     | 我不安全            | phrase | id=i-am-not-safe essential
+I am lost                         | 我迷路了            | phrase | id=i-am-lost essential
+Please stop                       | 请停下来            | phrase | id=please-stop essential
+I don't like this                 | 我不喜欢这样        | phrase | id=i-dont-like-this essential
+No, I don't want to               | 不,我不想           | phrase | id=no-i-dont-want-to essential
+Leave me alone                    | 别管我              | phrase | id=leave-me-alone-phrase essential
+I am having a seizure             | 我癫痫发作了        | phrase | id=having-a-seizure
+I can't breathe                   | 我喘不过气          | phrase | id=i-cant-breathe essential
+Please stay with me               | 请陪着我            | phrase | id=please-stay-with-me
+I need to call someone            | 我需要打电话给别人  | phrase |
+Something is wrong                | 出事了              | phrase | id=something-is-wrong essential

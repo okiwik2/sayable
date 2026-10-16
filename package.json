@@ -1,0 +1,44 @@
+{
+  "name": "sayable",
+  "private": true,
+  "version": "0.1.0",
+  "description": "An offline-first AAC (augmentative and alternative communication) app with English and Mandarin, ARASAAC symbols and NZSL sign resources.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run data && tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "data": "node scripts/build-vocab.mjs",
+    "data:validate": "node scripts/validate-vocab.mjs",
+    "assets:symbols": "node scripts/fetch-arasaac.mjs",
+    "assets:nzsl": "node scripts/fetch-nzsl.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "dexie": "4.2.1",
+    "react": "19.2.9",
+    "react-dom": "19.2.9",
+    "zustand": "5.0.8"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.56.1",
+    "@testing-library/react": "16.3.0",
+    "@types/node": "22.20.5",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "5.2.0",
+    "fake-indexeddb": "6.0.1",
+    "jsdom": "26.1.0",
+    "opencc-js": "1.0.5",
+    "pinyin-pro": "3.27.0",
+    "sharp": "0.34.5",
+    "typescript": "5.9.3",
+    "vite": "7.3.7",
+    "vite-plugin-pwa": "1.3.0",
+    "vitest": "3.2.7"
+  }
+}

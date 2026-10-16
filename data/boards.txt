@@ -1,0 +1,119 @@
+# Starter boards.
+# "@board id | English name | Chinese name | options" starts a board.
+#   lang=en|zh      core boards are made for one language (Mandarin word order and grammar differ)
+#   level=starter|standard|extended   which core-vocabulary size this layout is
+#   cols=N          the number of columns the layout was designed for
+#   kind=core|context
+# "row:" lines list item ids for one row of the grid. Use "_" for an empty cell.
+# Context boards are bilingual: each item shows in whichever language is being used.
+
+# ---------------- English core boards ----------------
+
+@board core-en-starter | Core words (starter) | 核心词(入门) | lang=en level=starter cols=6 kind=core
+row: i       you     want    need     like     dont-like
+row: go      stop    help    more     finish   again
+row: it      that    get     put      make     look
+row: eat     drink   play    open     turn     feel
+row: good    bad     big     little   different not
+row: what    where   in      on       up       here
+
+@board core-en-standard | Core words | 核心词 | lang=en level=standard cols=8 kind=core
+row: i       you     he      she      we       they     it       that
+row: want    need    like    dont-like have    go       come     stop
+row: help    get     give    put      make     do       look     see
+row: eat     drink   play    open     close    turn     feel     think
+row: is      are     can     will     not      dont     more     finish
+row: good    bad     big     little   same     different again   to
+row: what    where   who     when     why      how      and      because
+row: in      on      up      down     here     there    now      later
+
+@board core-en-extended | Core words (extended) | 核心词(扩展) | lang=en level=extended cols=10 kind=core
+row: i       me      my      you      your     he       she      we       they     it
+row: this    that    want    need     like     dont-like love    have     do       make
+row: go      come    get     give     put      take     stop     start    finish   wait
+row: help    look    see     watch    listen   hear     say      tell     ask      know
+row: think   feel    eat     drink    play     open     close    turn     try      let
+row: is      are     am      was      can      cant     will     dont     not      to
+row: the     a       and     but      because  if       or       with     for      of
+row: good    bad     big     little   more     all      some     same     different again
+row: what    where   who     when     why      how      which    here     there    now
+row: in      on      up      down     out      off      later    today    please   thank-you
+
+# ---------------- Mandarin core boards ----------------
+
+@board core-zh-starter | 核心词(入门) | 核心词(入门) | lang=zh level=starter cols=6 kind=core
+row: i        you       zh-yao     zh-buyao   like       dont-like
+row: go       stop      zh-bang    zh-haiyao  zh-wanle   zh-zai-again
+row: zh-zhege zh-nage   eat        drink      play       look
+row: zh-you   zh-meiyou zh-shi     not        good     bad
+row: big    little   open       zh-gei     get        feel
+row: what     where     zh-ma      zh-le      here       now
+
+@board core-zh-standard | 核心词 | 核心词 | lang=zh level=standard cols=8 kind=core
+row: i        you       he         she        we         they       zh-zhege   zh-nage
+row: zh-yao   zh-buyao  zh-xiang   like       dont-like  zh-you     zh-meiyou  zh-shi
+row: go       come      stop       zh-bang    zh-gei     get        do         look
+row: eat      drink     play       open       close      say        listen     feel
+row: not      zh-mei    zh-hui     zh-neng    zh-keyi    zh-zai     zh-le      zh-de
+row: good   bad  big      little    zh-duo     zh-haiyao  same  different
+row: what     where     who        why        when       how        zh-ma      zh-ne
+row: very     also      zh-zai-again and      because    here       now        later
+
+@board core-zh-extended | 核心词(扩展) | 核心词(扩展) | lang=zh level=extended cols=10 kind=core
+row: i        you       he         she        it         we         you-all    they       zh-zhege   zh-nage
+row: zh-yao   zh-buyao  zh-xiang   need       like       dont-like  love       zh-you     zh-meiyou  zh-shi
+row: go       come      walk       stop       wait       start      zh-wanle   zh-bang    zh-gei     get
+row: eat      drink     play       look       listen     say        do         open       close      zh-yong
+row: know     feel  understand remember   try        find       buy        put        zh-dai     zh-rang
+row: not      zh-mei    zh-bie     zh-hui     zh-neng    zh-keyi    should zh-zai     zh-le      zh-guo
+row: zh-de    zh-ma     zh-ne      zh-ba      and        but        because    so         if         with
+row: good   bad  big      little    zh-duo     zh-shao    zh-haiyao  zh-yidian  same  different
+row: what     where     who        why        when       how        zh-duoshao which      here       there
+row: very     too       also       zh-dou     still      zh-zai-again now      later      today      please
+
+# ---------------- Context boards (bilingual) ----------------
+
+@board ctx-home | At home | 在家 | kind=context cols=6
+row: i-want-to-go-outside  im-hungry   im-thirsty   i-need-the-toilet   i-need-a-break   i-want-to-watch-tv
+row: tv          tablet      bed          bath         shower       toy
+row: lounge      bedroom     kitchen      bathroom     garden       couch
+row: mum         dad         brother      sister       grandma      friend
+row: blanket     light-lamp  turn-on      turn-off     louder       quieter
+
+@board ctx-school | At school | 在学校 | kind=context cols=6
+row: i-have-a-question   i-dont-understand-the-question   can-you-explain-that-again   i-need-more-time   i-have-finished-my-work   can-i-have-a-break
+row: teacher     teacher-aide classmate   friend       principal    help-noun
+row: book        pencil      paper        scissors     computer     schoolbag
+row: maths       reading-noun writing-noun science     art          pe
+row: break-time  lunchtime   homework     test         group        library
+
+@board ctx-medical | At the doctor | 看医生 | kind=context cols=6
+row: i-am-in-pain    it-hurts-here    i-feel-sick   im-allergic    i-need-my-medicine    please-be-gentle
+row: head        tummy       back         chest        throat       ears
+row: headache    tummy-ache  sore-throat  fever        cough        dizzy
+row: pain        feel-better feel-worse   itchy        sore         bleeding
+row: doctor      nurse       medicine     injection    hospital     appointment
+row: more-time-to-communicate   please-read-this   yes   no   dont-know   not-sure
+
+@board ctx-shopping | Shopping | 购物 | kind=context cols=6
+row: how-much-is-this   id-like-to-buy-this   can-i-pay-by-card   can-i-have-a-bag-please   im-just-looking   where-is-the-toilet
+row: shop        supermarket mall         cafe         restaurant   bank
+row: money       card        cash         change-money receipt      price
+row: cheap       expensive   want-to-buy  trolley      bag          sale
+
+@board ctx-social | Seeing friends | 和朋友见面 | kind=context cols=6
+row: hello       how-are-you-q  im-good-thanks   nice-to-see-you   i-missed-you   goodbye
+row: what-did-you-do-today   tell-me-about-your-day   thats-funny   i-have-a-joke   change-subject   i-have-to-go
+row: do-you-want-to-play-with-me   can-i-join-in   do-you-want-to-come   id-like-that   me-too   i-think-so
+row: party       movie       game         music        sport        food
+
+@board ctx-travel | Getting around | 出行 | kind=context cols=6
+row: where-are-we-going   are-we-there-yet   can-we-go-now   i-need-the-toilet   im-hungry   i-need-a-break
+row: car         bus         train        taxi         plane        ferry
+row: station     bus-stop    airport      ticket       hop-card     map
+row: seatbelt    ramp        lift         mobility-taxi far-away    lost
+
+@board ctx-work | At work | 工作 | kind=context cols=6
+row: i-have-a-question   can-you-show-me   i-need-more-time   im-finished   i-need-a-break   i-use-this-app
+row: boss        coworker    customer     meeting      task         shift
+row: computer    email       phone        desk         work-break   day-off

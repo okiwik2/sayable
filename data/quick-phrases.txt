@@ -1,0 +1,65 @@
+# Quick phrases: messages that can be spoken straight away, without building a sentence.
+# "@group id | English name | Chinese name" starts a group.
+# A line "> item-id" reuses an existing vocabulary item.
+# Other lines define a new phrase: English | Chinese | phrase | options  (stored in the "social" category)
+# The "pinned" group is the default always-visible strip on the main screen.
+
+@group pinned | Pinned | 常用
+Yes                              | 是                  | phrase | id=q-yes essential sym=5584
+No                               | 不                  | phrase | id=q-no essential sym=5526
+Stop                             | 停                  | phrase | id=q-stop essential sym=8289
+Help                             | 帮帮我              | phrase | id=q-help essential
+I need a break                   | 我需要休息一下      | phrase | id=q-break essential
+Please wait                      | 请等一下            | phrase | id=q-wait essential
+
+@group answers | Answers | 回答
+> q-yes
+> q-no
+I don't know                     | 我不知道            | phrase | id=q-dont-know essential
+Maybe                            | 也许吧              | phrase | id=q-maybe
+I agree                          | 我同意              | phrase | id=q-agree
+I disagree                       | 我不同意            | phrase | id=q-disagree essential
+I'm not sure                     | 我不确定            | phrase | id=q-not-sure
+I don't mind                     | 都可以              | phrase | id=q-dont-mind
+Thank you                        | 谢谢                | phrase | id=q-thanks
+You're welcome                   | 不客气              | phrase | id=q-welcome
+
+@group conversation | Keeping the conversation going | 继续对话
+One moment                       | 稍等一下            | phrase | id=q-one-moment
+> q-wait
+I need more time                 | 我需要更多时间      | phrase | id=q-more-time essential
+I am still communicating         | 我还没说完          | phrase | id=q-still-communicating essential
+I have something to say          | 我有话要说          | phrase | id=q-something-to-say
+I want to ask something          | 我想问一个问题      | phrase | id=q-ask-something
+Please speak slowly              | 请说慢一点          | phrase | id=q-speak-slowly
+Please repeat that               | 请再说一遍          | phrase | id=q-repeat
+I don't understand               | 我不明白            | phrase | id=q-dont-understand essential
+Please give me a choice          | 请给我几个选择      | phrase | id=q-give-choice
+Please ask me yes or no questions | 请问我是或不是的问题 | phrase | id=q-yes-no-questions
+Can you guess what I mean?       | 你能猜猜我的意思吗? | phrase | id=q-guess
+
+@group fixing | Fixing mistakes | 纠正错误
+I want to change my answer       | 我想改我的答案      | phrase | id=q-change-answer
+That is not what I meant         | 那不是我的意思      | phrase | id=q-not-what-i-meant essential
+I pressed the wrong button       | 我按错了            | phrase | id=q-wrong-button
+Let me start again               | 让我重新说          | phrase | id=q-start-again
+Yes, that's right                | 对,就是这个         | phrase | id=q-thats-right
+No, that's wrong                 | 不,不对             | phrase | id=q-thats-wrong
+
+@group preferences | Choices & preferences | 选择和喜好
+I would prefer something else    | 我更想要别的        | phrase | id=q-prefer-else
+I like it                        | 我喜欢              | phrase | id=q-like-it
+I don't like it                  | 我不喜欢            | phrase | id=q-dont-like-it essential
+I want this one                  | 我要这个            | phrase | id=q-this-one
+Not that one                     | 不要那个            | phrase | id=q-not-that-one
+Both                             | 两个都要            | phrase | id=q-both
+Neither                          | 两个都不要          | phrase | id=q-neither
+
+@group needs | Needs | 需要
+> i-need-help
+> i-need-the-toilet
+> im-hungry
+> im-thirsty
+> i-am-in-pain
+> i-need-a-break
+> i-need-to-leave
