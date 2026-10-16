@@ -105,26 +105,27 @@ export function SignViewer({ item, large }: { item: VocabItem; large?: boolean }
   if (!st.signPack && settings.signLanguage === 'nzsl') return <p className="muted">{t('loading')}</p>;
 
   return (
-    <section className="sign-panel" aria-label={t('signFor', { word })}>
-      <div className="row" style={{ justifyContent: 'space-between' }}>
-        <h3 style={{ margin: 0 }}><Icon name="hand" /> {t('signFor', { word })} · {SIGN_LANG_NAMES[settings.signLanguage]}</h3>
-        <button className="btn btn-small" onClick={() => setAdding(true)}><Icon name="plus" /> {t('addOwnSign')}</button>
-      </div>
+    <section className={`sign-panel${large ? ' is-large' : ''}`} aria-label={t('signFor', { word })}>
+      {!large && (
+        <div className="sign-head">
+          <h3><Icon name="hand" /> {t('signFor', { word })} · {SIGN_LANG_NAMES[settings.signLanguage]}</h3>
+        </div>
+      )}
       {!signs.length && (
         <p className="muted">{settings.signLanguage === 'nzsl' ? t('noSign') : t('noSignLang', { lang: SIGN_LANG_NAMES[settings.signLanguage] })}</p>
       )}
       {current && (
         <>
-          <SignMedia sign={current} online={online} large={large} />
-          <div className="row" style={{ marginTop: 8 }}>
+          <SignMedia sign={current} online={online} />
+          <div className="sign-meta">
             <strong>{current.gloss}</strong>
             {current.maori && <span className="muted">{t('maori')}: {current.maori}</span>}
             {current.verification === 'dictionary-match' && <span className="sign-status">{t('signMatched', { word: item.forms.en?.text ?? word })}</span>}
             {current.verification === 'reviewed' && <span className="sign-status is-reviewed"><Icon name="check" size={16} /> {t('signReviewed')}</span>}
             {current.verification === 'custom' && <span className="sign-status">{t('customSign')}</span>}
           </div>
-          {current.hint && <p><strong>{t('signHint')}:</strong> {current.hint}</p>}
-          <div className="row">
+          {current.hint && <p className="sign-hint"><strong>{t('signHint')}:</strong> {current.hint}</p>}
+          <div className="sign-actions">
             {current.verification === 'dictionary-match' && (
               <button className="btn btn-small" onClick={() => void st.setOverride(item.id, { signChoice: current.id, signReviewed: true }, `Confirmed the sign for “${word}”`)}>
                 <Icon name="check" /> {t('markRight')}
@@ -137,16 +138,16 @@ export function SignViewer({ item, large }: { item: VocabItem; large?: boolean }
               <button className="btn btn-small btn-danger" onClick={() => void st.deleteCustomSign(current.id)}><Icon name="trash" /> {t('delete')}</button>
             )}
           </div>
-          {current.attribution && <p className="small muted">{t('signCredit')}</p>}
         </>
       )}
       {signs.length > 1 && (
-        <div className="field" style={{ marginTop: 8 }}>
+        <div className="field sign-more">
           <span className="label">{t('otherSigns')}</span>
           <div className="sign-alts">
             {signs.map((s, i) => (
               <button key={s.id} className="sign-alt" aria-pressed={i === index} onClick={() => setIndex(i)}>
-                {s.image ? <img src={assetUrl(s.image)} alt="" /> : <span className="muted small">{s.verification === 'custom' ? t('customSign') : t('needsInternet')}</span>}
+                {s.image ? <img src={assetUrl(s.image)} alt="" loading="lazy" /> : <span className="sign-alt-blank" aria-hidden="true"><Icon name="hand" size={36} /></span>}
+                {!s.image && s.verification !== 'custom' && !online && <span className="muted small">{t('needsInternet')}</span>}
                 <span className="small">{s.gloss}</span>
               </button>
             ))}
@@ -158,21 +159,29 @@ export function SignViewer({ item, large }: { item: VocabItem; large?: boolean }
           )}
         </div>
       )}
+      <div className="sign-actions">
+        <button className="btn btn-small btn-quiet" onClick={() => setAdding(true)}><Icon name="plus" /> {t('addOwnSign')}</button>
+      </div>
+      {current?.attribution && <p className="small muted" style={{ margin: 0 }}>{t('signCredit')}</p>}
       {adding && <AddSign item={item} onClose={() => setAdding(false)} />}
     </section>
   );
 }
 
-function SignMedia({ sign, online, large }: { sign: SignResource; online: boolean; large?: boolean }) {
+function SignMedia({ sign, online }: { sign: SignResource; online: boolean }) {
   const t = useT();
   const settings = useStore((s) => s.settings);
   const ref = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
+  const [drawingFailed, setDrawingFailed] = useState(false);
   const [slow, setSlow] = useState(settings.signSpeed < 1);
   const [loop, setLoop] = useState(settings.signLoop);
   const [playing, setPlaying] = useState(false);
   const blobUrl = useStoredImage(sign.blobId, 'full');
-  useEffect(() => setFailed(false), [sign.id]);
+  useEffect(() => {
+    setFailed(false);
+    setDrawingFailed(false);
+  }, [sign.id]);
   useEffect(() => {
     if (ref.current) ref.current.playbackRate = slow ? 0.5 : settings.signSpeed || 1;
   }, [slow, settings.signSpeed, sign.id]);
@@ -181,10 +190,12 @@ function SignMedia({ sign, online, large }: { sign: SignResource; online: boolea
     return <a className="btn" href={sign.url} target="_blank" rel="noopener noreferrer"><Icon name="external" /> {sign.url}</a>;
   }
   const src = blobUrl ?? (sign.video ? assetUrl(sign.video) : online ? sign.remoteVideo : undefined);
+  const hasVideo = !!src && !failed;
+  const drawing = sign.image && !drawingFailed ? assetUrl(sign.image) : undefined;
   return (
-    <div className="row" style={{ alignItems: 'stretch', gap: 12 }}>
-      <div style={{ flex: '2 1 320px', minWidth: 0 }}>
-        {src && !failed ? (
+    <div className={`sign-stage${drawing ? ' has-drawing' : ''}`}>
+      <div className="sign-video-box">
+        {hasVideo ? (
           <video
             key={src}
             ref={ref}
@@ -195,36 +206,36 @@ function SignMedia({ sign, online, large }: { sign: SignResource; online: boolea
             playsInline
             loop={loop}
             controls={false}
-            style={large ? { maxHeight: '60dvh' } : undefined}
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
             onLoadedMetadata={(e) => (e.currentTarget.playbackRate = slow ? 0.5 : settings.signSpeed || 1)}
             onError={() => {
-              // The bundled copy is not available offline yet: try the dictionary's own server.
-              if (online && sign.remoteVideo && src !== sign.remoteVideo) {
-                (ref.current as HTMLVideoElement).src = sign.remoteVideo;
+              // The bundled copy is not available (offline, or not published with this copy of the app):
+              // try the dictionary's own server.
+              if (online && sign.remoteVideo && ref.current && ref.current.src !== sign.remoteVideo) {
+                ref.current.src = sign.remoteVideo;
               } else setFailed(true);
             }}
             aria-label={t('signFor', { word: sign.gloss })}
           />
         ) : (
-          <p className="banner">{online ? t('noSign') : t('offlineVideoMissing')}</p>
+          <div className="sign-missing">{online ? t('noSign') : t('offlineVideoMissing')}</div>
         )}
-        <div className="row" style={{ marginTop: 8 }}>
-          <button className="btn btn-small" onClick={() => { const v = ref.current; if (!v) return; v.currentTime = 0; void v.play(); }}>
+        <div className="sign-controls">
+          <button className="btn" disabled={!hasVideo} onClick={() => { const v = ref.current; if (!v) return; v.currentTime = 0; void v.play(); }}>
             <Icon name="repeat" /> {t('replay')}
           </button>
-          <button className="btn btn-small" onClick={() => { const v = ref.current; if (!v) return; if (v.paused) void v.play(); else v.pause(); }}>
+          <button className="btn" disabled={!hasVideo} onClick={() => { const v = ref.current; if (!v) return; if (v.paused) void v.play(); else v.pause(); }}>
             <Icon name={playing ? 'pause' : 'play'} /> {playing ? t('pause') : t('play')}
           </button>
-          <button className="btn btn-small" aria-pressed={slow} onClick={() => setSlow(!slow)}><Icon name="slow" /> {t('slow')}</button>
-          <button className="btn btn-small" aria-pressed={loop} onClick={() => setLoop(!loop)}><Icon name="loop" /> {t('loop')}</button>
+          <button className="btn" disabled={!hasVideo} aria-pressed={slow} onClick={() => setSlow(!slow)}><Icon name="slow" /> {t('slow')}</button>
+          <button className="btn" disabled={!hasVideo} aria-pressed={loop} onClick={() => setLoop(!loop)}><Icon name="loop" /> {t('loop')}</button>
         </div>
       </div>
-      {sign.image && (
-        <div style={{ flex: '1 1 180px', maxWidth: 260 }}>
-          <img src={assetUrl(sign.image)} alt={t('signDrawing')} style={{ width: '100%', background: '#fff', borderRadius: 10, border: '2px solid var(--border)' }} />
-        </div>
+      {drawing && (
+        <figure className="sign-drawing">
+          <img src={drawing} alt={t('signDrawing')} onError={() => setDrawingFailed(true)} />
+        </figure>
       )}
     </div>
   );

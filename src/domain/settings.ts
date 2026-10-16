@@ -57,6 +57,8 @@ export interface Settings {
   palette: Palette;
   simplified: boolean;
   reduceMotion: boolean;
+  /** Read setup, menus, windows and messages aloud (for blind and low-vision users). */
+  voiceGuide: boolean;
   labelsOnTop: boolean;
 
   // Board
@@ -137,6 +139,7 @@ export function defaultSettings(overrides: Partial<Settings> = {}): Settings {
     palette: 'standard',
     simplified: false,
     reduceMotion: false,
+    voiceGuide: false,
     labelsOnTop: false,
     coreLevel: 'standard',
     columns: 0,

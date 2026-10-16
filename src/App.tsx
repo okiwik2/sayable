@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { VoiceGuide } from './ui/VoiceGuide';
 import { useStore, useT } from './state/store';
 import { MessageBar, ExpandedMessage } from './ui/MessageBar';
 import { PinnedBar, SuggestionBar, Nav, MoreMenu } from './ui/Bars';
@@ -162,6 +163,7 @@ export function App() {
       <PinHost />
       <ConfirmHost />
       <Toasts />
+      <VoiceGuide />
       <OfflinePrep />
       <Scanner />
       <Dwell />

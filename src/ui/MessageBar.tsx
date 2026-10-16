@@ -122,22 +122,22 @@ export function MessageBar() {
 
       <div className="message-tools" data-tour="tools" data-scan-group role="toolbar" aria-label={t('edit')}>
         <button className="tool" onClick={st.deleteLast} disabled={!message.tokens.length} data-scan-item>
-          <Icon name="backspace" /> {t('deleteWord')}
+          <Icon name="backspace" /> <span className="tool-label">{t('deleteWord')}</span>
         </button>
         <button className="tool" onClick={st.undo} disabled={!st.undoStack.past.length} data-scan-item>
-          <Icon name="undo" /> {t('undo')}
+          <Icon name="undo" /> <span className="tool-label">{t('undo')}</span>
         </button>
         <button className="tool tool-danger" onClick={() => void st.clearMessage()} disabled={!message.tokens.length} data-scan-item>
-          <Icon name="clear" /> {t('clear')}
+          <Icon name="clear" /> <span className="tool-label">{t('clear')}</span>
         </button>
         <button className="tool" onClick={() => void st.saveMessage()} disabled={!message.tokens.length} data-scan-item>
-          <Icon name="save" /> {t('save')}
+          <Icon name="save" /> <span className="tool-label">{t('save')}</span>
         </button>
         <button className="tool" onClick={() => useStore.setState({ showOpen: true })} disabled={!message.tokens.length} data-scan-item>
-          <Icon name="show" /> {t('show')}
+          <Icon name="show" /> <span className="tool-label">{t('show')}</span>
         </button>
         <button className="tool" onClick={() => void st.speakMessage({ preview: true })} disabled={!message.tokens.length || speaking} data-scan-item>
-          <Icon name="quiet" /> {t('previewQuiet')}
+          <Icon name="quiet" /> <span className="tool-label">{t('previewQuiet')}</span>
         </button>
       </div>
 

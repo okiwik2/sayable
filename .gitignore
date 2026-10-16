@@ -6,4 +6,4 @@ playwright-report/
 *.log
 
 # NZSL sign videos and drawings (about 185 MB). Download them with: npm run assets:nzsl
-public/nzsl/
+public/nzsl/video/

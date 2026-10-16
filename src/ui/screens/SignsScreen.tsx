@@ -7,6 +7,7 @@ import type { VocabItem } from '../../domain/types';
 import { Tile, Grid, autoColumns } from '../Tile';
 import { Dialog, TextField } from '../common';
 import { SignViewer } from '../Detail';
+import { Icon } from '../Icon';
 import { TILE_MIN } from './BoardScreen';
 
 const NAMES = { nzsl: 'NZSL', asl: 'ASL', bsl: 'BSL', none: '' } as const;
@@ -50,9 +51,9 @@ export function SignsScreen() {
         <span className="muted">{t('signsCount', { n: withSigns.length })}</span>
       </div>
       {signLang !== 'nzsl' && <p className="banner">{t('signsNotInstalled', { lang: NAMES[signLang] })} {t('noSignLang', { lang: NAMES[signLang] })}</p>}
-      <div className="row" style={{ alignItems: 'flex-end' }}>
-        <div style={{ flex: 2, minWidth: 220 }}><TextField label={t('signSearch')} value={q} onChange={setQ} placeholder={t('searchPlaceholder')} /></div>
-        <div className="field" style={{ flex: 1, minWidth: 180 }}>
+      <div className="signs-tools">
+        <TextField label={t('signSearch')} value={q} onChange={setQ} placeholder={t('searchPlaceholder')} />
+        <div className="field">
           <label htmlFor="sign-cat">{t('category')}</label>
           <select id="sign-cat" className="input" value={cat} onChange={(e) => setCat(e.target.value)}>
             <option value="">{t('allTopics')}</option>
@@ -69,7 +70,8 @@ export function SignsScreen() {
           </div>
         </>
       )}
-      <p className="muted small">{t('signsIntro')}</p>
+      <p className="muted small" style={{ margin: '4px 0 8px' }}>{t('signsIntro')}</p>
+      {!shown.length && <p className="empty">{t('noResults')}</p>}
       <Grid cols={(w) => autoColumns(w || 900, tileMin)} label={t('signsTitle')}>
         {shown.map((item) => <Tile key={item.id} item={item} lang={lang} hasSign onActivate={setOpen} />)}
       </Grid>
@@ -77,7 +79,7 @@ export function SignsScreen() {
       {open && (
         <Dialog title={displayText(open, open.forms[lang] ? lang : lang === 'en' ? 'zh' : 'en', st.settings.traditional)} size="wide" onClose={() => setOpen(null)}
           footer={<>
-            <button className="btn" onClick={() => { st.tapItem(open); }}>{t('detailAdd')}</button>
+            <button className="btn" onClick={() => { st.tapItem(open); }}><Icon name="plus" /> {t('detailAdd')}</button>
             <button className="btn btn-primary" onClick={() => setOpen(null)}>{t('close')}</button>
           </>}>
           <SignViewer item={open} large />

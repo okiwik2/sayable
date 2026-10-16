@@ -419,6 +419,7 @@ function AccessSettings() {
   return (
     <div className="section">
       <h2>{t('sAccess')}</h2>
+      <Toggle label={t('voiceGuide')} help={t('voiceGuideHelp')} checked={s.voiceGuide} onChange={(v) => set({ voiceGuide: v })} />
       <Choices label={t('activation')} value={s.activation} onChange={(v) => set({ activation: v })} options={[
         { value: 'release', label: t('actRelease') }, { value: 'press', label: t('actPress') }, { value: 'hold', label: t('actHold') },
       ]} />
@@ -447,7 +448,21 @@ function SignSettings() {
   const [s, set] = useSettings();
   const st = useStore();
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
-  useEffect(() => void st.loadSigns(), [st]);
+  // Sign videos can only be saved when they are published with the app (not on every copy of it).
+  const [videosHosted, setVideosHosted] = useState<boolean | null>(null);
+  useEffect(() => {
+    let alive = true;
+    void st.loadSigns().then((pack) => {
+      const first = pack ? Object.values(pack.signs).find((x) => x.video)?.video : undefined;
+      if (!first) return alive && setVideosHosted(false);
+      fetch(assetUrl(first), { method: 'HEAD' })
+        .then((r) => alive && setVideosHosted(r.ok && (r.headers.get('content-type') ?? '').startsWith('video')))
+        .catch(() => alive && setVideosHosted(null));
+    });
+    return () => {
+      alive = false;
+    };
+  }, [st]);
 
   const save = async (onlyFavourites: boolean) => {
     const pack = await st.loadSigns();
@@ -480,7 +495,9 @@ function SignSettings() {
         <div className="field">
           <span className="label">{t('signOffline')}</span>
           <span className="help">{t('signOfflineHelp')}</span>
-          {progress ? (
+          {videosHosted === false ? (
+            <p className="banner info">{t('signOfflineNone')}</p>
+          ) : progress ? (
             <p role="status">{t('signOfflineProgress', progress)}</p>
           ) : (
             <div className="row">

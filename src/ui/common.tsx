@@ -1,5 +1,5 @@
 // Small shared building blocks: dialog, toggles, choices, sliders, confirm and toasts.
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { Icon } from './Icon';
 import { useStore, useT } from '../state/store';
@@ -33,6 +33,12 @@ export function Dialog({
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
   useInertBackground();
+  // Focus moves into the window once, when it opens. (Re-running this on every render made focus
+  // jump back to the first button whenever anything else in the app updated.)
+  const closeRef = useRef(onClose);
+  useLayoutEffect(() => {
+    closeRef.current = onClose;
+  });
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
     const el = ref.current;
@@ -41,7 +47,7 @@ export function Dialog({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.stopPropagation();
-        onClose();
+        closeRef.current();
       }
       if (e.key === 'Tab' && el) {
         const items = [...el.querySelectorAll<HTMLElement>('button:not(:disabled), [href], input:not(:disabled), select, textarea, [tabindex]:not([tabindex="-1"])')];
@@ -62,7 +68,7 @@ export function Dialog({
       el?.removeEventListener('keydown', onKey);
       previous?.focus?.();
     };
-  }, [onClose]);
+  }, []);
   return createPortal(
     <div className="overlay" onPointerDown={(e) => e.target === e.currentTarget && onClose()}>
       <div ref={ref} className={`dialog ${size ?? ''}`} role="dialog" aria-modal="true" aria-labelledby={labelledBy ?? id}>

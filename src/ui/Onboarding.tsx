@@ -1,15 +1,18 @@
 // First-run setup (short, skippable) and the optional guided tour.
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useStore, useT } from '../state/store';
 import type { Settings } from '../domain/settings';
 import { speech, voiceMatchesLang } from '../services/speech';
 import { Toggle } from './common';
 import { Icon } from './Icon';
 import { assetUrl, symbolUrl } from './hooks';
+import { GuideToggle, useGuideAnnouncement } from './VoiceGuide';
 
-function Option({ checked, onClick, title, text }: { checked: boolean; onClick: () => void; title: React.ReactNode; text?: React.ReactNode }) {
+const textOf = (el: Element | null | undefined) => (el instanceof HTMLElement ? el.innerText.replace(/\s+/g, ' ').trim() : '');
+
+function Option({ checked, onClick, title, text, quiet }: { checked: boolean; onClick: () => void; title: React.ReactNode; text?: React.ReactNode; quiet?: boolean }) {
   return (
-    <button type="button" role="radio" aria-checked={checked} className="onboard-option" onClick={onClick}>
+    <button type="button" role="radio" aria-checked={checked} className="onboard-option" onClick={onClick} data-guide-quiet={quiet || undefined}>
       <strong>{title}</strong>
       {text && <span className="muted">{text}</span>}
     </button>
@@ -38,9 +41,33 @@ export function Onboarding() {
 
   const langs = s.commLangs === 'both' ? (['en', 'zh'] as const) : ([s.commLangs] as const);
 
+  // Voice guide: read the step, its choices and what to do next.
+  const cardRef = useRef<HTMLDivElement>(null);
+  const readStep = useGuideAnnouncement(() => {
+    const card = cardRef.current;
+    if (!card) return '';
+    const parts: string[] = [];
+    if (name !== 'welcome' && name !== 'done') parts.push(t('step', { n: step, total: STEPS.length - 2 }));
+    parts.push(textOf(card.querySelector('h1')));
+    card.querySelectorAll(':scope > p:not([aria-live]), :scope > ul, :scope > .banner, :scope > .field > .banner').forEach((p) => parts.push(textOf(p)));
+    const options = [...card.querySelectorAll('[role="radio"], [role="switch"]')];
+    if (options.length) {
+      parts.push(t('vgOptions', { n: options.length }));
+      for (const o of options) {
+        const on = o.getAttribute('aria-checked') === 'true';
+        parts.push(`${textOf(o)}, ${o.getAttribute('role') === 'switch' ? (on ? t('vgOn') : t('vgOff')) : on ? t('vgSelected') : ''}`);
+      }
+      parts.push(t('vgChooseNext', { next: t('next'), back: t('back') }));
+    }
+    if (name === 'welcome') parts.push(t('vgWelcomeHint', { start: t('startNow'), setup: t('setUp') }));
+    if (name === 'done') parts.push(t('vgDoneHint', { finish: t('obFinish'), tour: t('obTutorial') }));
+    return parts.join('. ');
+  }, [step, voices.length]);
+
   return (
     <div className="onboard" role="dialog" aria-modal="true" aria-labelledby="ob-title">
-      <div className="onboard-card">
+      <div className="onboard-card" ref={cardRef}>
+        <GuideToggle big={name === 'welcome'} onReadAgain={readStep} />
         {name !== 'welcome' && name !== 'done' && (
           <p className="muted" aria-live="polite">{t('step', { n: step, total: STEPS.length - 2 })}</p>
         )}
@@ -137,7 +164,7 @@ export function Onboarding() {
                   {!list.length && <p className="banner">{t('noVoice', { lang: lang === 'en' ? t('langEn') : t('langZh') })} {t('noVoiceHelp')}</p>}
                   <div className="onboard-options" role="radiogroup">
                     {list.slice(0, 8).map((v) => (
-                      <Option key={v.id} checked={s.voices[lang] === v.id} title={v.name} text={`${v.lang}${v.local ? '' : ` · ${t('voiceOnline')}`}`}
+                      <Option key={v.id} quiet checked={s.voices[lang] === v.id} title={v.name} text={`${v.lang}${v.local ? '' : ` · ${t('voiceOnline')}`}`}
                         onClick={() => {
                           set({ voices: { ...s.voices, [lang]: v.id } });
                           const sample = lang === 'en' ? t('voiceTest') : t('voiceTestZh');
@@ -166,6 +193,7 @@ export function Onboarding() {
         {name === 'extras' && (
           <>
             <h1 id="ob-title">{t('obExtras')}</h1>
+            <Toggle label={t('voiceGuide')} help={t('voiceGuideHelp')} checked={s.voiceGuide} onChange={(v) => set({ voiceGuide: v })} />
             <Toggle label={t('themeContrastLight')} checked={s.theme === 'contrast-light'} onChange={(v) => set({ theme: v ? 'contrast-light' : 'system' })} />
             <Toggle label={`${t('textSize')} +`} checked={s.textScale >= 1.25} onChange={(v) => set({ textScale: v ? 1.3 : 1 })} />
             <Toggle label={t('reduceMotion')} checked={s.reduceMotion} onChange={(v) => set({ reduceMotion: v })} />
@@ -216,6 +244,7 @@ export function Tutorial() {
   const step = useStore((s) => s.tutorialStep);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const current = step !== null ? TOUR[step] : undefined;
+  useGuideAnnouncement(() => (current && step !== null ? `${step + 1} / ${TOUR.length}. ${t(current.text)}` : ''), [step]);
   useLayoutEffect(() => {
     if (!current) return;
     const measure = () => setRect(document.querySelector(`[data-tour="${current.target}"]`)?.getBoundingClientRect() ?? null);

@@ -219,7 +219,7 @@ export function Grid({ cols: colsProp, children, fit, label }: { cols: number | 
   };
 
   return (
-    <div className="grid-wrap" ref={wrapRef}>
+    <div className={fit ? 'grid-wrap' : 'grid-wrap is-inline'} ref={wrapRef}>
       <div
         ref={gridRef}
         className="grid"
