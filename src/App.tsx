@@ -71,6 +71,18 @@ function useConnectivity() {
   }, []);
 }
 
+function OfflinePrep() {
+  const p = useStore((s) => s.offlinePrep);
+  const t = useT();
+  if (!p) return null;
+  return (
+    <div className="offline-prep" role="status">
+      {t('offlinePrep', { done: p.done, total: p.total })}
+      <span className="offline-prep-bar"><span style={{ width: `${Math.round((p.done / p.total) * 100)}%` }} /></span>
+    </div>
+  );
+}
+
 function Main() {
   const view = useStore((s) => s.view);
   switch (view.screen) {
@@ -150,6 +162,7 @@ export function App() {
       <PinHost />
       <ConfirmHost />
       <Toasts />
+      <OfflinePrep />
       <Scanner />
       <Dwell />
     </>

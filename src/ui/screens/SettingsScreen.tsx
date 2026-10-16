@@ -9,6 +9,7 @@ import { speech, voiceMatchesLang, type VoiceInfo } from '../../services/speech'
 import { newId, listChanges, storageEstimate, requestPersistentStorage } from '../../services/repo';
 import { exportProfiles, validateBackup, importBackup, listRestorePoints, restoreFrom, downloadJson } from '../../services/backup';
 import { cleanupImages } from '../../services/images';
+import { saveAllToCache } from '../../services/offline';
 import { db } from '../../services/db';
 import { Choices, Range, Toggle, TextField } from '../common';
 import { Icon } from '../Icon';
@@ -458,21 +459,11 @@ function SignSettings() {
       const sign = sid ? pack.signs[sid] : undefined;
       if (sign?.video) urls.add(sign.video);
     }
-    const list = [...urls];
-    const videos = await caches.open('nzsl-video');
-    let done = 0;
-    setProgress({ done, total: list.length });
-    for (const path of list) {
-      const url = new URL(assetUrl(path), location.href).href;
-      try {
-        if (!(await videos.match(url))) await videos.add(url);
-      } catch {
-        /* keep going; the video can still stream later */
-      }
-      setProgress({ done: ++done, total: list.length });
-    }
-    st.toast({ text: t('signOfflineDone', { n: done }), tone: 'success' });
+    const list = [...urls].map((path) => new URL(assetUrl(path), location.href).href);
+    const result = await saveAllToCache('nzsl-video', list, (done, total) => setProgress({ done, total }), 6);
     setProgress(null);
+    if (result.total > 0 && result.saved === 0) st.toast({ text: t('signOfflineNone') });
+    else st.toast({ text: t('signOfflineDone', { n: list.length - result.failed }), tone: 'success' });
   };
 
   return (

@@ -97,6 +97,7 @@ interface State {
   confirmReq: ConfirmRequest | null;
   signPack: SignPack | null;
   online: boolean;
+  offlinePrep: { done: number; total: number } | null;
 }
 
 interface Actions {
@@ -276,6 +277,7 @@ export const useStore = create<Store>()((set, get) => {
     confirmReq: null,
     signPack: null,
     online: typeof navigator === 'undefined' ? true : navigator.onLine,
+    offlinePrep: null,
 
     async init() {
       speech.onStatus((s) => set({ speechStatus: s }));

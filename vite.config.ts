@@ -33,15 +33,21 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Everything needed to communicate is stored on the device when the app is installed:
-        // the app itself, the vocabulary and every symbol picture.
-        globPatterns: ['**/*.{js,css,html,json,svg,woff2}', 'icons/*.png', 'symbols/**/*.png'],
+        // The app and vocabulary are stored on install. Symbol pictures are not: the service
+        // worker saves files one at a time, which took minutes for ~960 pictures, so the app
+        // downloads them in parallel itself (src/services/offline.ts) into the 'symbols' cache.
+        globPatterns: ['**/*.{js,css,html,json,svg,woff2}', 'icons/*.png'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallback: 'index.html',
         // Take control of the open page on first install, so it works offline straight away.
         // Updates still wait until the user chooses to update (never mid-message).
         clientsClaim: true,
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.includes('/symbols/'),
+            handler: 'CacheFirst',
+            options: { cacheName: 'symbols', matchOptions: { ignoreVary: true }, cacheableResponse: { statuses: [200] } },
+          },
           {
             // Sign drawings: saved as they are viewed, or all at once from Settings.
             urlPattern: ({ url }) => url.pathname.includes('/nzsl/img/'),

@@ -439,6 +439,7 @@ export const en = {
   signOfflineAll: 'Save all signs',
   signOfflineProgress: 'Saving {done} of {total}…',
   signOfflineDone: 'Saved {n} signs for offline use.',
+  signOfflineNone: 'Sign videos could not be saved from here. They play when you are online.',
   signOfflineRemove: 'Remove saved sign videos',
 
   profilesTitle: 'Profiles',
@@ -523,6 +524,7 @@ export const en = {
   tutDone: 'Finish',
 
   offlineReady: 'Sayable is ready to use offline.',
+  offlinePrep: 'Saving pictures for offline use: {done} of {total}. Keep Sayable open.',
   updateReady: 'A new version is ready.',
   updateNow: 'Update',
   restoredMessage: 'Your unfinished message was brought back.',
@@ -972,6 +974,7 @@ export const zh: Strings = {
   signOfflineAll: '保存全部手语',
   signOfflineProgress: '正在保存 {done}/{total}…',
   signOfflineDone: '已保存{n}个手语，可以离线使用。',
+  signOfflineNone: '这里无法保存手语视频。联网时可以播放。',
   signOfflineRemove: '删除已保存的手语视频',
 
   profilesTitle: '用户',
@@ -1056,6 +1059,7 @@ export const zh: Strings = {
   tutDone: '完成',
 
   offlineReady: 'Sayable 已经可以离线使用了。',
+  offlinePrep: '正在保存图片以便离线使用：{done}/{total}。请不要关闭 Sayable。',
   updateReady: '有新版本了。',
   updateNow: '更新',
   restoredMessage: '已恢复你没说完的话。',

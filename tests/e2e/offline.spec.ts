@@ -7,6 +7,8 @@ test('works offline once installed: board, symbols, building and speaking', asyn
   // Wait for the service worker to finish storing the app on the device.
   await page.waitForFunction(async () => (await navigator.serviceWorker.getRegistration())?.active?.state === 'activated', undefined, { timeout: 30000 });
   await page.waitForFunction(() => !!navigator.serviceWorker.controller, undefined, { timeout: 10000 });
+  // The app then downloads every symbol picture itself and says when it is done.
+  await expect(page.getByText('Sayable is ready to use offline.')).toBeVisible({ timeout: 30000 });
   await context.setOffline(true);
   await page.reload();
   await expect(page.locator('.grid .tile').first()).toBeVisible();
@@ -22,6 +24,9 @@ test('works offline once installed: board, symbols, building and speaking', asyn
   await page.getByRole('button', { name: 'Search', exact: true }).click();
   await page.getByLabel('Search all words').fill('water');
   await expect(page.locator('.grid .tile').first()).toContainText('water');
+  // A picture that was never shown before going offline still loads.
+  const waterImg = page.locator('.grid .tile img').first();
+  await expect.poll(() => waterImg.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
   await context.setOffline(false);
 });
 
