@@ -588,6 +588,7 @@ img { max-width: 100%; }
   touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;
   transition: transform 80ms var(--ease), background var(--dur) var(--ease);
   container-type: inline-size;
 }

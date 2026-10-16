@@ -93,8 +93,12 @@ export function usePress({ activation, holdMs, onActivate, onLongPress, longPres
       }
       if (onLongPress) {
         timer.current = setTimeout(() => {
+          // Guard against double-fire: iOS fires contextmenu first, then our
+          // timer may also fire. Only run once.
+          if (fired.current) return;
           fired.current = true;
           setPressed(false);
+          start.current = null;
           onLongPress();
         }, longPressMs);
       }
@@ -118,6 +122,20 @@ export function usePress({ activation, holdMs, onActivate, onLongPress, longPres
     setPressed(false);
     start.current = null;
   }, []);
+
+  // On iOS, pointercancel fires at ~500ms before our 650ms timer when the
+  // browser prepares to show a context menu. If the touch hasn't moved
+  // (start.current still set), leave the long-press timer running so the
+  // subsequent contextmenu event can fire it. Scrolling cancels via
+  // onPointerMove (sets start.current = null) before pointercancel arrives,
+  // so we still cancel correctly during scroll.
+  const onPointerCancel = useCallback(() => {
+    setPressed(false);
+    if (!onLongPress || start.current === null) {
+      clear();
+      start.current = null;
+    }
+  }, [onLongPress]);
 
   const onClick = useCallback(
     (e: React.MouseEvent) => {
@@ -143,13 +161,16 @@ export function usePress({ activation, holdMs, onActivate, onLongPress, longPres
       onPointerDown,
       onPointerMove,
       onPointerUp: end,
-      onPointerCancel: end,
+      onPointerCancel,
       onPointerLeave: end,
       onClick,
       onContextMenu: (e: React.MouseEvent) => {
         if (onLongPress) {
           e.preventDefault();
-          if (!fired.current) onLongPress();
+          if (!fired.current) {
+            fired.current = true;
+            onLongPress();
+          }
         }
       },
     },
