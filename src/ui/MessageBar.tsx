@@ -6,7 +6,8 @@ import { formsFor, FORM_LABELS } from '../domain/inflect';
 import type { Token } from '../domain/types';
 import { Icon } from './Icon';
 import { SymbolImage } from './Tile';
-import { Dialog } from './common';
+import { Dialog, HoldButton } from './common';
+import { EmergencyScreen } from './Emergency';
 import { speech } from '../services/speech';
 import { PHONE_QUERY, useMediaQuery } from './hooks';
 
@@ -119,6 +120,7 @@ export function MessageBar() {
   const replacing = st.replaceIndex !== null ? message.tokens[st.replaceIndex]?.text : undefined;
   const phone = usePhoneSimple();
   const [moreOpen, setMoreOpen] = useState(false);
+  const [emergency, setEmergency] = useState(false);
 
   return (
     <section className="message-area" aria-label={t('message')} data-tour="message">
@@ -158,7 +160,7 @@ export function MessageBar() {
         )}
       </div>
 
-      <div className="speak-col" data-scan-group>
+      <div className={`speak-col${settings.helpButton ? ' has-help' : ''}`} data-scan-group>
         {speaking ? (
           <button className="speak-btn is-stop" onClick={st.stopSpeech} data-scan-item aria-label={t('stopSpeaking')} data-tour="speak">
             <Icon name="stop" size={30} filled />
@@ -181,6 +183,12 @@ export function MessageBar() {
             <Icon name="repeat" size={18} /> {t('sayAgain')}
           </button>
         )}
+        {settings.helpButton && (
+          <HoldButton holdMs={settings.helpHoldMs} onHold={() => setEmergency(true)} className="help-btn" hint={t('holdForHelp')} label={t('helpButtonLabel')}>
+            <Icon name="shield" size={26} />
+            <span>{t('helpButton')}</span>
+          </HoldButton>
+        )}
       </div>
 
       {replacing && (
@@ -197,6 +205,7 @@ export function MessageBar() {
       )}
       <TokenTools />
       {moreOpen && <MessageActions onClose={() => setMoreOpen(false)} />}
+      {emergency && <EmergencyScreen onClose={() => setEmergency(false)} />}
       <p className="sr-only" aria-live="polite">{message.tokens.length ? t('messageHas', { text }) : ''}</p>
     </section>
   );

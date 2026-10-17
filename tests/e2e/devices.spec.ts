@@ -64,5 +64,12 @@ for (const [name, width, height] of SIZES) {
     // Settings opens and its sections can be reached.
     await openFromMenu(page, 'Settings');
     await expect(page.locator('.settings-nav').getByRole('button', { name: 'Access' })).toBeVisible();
+
+    // With the SOS button switched on, it is fully on screen next to Speak.
+    await page.locator('.settings-nav').getByRole('button', { name: 'Safety and about me' }).click();
+    await page.getByRole('switch', { name: /SOS button on every screen/ }).click();
+    await expect(page.getByRole('button', { name: 'Emergency (hold)' })).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('.speak-btn')).toBeInViewport({ ratio: 1 });
+    expect(await noSidewaysScroll(page)).toBeLessThanOrEqual(1);
   });
 }

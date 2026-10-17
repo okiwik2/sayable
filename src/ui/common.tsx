@@ -1,5 +1,6 @@
 // Small shared building blocks: dialog, toggles, choices, sliders, confirm and toasts.
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { usePress } from './hooks';
 import { createPortal } from 'react-dom';
 import { Icon } from './Icon';
 import { useStore, useT } from '../state/store';
@@ -83,6 +84,25 @@ export function Dialog({
       </div>
     </div>,
     document.body,
+  );
+}
+
+/** A button that only acts after being held, so it isn't pressed by accident. Keyboard and switch users press it normally. */
+export function HoldButton({ holdMs, onHold, className = 'btn', hint, label, children }: { holdMs: number; onHold: () => void; className?: string; hint: string; label?: string; children: ReactNode }) {
+  const startedAt = useRef(0);
+  const { pressed, handlers } = usePress({ activation: holdMs > 0 ? 'hold' : 'press', holdMs, onActivate: onHold });
+  return (
+    <button type="button" className={`${className} hold-btn ${pressed ? 'is-holding' : ''}`} style={{ '--hold-ms': `${holdMs}ms` } as React.CSSProperties}
+      aria-label={label} {...handlers}
+      onPointerDown={(e) => { startedAt.current = Date.now(); handlers.onPointerDown(e); }}
+      onPointerUp={() => {
+        // Let go too early: say how it works.
+        if (holdMs > 0 && pressed && Date.now() - startedAt.current < holdMs) useStore.getState().toast({ text: hint, ms: 2500 });
+        handlers.onPointerUp();
+      }}>
+      <span className="hold-fill" aria-hidden="true" />
+      {children}
+    </button>
   );
 }
 

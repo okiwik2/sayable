@@ -525,8 +525,30 @@ function SafetySettings() {
   const me = s.aboutMe;
   const setMe = (p: Partial<Settings['aboutMe']>) => set({ aboutMe: { ...me, ...p } });
   const setContact = (i: number, p: Partial<Contact>) => set({ contacts: s.contacts.map((c, j) => (j === i ? { ...c, ...p } : c)) });
+  // Switching safety features on or off is a helper's job, so it asks for the PIN when one is set.
+  const guarded = async (p: Partial<Settings>) => {
+    if (await requestHelperAccess()) set(p);
+  };
   return (
     <>
+      <div className="section">
+        <h2>{t('safetyFeatures')}</h2>
+        <p className="muted">{t('safetyFeaturesHelp')}</p>
+        <Toggle label={t('helpButtonSetting')} help={t('helpButtonHelp')} checked={s.helpButton} onChange={(v) => void guarded({ helpButton: v })} />
+        {s.helpButton && (
+          <Range label={t('helpHold')} value={s.helpHoldMs} min={0} max={2000} step={100} onChange={(v) => void guarded({ helpHoldMs: v })}
+            display={(v) => (v ? t('seconds', { n: (v / 1000).toFixed(1) }) : t('instant'))} />
+        )}
+        <Toggle label={t('repeatSetting')} help={t('repeatHelp')} checked={s.emergencyRepeat} onChange={(v) => void guarded({ emergencyRepeat: v })} />
+        {s.emergencyRepeat && (
+          <Range label={t('repeatEvery')} value={s.emergencyRepeatSec} min={5} max={60} step={5} onChange={(v) => void guarded({ emergencyRepeatSec: v })}
+            display={(v) => t('seconds', { n: v })} />
+        )}
+        <Toggle label={t('soundSetting')} help={t('soundHelp')} checked={s.attentionSound} onChange={(v) => void guarded({ attentionSound: v })} />
+        <Toggle label={t('medicalSetting')} help={t('medicalHelp')} checked={s.medicalCard} onChange={(v) => void guarded({ medicalCard: v })} />
+        <Toggle label={t('painSetting')} help={t('painHelp')} checked={s.painScale} onChange={(v) => void guarded({ painScale: v })} />
+        <Toggle label={t('locationSetting')} help={t('locationHelp')} checked={s.shareLocation} onChange={(v) => void guarded({ shareLocation: v })} />
+      </div>
       <div className="section">
         <h2>{t('emergencyMessage')}</h2>
         <TextField label={t('emergencyMessage')} value={s.emergencyMessage} onChange={(v) => set({ emergencyMessage: v })} multiline placeholder={t('emergencyDefault')} />
@@ -539,6 +561,19 @@ function SafetySettings() {
         <TextField label={t('allergies')} value={me.allergies} onChange={(v) => setMe({ allergies: v })} />
         <TextField label={t('otherInfo')} value={me.other} onChange={(v) => setMe({ other: v })} multiline />
       </div>
+      {s.medicalCard && (
+        <div className="section">
+          <h2>{t('medicalCard')}</h2>
+          <p className="muted small">{t('medicalCardHelp')}</p>
+          <TextField label={t('dob')} value={me.dob} onChange={(v) => setMe({ dob: v })} />
+          <TextField label={t('howToHelp')} value={me.howToHelp} onChange={(v) => setMe({ howToHelp: v })} multiline placeholder={t('howToHelpExample')} />
+          <TextField label={t('conditions')} value={me.conditions} onChange={(v) => setMe({ conditions: v })} multiline />
+          <TextField label={t('medications')} value={me.medications} onChange={(v) => setMe({ medications: v })} multiline />
+          <TextField label={t('nhi')} value={me.nhi} onChange={(v) => setMe({ nhi: v })} />
+          <TextField label={t('emergencyContactName')} value={me.emergencyName} onChange={(v) => setMe({ emergencyName: v })} />
+          <TextField label={t('emergencyContactPhone')} value={me.emergencyPhone} type="tel" inputMode="tel" onChange={(v) => setMe({ emergencyPhone: v })} />
+        </div>
+      )}
       <div className="section">
         <h2>{t('contacts')}</h2>
         <p className="small muted">{t('callNote')}</p>

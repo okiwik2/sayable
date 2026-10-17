@@ -1067,3 +1067,57 @@ body:has(.overlay) .offline-prep { display: none; }
 @container (max-width: 72px) {
   .tile .label { font-size: max(9px, min(var(--tile-label), calc(118cqi / var(--chars, 6)))); overflow-wrap: normal; }
 }
+
+/* ---------- Safety ---------- */
+.hold-btn { position: relative; overflow: hidden; }
+.hold-fill { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.4); transform: scaleX(0); transform-origin: left; pointer-events: none; }
+.hold-btn.is-holding .hold-fill { transform: scaleX(1); transition: transform var(--hold-ms, 800ms) linear; }
+.hold-btn > :not(.hold-fill) { position: relative; }
+.speak-col.has-help { grid-template-columns: minmax(0, 1fr) 68px; width: auto; }
+.speak-col.has-help .speak-btn { min-width: 104px; }
+.speak-col.has-help .speak-btn, .speak-col.has-help .speak-sub { grid-column: 1; }
+.help-btn {
+  grid-column: 2; grid-row: 1 / -1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border-radius: var(--radius-l); border: 3px solid var(--stop); background: var(--stop); color: var(--stop-text);
+  font-weight: 800; font-size: var(--fs-m); touch-action: manipulation; min-height: 48px;
+}
+@media (max-width: 699px) and (min-height: 521px) {
+  :root[data-phone-layout='simple'] .message-area:has(.has-help) { grid-template-columns: minmax(0, 1fr) 52px auto; }
+  :root[data-phone-layout='simple'] .speak-col.has-help { grid-template-columns: 80px 56px; }
+  :root[data-phone-layout='simple'] .speak-col.has-help .speak-btn { min-width: 0; font-size: var(--fs-m); }
+}
+@media (max-height: 520px) {
+  .speak-col.has-help { grid-template-columns: 96px 56px; }
+  .help-btn { font-size: var(--fs-s); }
+}
+.emergency-screen .emergency-body { display: block; text-align: left; font-size: 1rem; padding: var(--space-5); }
+.emergency-message { font-size: clamp(2rem, 7vw, 4.5rem); font-weight: 800; line-height: 1.15; margin: 0 0 var(--space-4); color: var(--danger); text-align: center; }
+.emergency-details { list-style: none; margin: 0 auto var(--space-4); padding: 0; max-width: 900px; font-size: clamp(1.2rem, 3.2vw, 2rem); font-weight: 600; line-height: 1.35; }
+.emergency-details li { padding: var(--space-1) 0; border-bottom: 2px solid var(--border); }
+.emergency-contacts { max-width: 900px; margin: 0 auto; font-size: clamp(1.1rem, 3vw, 1.8rem); }
+.emergency-contacts h2 { font-size: 1em; margin: 0 0 var(--space-2); }
+.emergency-contacts ul { list-style: none; margin: 0; padding: 0; }
+.emergency-contacts .phone-number { display: inline-block; font-weight: 800; letter-spacing: 0.04em; margin-left: var(--space-2); }
+.emergency-location { max-width: 900px; margin: var(--space-4) auto 0; font-size: clamp(1.1rem, 3vw, 1.8rem); font-weight: 700; display: flex; gap: var(--space-2); align-items: center; }
+.pain-layout { display: grid; grid-template-columns: minmax(140px, 220px) minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+@media (max-width: 599px) { .pain-layout { grid-template-columns: minmax(0, 1fr); } .body-map { max-height: 34dvh; } }
+.body-map { width: 100%; max-height: 50dvh; }
+.body-map g { cursor: pointer; }
+.body-map g > * { fill: var(--surface-2); stroke: var(--border-strong); stroke-width: 1.5; }
+.body-map g.is-on > * { fill: var(--stop); stroke: var(--stop); }
+.pain-parts { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: var(--space-2); }
+.pain-scale-title { margin: var(--space-4) 0 var(--space-2); font-size: var(--fs-l); }
+.pain-scale { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 4px; }
+@media (max-width: 599px) { .pain-scale { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.pain-step { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 64px; padding: 4px 0; border-radius: var(--radius-m); border: 2px solid var(--border); background: var(--surface); }
+.pain-step .face { font-size: 1.6rem; line-height: 1; }
+.pain-step[aria-checked='true'] { border-color: var(--stop); box-shadow: inset 0 0 0 2px var(--stop); background: var(--c-red); }
+.pain-words { min-height: 1.4em; margin: var(--space-1) 0 0; font-weight: 700; }
+.pain-sentence { font-size: var(--fs-xl); font-weight: 700; margin: var(--space-2) 0 0; }
+/* Windows opened from the emergency screen (e.g. "Where does it hurt?") appear above it. */
+body:has(.emergency-screen) .overlay { z-index: 72; }
+.emergency-screen .emergency-details, .emergency-screen .emergency-contacts, .emergency-screen .emergency-location { color: var(--text); }
+.emergency-screen .show-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.emergency-screen .show-bar .btn { min-height: 56px; }
+.pain-sentence { position: sticky; top: calc(-1 * var(--space-4)); z-index: 1; background: var(--surface); margin: calc(-1 * var(--space-4)) 0 var(--space-3); padding: var(--space-3) 0; border-bottom: 2px solid var(--border); font-size: var(--fs-l); }

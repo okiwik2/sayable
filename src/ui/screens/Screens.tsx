@@ -1,5 +1,8 @@
 // Search, quick phrases, favourites, saved messages, boards, safety and the large "Show" view.
 import { useMemo, useState } from 'react';
+import { aboutMeLines } from '../../domain/safety';
+import { EmergencyScreen, useSafetyLabels } from '../Emergency';
+import { PainScale } from '../PainScale';
 import { useStore, useT, displayText, signsFor } from '../../state/store';
 import { dataset } from '../../data/dataset';
 import { primaryLang, activeLangs } from '../../domain/settings';
@@ -359,11 +362,11 @@ export function SafetyScreen() {
   const { settings } = st;
   const lang = primaryLang(settings);
   const safetyItems = [...st.vocab.items.values()].filter((i) => i.categories.includes('safety') && !!i.forms[lang]);
-  const me = settings.aboutMe;
   const [showEmergency, setShowEmergency] = useState(false);
   const tileMin = TILE_MIN[settings.tileSize] ?? 104;
   const emergency = settings.emergencyMessage || t('emergencyDefault');
-  const details = [me.name && `${t('myName')}: ${me.name}`, me.communication && `${t('howICommunicate')}: ${me.communication}`, me.medical && `${t('medicalInfo')}: ${me.medical}`, me.allergies && `${t('allergies')}: ${me.allergies}`, me.other].filter(Boolean) as string[];
+  const details = aboutMeLines(settings, useSafetyLabels());
+  const [pain, setPain] = useState(false);
 
   return (
     <section className="screen" aria-labelledby="safety-title">
@@ -381,10 +384,15 @@ export function SafetyScreen() {
           <button className="btn" style={{ minHeight: 72 }} onClick={() => st.sayWord(emergency, /[㐀-鿿]/.test(emergency) ? 'zh' : 'en')}>
             <Icon name="speak" /> {t('speak')}
           </button>
+          {settings.painScale && (
+            <button className="btn" style={{ minHeight: 72 }} onClick={() => setPain(true)}>
+              <Icon name="person" /> {t('whereHurts')}
+            </button>
+          )}
         </div>
         {details.length > 0 && (
           <div className="section">
-            <h2>{t('aboutMe')}</h2>
+            <h2>{settings.medicalCard ? t('medicalCard') : t('aboutMe')}</h2>
             {details.map((d) => <p key={d}>{d}</p>)}
           </div>
         )}
@@ -407,7 +415,8 @@ export function SafetyScreen() {
           {safetyItems.map((item) => <Tile key={item.id} item={item} lang={lang} onActivate={(i) => st.tapItem(i)} onDetails={openDetails} />)}
         </Grid>
       </div>
-      {showEmergency && <ShowView text={[emergency, ...details].join('\n')} emergency onClose={() => setShowEmergency(false)} />}
+      {showEmergency && <EmergencyScreen onClose={() => setShowEmergency(false)} />}
+      {pain && <PainScale onClose={() => setPain(false)} />}
     </section>
   );
 }

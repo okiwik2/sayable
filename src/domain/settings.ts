@@ -102,7 +102,19 @@ export interface Settings {
   signLoop: boolean;
 
   // Safety and about me
-  aboutMe: { name: string; communication: string; medical: string; allergies: string; other: string };
+  aboutMe: {
+    name: string; communication: string; medical: string; allergies: string; other: string;
+    dob: string; conditions: string; medications: string; nhi: string; emergencyName: string; emergencyPhone: string; howToHelp: string;
+  };
+  // Optional safety features (all off until switched on in Settings › Safety)
+  helpButton: boolean;
+  helpHoldMs: number;
+  emergencyRepeat: boolean;
+  emergencyRepeatSec: number;
+  attentionSound: boolean;
+  medicalCard: boolean;
+  painScale: boolean;
+  shareLocation: boolean;
   contacts: Contact[];
   emergencyMessage: string;
 
@@ -173,7 +185,15 @@ export function defaultSettings(overrides: Partial<Settings> = {}): Settings {
     showSignIndicator: true,
     signSpeed: 1,
     signLoop: true,
-    aboutMe: { name: '', communication: '', medical: '', allergies: '', other: '' },
+    aboutMe: { name: '', communication: '', medical: '', allergies: '', other: '', dob: '', conditions: '', medications: '', nhi: '', emergencyName: '', emergencyPhone: '', howToHelp: '' },
+    helpButton: false,
+    helpHoldMs: 800,
+    emergencyRepeat: false,
+    emergencyRepeatSec: 15,
+    attentionSound: false,
+    medicalCard: false,
+    painScale: false,
+    shareLocation: false,
     contacts: [],
     emergencyMessage: '',
     editLock: false,
