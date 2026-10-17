@@ -1,0 +1,68 @@
+name: Android app
+
+# Builds the signed Android app and attaches it to a GitHub Release, which gives a private download link.
+# Run it by pushing a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`), or by hand from the Actions tab.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - run: npm ci
+
+      # Sign videos are bundled so signs work offline in the app (about 168 MB, cached between runs).
+      - uses: actions/cache@v4
+        with:
+          path: public/nzsl/video
+          key: nzsl-videos-${{ hashFiles('src/data/generated/signs-nzsl.json') }}
+          restore-keys: nzsl-videos-
+      - run: npm run assets:videos
+
+      - run: npm run build:native
+
+      - name: Build signed APK
+        env:
+          SAYABLE_KEYSTORE: ${{ runner.temp }}/sayable.jks
+          SAYABLE_KEYSTORE_PASSWORD: ${{ secrets.SAYABLE_KEYSTORE_PASSWORD }}
+          SAYABLE_KEY_ALIAS: ${{ secrets.SAYABLE_KEY_ALIAS }}
+          SAYABLE_KEY_PASSWORD: ${{ secrets.SAYABLE_KEY_PASSWORD }}
+        run: |
+          if [ -z "${{ secrets.SAYABLE_KEYSTORE_BASE64 }}" ]; then echo "The signing key secrets are not set up yet (see docs/native.md)."; exit 1; fi
+          echo "${{ secrets.SAYABLE_KEYSTORE_BASE64 }}" | base64 -d > "$SAYABLE_KEYSTORE"
+          cd android && chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+          VERSION=$(node -p "require('../package.json').version")
+          mv app/build/outputs/apk/release/app-release.apk "../Sayable-$VERSION.apk"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Sayable-android
+          path: Sayable-*.apk
+
+      - name: Attach to a GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Sayable-*.apk
+          name: Sayable ${{ env.VERSION }}
+          body: |
+            **Android:** open this page on the phone or tablet, tap `Sayable-${{ env.VERSION }}.apk`, and allow "Install unknown apps" for your browser when asked (only the first time).
+            Updates install over the top and keep all words and settings.

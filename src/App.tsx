@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { VoiceGuide } from './ui/VoiceGuide';
+import { isNative } from './services/platform';
 import { usePhoneSimple } from './ui/MessageBar';
 import { useStore, useT } from './state/store';
 import { MessageBar, ExpandedMessage } from './ui/MessageBar';
@@ -67,6 +68,32 @@ function useNoContextMenu() {
     document.addEventListener('contextmenu', block);
     return () => document.removeEventListener('contextmenu', block);
   }, []);
+}
+
+/** Keep the screen on while Sayable is open (Settings › Display). */
+function useKeepAwake() {
+  const on = useStore((s) => s.settings.keepAwake);
+  useEffect(() => {
+    if (!on) return;
+    let release = () => {};
+    if (isNative) {
+      void import('@capacitor-community/keep-awake').then(({ KeepAwake }) => {
+        void KeepAwake.keepAwake();
+        release = () => void KeepAwake.allowSleep();
+      });
+    } else if ('wakeLock' in navigator) {
+      let lock: WakeLockSentinel | null = null;
+      const get = () => navigator.wakeLock.request('screen').then((l) => (lock = l)).catch(() => {});
+      const onVisible = () => document.visibilityState === 'visible' && void get();
+      void get();
+      document.addEventListener('visibilitychange', onVisible);
+      release = () => {
+        document.removeEventListener('visibilitychange', onVisible);
+        void lock?.release();
+      };
+    }
+    return () => release();
+  }, [on]);
 }
 
 function useConnectivity() {
@@ -137,6 +164,7 @@ export function App() {
   useShortcuts();
   useConnectivity();
   useNoContextMenu();
+  useKeepAwake();
 
   useEffect(() => {
     void useStore.getState().init();

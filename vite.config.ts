@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   // Relative base so the built app works from any folder or sub-path (e.g. GitHub Pages).
   base: './',
   define: {
@@ -12,6 +12,8 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      // The native apps carry everything inside them; no service worker there.
+      disable: mode === 'native',
       registerType: 'prompt',
       injectRegister: false,
       includeAssets: ['icons/*.png', 'icons/*.svg'],
@@ -77,4 +79,4 @@ export default defineConfig({
     include: ['tests/unit/**/*.test.ts', 'tests/unit/**/*.test.tsx'],
     environment: 'node',
   },
-});
+}));

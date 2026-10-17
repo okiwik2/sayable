@@ -9,6 +9,7 @@ import { HoldButton } from './common';
 import { Icon } from './Icon';
 import { PainScale } from './PainScale';
 import { guideSay } from './VoiceGuide';
+import { isNative } from '../services/platform';
 
 const isChinese = (text: string) => /[㐀-鿿]/.test(text);
 
@@ -67,8 +68,19 @@ export function EmergencyScreen({ onClose }: { onClose: () => void }) {
   };
 
   const findMe = () => {
-    if (!('geolocation' in navigator)) return setLocation(t('locationUnavailable'));
     setLocating(true);
+    if (isNative) {
+      void import('@capacitor/geolocation')
+        .then(({ Geolocation }) => Geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 20000, maximumAge: 60000 }))
+        .then((p) => setLocation(formatCoords(p.coords.latitude, p.coords.longitude, p.coords.accuracy, t('within'))))
+        .catch(() => setLocation(t('locationUnavailable')))
+        .finally(() => setLocating(false));
+      return;
+    }
+    if (!('geolocation' in navigator)) {
+      setLocating(false);
+      return setLocation(t('locationUnavailable'));
+    }
     navigator.geolocation.getCurrentPosition(
       (p) => {
         setLocating(false);

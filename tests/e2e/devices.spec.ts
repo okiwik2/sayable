@@ -29,6 +29,12 @@ for (const [name, width, height] of SIZES) {
     await startFresh(page);
     expect(await noSidewaysScroll(page)).toBeLessThanOrEqual(1);
 
+    // The core board fits the screen without scrolling (small phones may scroll a little instead of squashing tiles).
+    if (width >= 390 && height >= 700) {
+      const overflow = await page.locator('.main .grid-wrap').first().evaluate((el) => el.scrollHeight - el.clientHeight);
+      expect(overflow, 'core board scrolls').toBeLessThanOrEqual(2);
+    }
+
     // Every visible menu item is fully on screen.
     for (const button of await page.locator('.nav .nav-btn:visible').all()) {
       await expect(button).toBeInViewport({ ratio: 1 });

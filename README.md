@@ -68,6 +68,16 @@ first visit it works offline.
 Windows: Settings › Time & language › Speech › Add voices. iPad/iPhone: Settings › Accessibility ›
 Spoken Content › Voices. Android: Settings › System › Languages › Text-to-speech.
 
+## Android and iPad/iPhone apps
+
+The same app also comes as native Android and iOS apps (Capacitor): no browser press-and-hold menu, the device's own voices, and everything (including NZSL sign videos) inside the app. How to install, build and share them: [docs/native.md](docs/native.md).
+
+```
+npm run build:native   # build for the apps and copy into android/ and ios/
+npm run android        # open in Android Studio
+npm run ios            # open in Xcode (on a Mac)
+```
+
 ## Tests
 
 ```

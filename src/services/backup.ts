@@ -1,6 +1,7 @@
 // Backups: export everything (or one board) to a JSON file, and bring it back.
 // Imports are checked first, a restore point is saved before anything changes,
 // and the whole import happens in one database transaction, so a failure changes nothing.
+import { isNative } from './platform';
 import { db, PROFILE_TABLES, type ProfileRow } from './db';
 import { blobToDataUrl, dataUrlToBlob } from './images';
 import { newId } from './repo';
@@ -232,8 +233,16 @@ export async function importBoard(profileId: string, data: BoardExport): Promise
   return board;
 }
 
-export function downloadJson(data: unknown, filename: string) {
-  const blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+export async function downloadJson(data: unknown, filename: string): Promise<void> {
+  const json = JSON.stringify(data, null, 1);
+  if (isNative) {
+    // In the app: save the file, then let the person choose where it goes (Files, Drive, email, AirDrop...).
+    const [{ Filesystem, Directory, Encoding }, { Share }] = await Promise.all([import('@capacitor/filesystem'), import('@capacitor/share')]);
+    const file = await Filesystem.writeFile({ path: filename, data: json, directory: Directory.Cache, encoding: Encoding.UTF8 });
+    await Share.share({ title: filename, files: [file.uri] }).catch(() => {});
+    return;
+  }
+  const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;

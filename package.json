@@ -1,7 +1,7 @@
 {
   "name": "sayable",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "An offline-first AAC (augmentative and alternative communication) app with English and Mandarin, ARASAAC symbols and NZSL sign resources.",
   "type": "module",
   "scripts": {
@@ -15,9 +15,25 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "build:native": "npm run data && tsc --noEmit && vite build --mode native && cap sync",
+    "android": "npm run build:native && cap open android",
+    "ios": "npm run build:native && cap open ios",
+    "assets:videos": "node scripts/fetch-sign-videos.mjs",
+    "icons": "node scripts/make-icons.mjs && capacitor-assets generate --assetPath resources --android --ios"
   },
   "dependencies": {
+    "@capacitor-community/keep-awake": "8.0.1",
+    "@capacitor-community/text-to-speech": "8.0.2",
+    "@capacitor/android": "8.5.3",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/geolocation": "8.2.4",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/ios": "8.5.3",
+    "@capacitor/share": "8.0.3",
+    "@capacitor/splash-screen": "8.0.2",
     "dexie": "4.2.1",
     "react": "19.2.9",
     "react-dom": "19.2.9",
@@ -25,6 +41,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "8.5.3",
     "@playwright/test": "1.56.1",
     "@testing-library/react": "16.3.0",
     "@types/node": "22.20.5",

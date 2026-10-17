@@ -1,6 +1,6 @@
 // Makes the PNG app icons from public/icons/icon.svg. Run: node scripts/make-icons.mjs
 import sharp from 'sharp';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './lib/vocab-source.mjs';
 
@@ -15,4 +15,20 @@ await sharp({ create: { width: 512, height: 512, channels: 4, background: '#1f4e
   .composite([{ input: inner, top: 56, left: 56 }])
   .png()
   .toFile(join(dir, 'icon-maskable-512.png'));
-console.log('Icons written to public/icons');
+// Native app icons and splash screens: the sources @capacitor/assets turns into every Android/iOS size.
+const res = join(ROOT, 'resources');
+mkdirSync(res, { recursive: true });
+const bg = '#1f4e5f';
+await sharp(svg).resize(1024, 1024).flatten({ background: bg }).png().toFile(join(res, 'icon-only.png'));
+await sharp({ create: { width: 1024, height: 1024, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+  .composite([{ input: await sharp(svg).resize(600, 600).png().toBuffer(), top: 212, left: 212 }])
+  .png()
+  .toFile(join(res, 'icon-foreground.png'));
+await sharp({ create: { width: 1024, height: 1024, channels: 4, background: bg } }).png().toFile(join(res, 'icon-background.png'));
+for (const name of ['splash.png', 'splash-dark.png']) {
+  await sharp({ create: { width: 2732, height: 2732, channels: 4, background: bg } })
+    .composite([{ input: await sharp(svg).resize(560, 560).png().toBuffer(), top: 1086, left: 1086 }])
+    .png()
+    .toFile(join(res, name));
+}
+console.log('Icons written to public/icons and resources/');

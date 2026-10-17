@@ -35,6 +35,34 @@ export interface SpeakResult {
 
 type Listener = (status: SpeechStatus) => void;
 
+/** One piece of speech, as the browser's SpeechSynthesisUtterance or the native engine sees it. */
+export interface Utterance {
+  text: string;
+  lang: string;
+  voice: SpeechSynthesisVoice | null;
+  rate: number;
+  pitch: number;
+  volume: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onend: ((this: any, ev: any) => unknown) | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onerror: ((this: any, ev: any) => unknown) | null;
+}
+
+/** What SpeechService needs from a speech engine: the browser's speechSynthesis, or the device's own (native app). */
+export interface SpeechEngine {
+  readonly speaking: boolean;
+  readonly paused: boolean;
+  /** false when the engine can only stop, not pause (native text-to-speech). */
+  canPause?: boolean;
+  getVoices(): SpeechSynthesisVoice[];
+  speak(u: Utterance): void;
+  cancel(): void;
+  pause(): void;
+  resume(): void;
+  addEventListener?(type: 'voiceschanged', fn: () => void): void;
+}
+
 const BCP47: Record<Lang, string[]> = {
   en: ['en-NZ', 'en-AU', 'en-GB', 'en-US', 'en'],
   // Mandarin: Mainland first, then Taiwan Mandarin. Cantonese (zh-HK, yue) is a different language.
@@ -83,7 +111,7 @@ export function applyPronunciations(text: string, lang: Lang, fixes: SpeakOption
 }
 
 export class SpeechService {
-  private synth: SpeechSynthesis | null;
+  private synth: SpeechEngine | null;
   private status: SpeechStatus = 'idle';
   private listeners = new Set<Listener>();
   private voiceListeners = new Set<() => void>();
@@ -92,8 +120,21 @@ export class SpeechService {
   private keepAlive: ReturnType<typeof setInterval> | null = null;
   private lastStart = { text: '', at: 0 };
 
-  constructor(synth: SpeechSynthesis | null = typeof window !== 'undefined' ? window.speechSynthesis ?? null : null) {
+  constructor(synth: SpeechEngine | null = typeof window !== 'undefined' ? window.speechSynthesis ?? null : null) {
     this.synth = synth;
+    this.attach();
+  }
+
+  /** Switch to another engine (the native app's own text-to-speech). */
+  setEngine(engine: SpeechEngine) {
+    this.stop();
+    this.synth = engine;
+    this.voices = [];
+    this.attach();
+  }
+
+  private attach() {
+    const synth = this.synth;
     if (!synth) return;
     this.loadVoices();
     synth.addEventListener?.('voiceschanged', () => this.loadVoices());
@@ -160,6 +201,7 @@ export class SpeechService {
 
   pause() {
     if (this.status !== 'speaking' || !this.synth) return;
+    if (this.synth.canPause === false) return this.stop();
     this.synth.pause();
     this.setStatus('paused');
   }
@@ -240,12 +282,15 @@ export class SpeechService {
   }
 
   private utter(
-    synth: SpeechSynthesis,
+    synth: SpeechEngine,
     step: { text: string; lang: Lang; voice: SpeechSynthesisVoice | null },
     opts: SpeakOptions,
   ): Promise<string | null> {
     return new Promise((resolve) => {
-      const u = new SpeechSynthesisUtterance(step.text);
+      const u: Utterance =
+        synth.canPause !== false && typeof SpeechSynthesisUtterance !== 'undefined'
+          ? new SpeechSynthesisUtterance(step.text)
+          : { text: step.text, lang: '', voice: null, rate: 1, pitch: 1, volume: 1, onend: null, onerror: null };
       if (step.voice) {
         u.voice = step.voice;
         u.lang = step.voice.lang;

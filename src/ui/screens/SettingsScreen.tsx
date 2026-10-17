@@ -318,6 +318,7 @@ function DisplaySettings() {
   return (
     <div className="section">
       <h2>{t('sDisplay')}</h2>
+      <Toggle label={t('keepAwake')} help={t('keepAwakeHelp')} checked={s.keepAwake} onChange={(v) => set({ keepAwake: v })} />
       <Choices label={t('phoneLayout')} help={t('phoneLayoutHelp')} value={s.phoneLayout} onChange={(v) => set({ phoneLayout: v })} options={[
         { value: 'simple', label: t('phoneSimple') }, { value: 'full', label: t('phoneFull') },
       ]} />

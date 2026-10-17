@@ -7,3 +7,8 @@ playwright-report/
 
 # NZSL sign videos and drawings (about 185 MB). Download them with: npm run assets:nzsl
 public/nzsl/video/
+
+# Android signing keys never go in the repository
+*.jks
+*.keystore
+keystore.properties

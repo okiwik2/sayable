@@ -1127,3 +1127,13 @@ body:has(.emergency-screen) .overlay { z-index: 72; }
 .emergency-screen .show-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .emergency-screen .show-bar .btn { min-height: 56px; }
 .pain-sentence { position: sticky; top: calc(-1 * var(--space-4)); z-index: 1; background: var(--surface); margin: calc(-1 * var(--space-4)) 0 var(--space-3); padding: var(--space-3) 0; border-bottom: 2px solid var(--border); font-size: var(--fs-l); }
+
+/* ---------- Safe areas (notches, rounded corners, status bar) ---------- */
+.app { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+.show-screen, .onboard { padding-top: max(var(--space-3), env(safe-area-inset-top)); }
+.show-bar { padding-bottom: max(var(--space-3), env(safe-area-inset-bottom)); }
+@media (min-width: 700px) and (max-height: 840px) {
+  .speak-btn { flex-direction: row; font-size: var(--fs-l); gap: var(--space-2); }
+  .speak-btn svg { width: 26px; height: 26px; }
+  .speak-sub { min-height: 32px; }
+}

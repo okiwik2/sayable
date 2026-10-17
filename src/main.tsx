@@ -4,7 +4,10 @@ import { App } from './App';
 import { useStore } from './state/store';
 import { symbolUrl } from './ui/hooks';
 import { saveAllToCache, SYMBOL_CACHE } from './services/offline';
+import { isNative } from './services/platform';
 import './ui/styles.css';
+
+if (isNative) void import('./native').then((m) => m.initNative());
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -50,7 +53,7 @@ async function prepareOffline() {
 }
 
 // Offline support: the service worker stores the app and vocabulary; prepareOffline adds the pictures.
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+if (!isNative && import.meta.env.MODE !== 'native' && 'serviceWorker' in navigator && import.meta.env.PROD) {
   void prepareOffline();
   window.addEventListener('online', () => void prepareOffline());
   import('virtual:pwa-register').then(({ registerSW }) => {

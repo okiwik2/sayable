@@ -62,6 +62,7 @@ export interface Settings {
   labelsOnTop: boolean;
   /** On phones held upright: 'simple' keeps only the essentials on screen. */
   phoneLayout: 'simple' | 'full';
+  keepAwake: boolean;
 
   // Board
   coreLevel: CoreLevel;
@@ -156,6 +157,7 @@ export function defaultSettings(overrides: Partial<Settings> = {}): Settings {
     voiceGuide: false,
     labelsOnTop: false,
     phoneLayout: 'simple',
+    keepAwake: false,
     coreLevel: 'standard',
     columns: 0,
     returnToCoreAfterTopicWord: false,
