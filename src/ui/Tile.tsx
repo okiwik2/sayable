@@ -185,9 +185,11 @@ export function Grid({ cols: colsProp, children, fit, label }: { cols: number | 
   let layout: 'row' | undefined;
   if (fit && size.height > 0) {
     const h = (size.height - gap * (rows - 1) - 8) / rows;
-    if (h >= 50) rowH = `${Math.floor(h)}px`;
-    // Short, wide tiles (a big board on a landscape screen): picture beside the word, so both stay large.
     const w = (size.width - gap * (cols - 1)) / cols;
+    if (h >= 50 && h >= Math.min(w, 64)) rowH = `${Math.floor(h)}px`;
+    // Too short to fit (small phones): keep tiles roughly square and let the board scroll a little.
+    else if (w < 90) rowH = `${Math.max(60, Math.floor(w))}px`;
+    // Short, wide tiles (a big board on a landscape screen): picture beside the word, so both stay large.
     if (h >= 50 && h < 96 && w / h > 1.5) layout = 'row';
   }
 

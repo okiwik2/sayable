@@ -60,6 +60,8 @@ export interface Settings {
   /** Read setup, menus, windows and messages aloud (for blind and low-vision users). */
   voiceGuide: boolean;
   labelsOnTop: boolean;
+  /** On phones held upright: 'simple' keeps only the essentials on screen. */
+  phoneLayout: 'simple' | 'full';
 
   // Board
   coreLevel: CoreLevel;
@@ -141,6 +143,7 @@ export function defaultSettings(overrides: Partial<Settings> = {}): Settings {
     reduceMotion: false,
     voiceGuide: false,
     labelsOnTop: false,
+    phoneLayout: 'simple',
     coreLevel: 'standard',
     columns: 0,
     returnToCoreAfterTopicWord: false,

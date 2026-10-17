@@ -33,11 +33,17 @@ for (const [name, width, height, touch] of devices) {
   await page.getByRole('button', { name: /Start communicating now/ }).click();
   await page.waitForTimeout(600);
   await shot('1-core');
+  await page.locator('.grid .tile').nth(0).click();
+  await page.locator('.grid .tile').nth(2).click();
+  await page.waitForTimeout(300);
+  await shot('1b-message');
+  await page.locator('.speak-btn').click();
+  await page.waitForTimeout(200);
   report.push(...(await check('core')).map((i) => `${name}: ${i}`));
   const nav = async (n) => {
     const b = page.locator('.nav').getByRole('button', { name: n, exact: true });
     if (await b.isVisible()) return b.click();
-    await page.getByRole('button', { name: 'More', exact: true }).click();
+    await page.locator('.nav').getByRole('button', { name: 'More', exact: true }).click();
     await page.getByRole('dialog').getByRole('button', { name: n, exact: true }).click();
   };
   await page.locator('.grid .tile').nth(2).click({ button: 'right', force: true });

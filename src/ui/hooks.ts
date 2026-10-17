@@ -177,6 +177,21 @@ export function usePress({ activation, holdMs, onActivate, onLongPress, longPres
   };
 }
 
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(query).matches);
+  useEffect(() => {
+    const mq = matchMedia(query);
+    const on = () => setMatches(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, [query]);
+  return matches;
+}
+
+/** Same breakpoint as the phone rules in styles.css (upright phones only). */
+export const PHONE_QUERY = '(max-width: 699px) and (min-height: 521px)';
+
 /** Measure an element's size (for fitting the board to the screen). */
 export function useSize<T extends HTMLElement>(): [React.RefObject<T | null>, { width: number; height: number }] {
   const ref = useRef<T | null>(null);

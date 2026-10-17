@@ -50,7 +50,7 @@ export function BoardScreen() {
   const colsFor = (width: number) => {
     const c = settings.columns || board.cols;
     // On a narrow screen a wide layout would make tiles too small, so let it flow into fewer columns.
-    return width && width / c < 58 ? autoColumns(width, Math.min(tileMin, 72)) : c;
+    return width && width / c < 50 ? autoColumns(width, Math.min(tileMin, 72)) : c;
   };
   const isCore = board.kind === 'core';
   const name = board.name[settings.uiLang] ?? board.name.en;
@@ -161,8 +161,8 @@ export function EditToggle({ board }: { board?: Board }) {
     );
   }
   return (
-    <button className="btn btn-small" onClick={() => void requestEdit(board)} data-tour="edit">
-      <Icon name="edit" /> {t('editBoard')}
+    <button className="btn btn-small" onClick={() => void requestEdit(board)} data-tour="edit" aria-label={t('editBoard')}>
+      <Icon name="edit" /> <span className="edit-label">{t('editBoard')}</span>
     </button>
   );
 }

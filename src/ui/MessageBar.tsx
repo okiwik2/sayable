@@ -8,6 +8,13 @@ import { Icon } from './Icon';
 import { SymbolImage } from './Tile';
 import { Dialog } from './common';
 import { speech } from '../services/speech';
+import { PHONE_QUERY, useMediaQuery } from './hooks';
+
+/** Upright phone with the simple layout switched on. */
+export function usePhoneSimple(): boolean {
+  const layout = useStore((s) => s.settings.phoneLayout);
+  return useMediaQuery(PHONE_QUERY) && layout === 'simple';
+}
 
 function Chip({ token, index, selected, isNew }: { token: Token; index: number; selected: boolean; isNew: boolean }) {
   const selectToken = useStore((s) => s.selectToken);
@@ -110,6 +117,8 @@ export function MessageBar() {
   const text = formatMessage(message.tokens, settings).text;
   const cursorWord = message.cursor !== null ? message.tokens[message.cursor]?.text : undefined;
   const replacing = st.replaceIndex !== null ? message.tokens[st.replaceIndex]?.text : undefined;
+  const phone = usePhoneSimple();
+  const [moreOpen, setMoreOpen] = useState(false);
 
   return (
     <section className="message-area" aria-label={t('message')} data-tour="message">
@@ -124,6 +133,12 @@ export function MessageBar() {
         <button className="tool" onClick={st.deleteLast} disabled={!message.tokens.length} data-scan-item>
           <Icon name="backspace" /> <span className="tool-label">{t('deleteWord')}</span>
         </button>
+        {phone ? (
+          <button className="tool" onClick={() => setMoreOpen(true)} data-scan-item aria-haspopup="dialog" aria-label={t('moreMessageTools')}>
+            <Icon name="more" /> <span className="tool-label">{t('more')}</span>
+          </button>
+        ) : (
+        <>
         <button className="tool" onClick={st.undo} disabled={!st.undoStack.past.length} data-scan-item>
           <Icon name="undo" /> <span className="tool-label">{t('undo')}</span>
         </button>
@@ -139,6 +154,8 @@ export function MessageBar() {
         <button className="tool" onClick={() => void st.speakMessage({ preview: true })} disabled={!message.tokens.length || speaking} data-scan-item>
           <Icon name="quiet" /> <span className="tool-label">{t('previewQuiet')}</span>
         </button>
+        </>
+        )}
       </div>
 
       <div className="speak-col" data-scan-group>
@@ -179,8 +196,33 @@ export function MessageBar() {
         </div>
       )}
       <TokenTools />
+      {moreOpen && <MessageActions onClose={() => setMoreOpen(false)} />}
       <p className="sr-only" aria-live="polite">{message.tokens.length ? t('messageHas', { text }) : ''}</p>
     </section>
+  );
+}
+
+/** On phones: the message tools that don't fit beside the message, as big buttons. */
+function MessageActions({ onClose }: { onClose: () => void }) {
+  const t = useT();
+  const st = useStore();
+  const has = st.message.tokens.length > 0;
+  const run = (fn: () => void) => () => {
+    onClose();
+    fn();
+  };
+  return (
+    <Dialog title={t('messageActions')} onClose={onClose}>
+      <div className="action-list">
+        <button className="btn" onClick={run(st.undo)} disabled={!st.undoStack.past.length}><Icon name="undo" /> {t('undo')}</button>
+        <button className="btn" onClick={run(st.repeatLast)} disabled={!st.lastSpoken}><Icon name="repeat" /> {t('sayAgain')}</button>
+        <button className="btn" onClick={run(() => void st.speakMessage({ preview: true }))} disabled={!has}><Icon name="quiet" /> {t('previewQuiet')}</button>
+        <button className="btn" onClick={run(() => useStore.setState({ showOpen: true }))} disabled={!has}><Icon name="show" /> {t('show')}</button>
+        <button className="btn" onClick={run(() => void st.saveMessage())} disabled={!has}><Icon name="save" /> {t('save')}</button>
+        <button className="btn" onClick={run(() => useStore.setState({ expandedMessage: true }))} disabled={!has}><Icon name="expand" /> {t('expand')}</button>
+        <button className="btn btn-danger" onClick={run(() => void st.clearMessage())} disabled={!has}><Icon name="clear" /> {t('clear')}</button>
+      </div>
+    </Dialog>
   );
 }
 

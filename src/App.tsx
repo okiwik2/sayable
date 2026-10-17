@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { VoiceGuide } from './ui/VoiceGuide';
+import { usePhoneSimple } from './ui/MessageBar';
 import { useStore, useT } from './state/store';
 import { MessageBar, ExpandedMessage } from './ui/MessageBar';
-import { PinnedBar, SuggestionBar, Nav, MoreMenu } from './ui/Bars';
+import { PinnedBar, PhoneStrip, SuggestionBar, Nav, MoreMenu } from './ui/Bars';
 import { BoardScreen, TopicsScreen } from './ui/screens/BoardScreen';
 import { SearchScreen, QuickScreen, FavouritesScreen, SavedScreen, BoardsScreen, SafetyScreen, ShowHost } from './ui/screens/Screens';
 import { KeyboardScreen } from './ui/screens/KeyboardScreen';
@@ -26,11 +27,12 @@ function useThemeAttributes() {
     root.dataset.tileSize = s.tileSize;
     root.dataset.reduceMotion = String(s.reduceMotion);
     root.dataset.simplified = String(s.simplified);
+    root.dataset.phoneLayout = s.phoneLayout;
     root.style.setProperty('--text-scale', String(s.textScale));
     root.lang = s.uiLang === 'zh' ? 'zh-Hans' : 'en';
     const meta = document.querySelector('meta[name="theme-color"]');
     meta?.setAttribute('content', getComputedStyle(root).getPropertyValue('--surface-2').trim() || '#ebe6dc');
-  }, [s.theme, s.palette, s.density, s.tileSize, s.reduceMotion, s.simplified, s.textScale, s.uiLang]);
+  }, [s.theme, s.palette, s.density, s.tileSize, s.reduceMotion, s.simplified, s.phoneLayout, s.textScale, s.uiLang]);
 }
 
 function useShortcuts() {
@@ -119,6 +121,7 @@ export function App() {
   const loadError = useStore((s) => s.loadError);
   const t = useT();
   const [more, setMore] = useState(false);
+  const phone = usePhoneSimple();
   useThemeAttributes();
   useShortcuts();
   useConnectivity();
@@ -143,8 +146,7 @@ export function App() {
       {onboarded ? (
         <div className="app">
           <MessageBar />
-          <PinnedBar />
-          <SuggestionBar />
+          {phone ? <PhoneStrip /> : <><PinnedBar /><SuggestionBar /></>}
           <Nav onMore={() => setMore(true)} />
           <main className="main" id="main">
             {loadError && <p className="banner">{t('storageLow')}</p>}

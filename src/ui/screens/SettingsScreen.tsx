@@ -318,6 +318,9 @@ function DisplaySettings() {
   return (
     <div className="section">
       <h2>{t('sDisplay')}</h2>
+      <Choices label={t('phoneLayout')} help={t('phoneLayoutHelp')} value={s.phoneLayout} onChange={(v) => set({ phoneLayout: v })} options={[
+        { value: 'simple', label: t('phoneSimple') }, { value: 'full', label: t('phoneFull') },
+      ]} />
       <Choices label={t('theme')} value={s.theme} onChange={(v) => set({ theme: v })} options={[
         { value: 'system', label: t('themeSystem') }, { value: 'light', label: t('themeLight') }, { value: 'dark', label: t('themeDark') },
         { value: 'contrast-light', label: t('themeContrastLight') }, { value: 'contrast-dark', label: t('themeContrastDark') },

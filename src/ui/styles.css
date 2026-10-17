@@ -1033,3 +1033,37 @@ body:has(.overlay) .toasts { top: max(var(--space-3), env(safe-area-inset-top));
 }
 /* The download note never covers an open window. */
 body:has(.overlay) .offline-prep { display: none; }
+
+/* ---------- Simple phone layout (upright phones; Settings › Display › Layout on phones) ---------- */
+.action-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-2); }
+.action-list .btn { min-height: 64px; justify-content: flex-start; }
+.more-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+.suggest-list { display: flex; gap: var(--space-2); align-items: center; flex: 1; min-width: 0; overflow-x: auto; }
+.strip-more { flex: none; }
+@media (max-width: 699px) and (min-height: 521px) {
+  :root[data-phone-layout='simple'] .message-area { grid-template-columns: minmax(0, 1fr) 56px 96px; gap: 4px; padding: 4px var(--space-2); }
+  :root[data-phone-layout='simple'] .message-tools { grid-column: auto; grid-row: auto; grid-template-columns: 1fr; grid-auto-rows: 1fr; }
+  :root[data-phone-layout='simple'] .message-tools .tool { min-width: 0; padding: 2px; }
+  :root[data-phone-layout='simple'] .speak-col { grid-column: auto; grid-row: auto; width: auto; grid-template-rows: minmax(0, 1fr); }
+  :root[data-phone-layout='simple'] .speak-col .speak-sub { display: none; }
+  :root[data-phone-layout='simple'] .speak-btn { font-size: var(--fs-l); }
+  :root[data-phone-layout='simple'] .message-box { min-height: 84px; padding-right: 40px; }
+  :root[data-phone-layout='simple'] .phone-strip { display: flex; gap: var(--space-1); align-items: center; min-height: 52px; padding: 4px var(--space-2); background: var(--surface-2); border-bottom: 1px solid var(--border); overflow: hidden; }
+  :root[data-phone-layout='simple'] .phone-strip .pinned-list { overflow-x: auto; }
+  :root[data-phone-layout='simple'] .tile .badge { display: none; }
+  :root[data-phone-layout='simple'] .nav .nav-phone-secondary { display: none; }
+  :root[data-phone-layout='simple'] .board-head { min-height: 36px; }
+  :root[data-phone-layout='simple'] .board-title { font-size: var(--fs-m); }
+  :root[data-phone-layout='simple'] .board-head .edit-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+}
+@media (max-width: 699px) and (min-height: 521px) {
+  :root[data-phone-layout='simple'] .message-box .chip { font-size: calc(1.25rem * var(--text-scale)); padding: 2px 4px; }
+  :root[data-phone-layout='simple'] .message-box .chip img { width: 24px; height: 24px; }
+  :root[data-phone-layout='simple'] .message-box { padding-right: 34px; }
+  :root[data-phone-layout='simple'] .message-placeholder { font-size: var(--fs-m); }
+  :root[data-phone-layout='simple'] .phone-strip .pinned-list, :root[data-phone-layout='simple'] .phone-strip .suggest-list { flex: 1; min-width: 0; overflow-x: auto; }
+}
+/* Very narrow tiles (6 columns on a small phone): shrink the word rather than split it. */
+@container (max-width: 72px) {
+  .tile .label { font-size: max(9px, min(var(--tile-label), calc(118cqi / var(--chars, 6)))); overflow-wrap: normal; }
+}

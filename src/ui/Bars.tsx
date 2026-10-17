@@ -29,35 +29,55 @@ export function QuickButton({ item, className = '' }: { item: VocabItem; classNa
   );
 }
 
-export function PinnedBar() {
+function LangSwitch() {
+  const t = useT();
+  const activeLang = useStore((s) => s.settings.activeLang);
+  const updateSettings = useStore((s) => s.updateSettings);
+  return (
+    <div className="lang-switch" role="group" aria-label={t('addingIn')}>
+      <button type="button" aria-pressed={activeLang === 'en'} onClick={() => updateSettings({ activeLang: 'en' })} data-scan-item lang="en">
+        English
+      </button>
+      <button type="button" aria-pressed={activeLang === 'zh'} onClick={() => updateSettings({ activeLang: 'zh' })} data-scan-item lang="zh-Hans">
+        中文
+      </button>
+    </div>
+  );
+}
+
+/** Phones: one strip that shows quick replies, or suggestions once a word has been added. */
+export function PhoneStrip() {
+  const t = useT();
+  const empty = useStore((s) => s.message.tokens.length === 0);
+  const go = useStore((s) => s.go);
+  const tail = (
+    <button type="button" className="btn btn-small strip-more" onClick={() => go({ screen: 'quick' })} aria-label={t('allQuick')} data-scan-item>
+      <Icon name="quick" />
+    </button>
+  );
+  return empty ? <PinnedBar tail={tail} /> : <SuggestionBar tail={tail} />;
+}
+
+export function PinnedBar({ tail }: { tail?: React.ReactNode }) {
   const t = useT();
   const settings = useStore((s) => s.settings);
   const items = useStore((s) => s.vocab.items);
-  const updateSettings = useStore((s) => s.updateSettings);
   const pinned = settings.pinned.map((id) => items.get(id)).filter(Boolean) as VocabItem[];
-  if (!pinned.length && settings.commLangs !== 'both') return null;
+  if (!pinned.length && settings.commLangs !== 'both' && !tail) return null;
   return (
-    <div className="pinned-bar" data-scan-group>
+    <div className={`pinned-bar${tail ? ' phone-strip' : ''}`} data-scan-group>
       <div className="pinned-list" role="group" aria-label={t('pinned')}>
         {pinned.map((item) => (
           <QuickButton key={item.id} item={item} />
         ))}
       </div>
-      {settings.commLangs === 'both' && (
-        <div className="lang-switch" role="group" aria-label={t('addingIn')}>
-          <button type="button" aria-pressed={settings.activeLang === 'en'} onClick={() => updateSettings({ activeLang: 'en' })} data-scan-item lang="en">
-            English
-          </button>
-          <button type="button" aria-pressed={settings.activeLang === 'zh'} onClick={() => updateSettings({ activeLang: 'zh' })} data-scan-item lang="zh-Hans">
-            中文
-          </button>
-        </div>
-      )}
+      {settings.commLangs === 'both' && <LangSwitch />}
+      {tail}
     </div>
   );
 }
 
-export function SuggestionBar() {
+export function SuggestionBar({ tail }: { tail?: React.ReactNode }) {
   const t = useT();
   const st = useStore();
   const { settings, message, vocab } = st;
@@ -87,12 +107,14 @@ export function SuggestionBar() {
     return { tokens: s, text: formatMessage(s, settings).text };
   }, [settings, message.tokens, vocab]);
 
-  if (!suggestions.length && !grammar && !phrases.length) {
+  const both = settings.commLangs === 'both';
+  if (!suggestions.length && !grammar && !phrases.length && !tail) {
     return settings.predictions || settings.grammarHelp ? <div className="suggest-bar" aria-hidden="true" /> : null;
   }
 
   return (
-    <div className="suggest-bar" data-scan-group role="region" aria-label={t('suggestions')}>
+    <div className={`suggest-bar${tail ? ' phone-strip' : ''}`} data-scan-group role="region" aria-label={t('suggestions')}>
+      <div className="suggest-list">
       {grammar && (
         <div className="grammar-box" title={t('suggestionNote')}>
           <span className="suggest-label">{t('betterWording')}</span>
@@ -134,15 +156,18 @@ export function SuggestionBar() {
           ))}
         </>
       )}
+      </div>
+      {tail && both && <LangSwitch />}
+      {tail}
     </div>
   );
 }
 
-const NAV: { view: View; icon: IconName; key: Parameters<ReturnType<typeof useT>>[0]; secondary?: boolean; safety?: boolean }[] = [
+const NAV: { view: View; icon: IconName; key: Parameters<ReturnType<typeof useT>>[0]; secondary?: boolean; phoneSecondary?: boolean; safety?: boolean }[] = [
   { view: { screen: 'board' }, icon: 'core', key: 'navCore' },
   { view: { screen: 'topics', path: [] }, icon: 'topics', key: 'navTopics' },
   { view: { screen: 'search' }, icon: 'search', key: 'navSearch' },
-  { view: { screen: 'quick' }, icon: 'quick', key: 'navQuick' },
+  { view: { screen: 'quick' }, icon: 'quick', key: 'navQuick', phoneSecondary: true },
   { view: { screen: 'favourites' }, icon: 'star', key: 'navFavourites', secondary: true },
   { view: { screen: 'saved' }, icon: 'bookmark', key: 'navSaved', secondary: true },
   { view: { screen: 'keyboard' }, icon: 'keyboard', key: 'navKeyboard', secondary: true },
@@ -170,7 +195,7 @@ export function Nav({ onMore }: { onMore: () => void }) {
           <button
             key={n.view.screen}
             type="button"
-            className={`nav-btn ${n.secondary ? 'nav-secondary' : ''} ${n.safety ? 'is-safety' : ''}`}
+            className={`nav-btn ${n.secondary ? 'nav-secondary' : ''} ${n.phoneSecondary ? 'nav-phone-secondary' : ''} ${n.safety ? 'is-safety' : ''}`}
             aria-current={current ? 'page' : undefined}
             data-scan-item
             onClick={() => go(n.view)}
@@ -195,8 +220,8 @@ export function MoreMenu({ onClose }: { onClose: () => void }) {
     <div className="overlay" onPointerDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog" role="dialog" aria-modal="true" aria-label={t('more')}>
         <div className="dialog-body">
-          <div className="cards">
-            {NAV.filter((n) => n.secondary).map((n) => (
+          <div className="cards more-grid">
+            {NAV.filter((n) => n.secondary || n.phoneSecondary).map((n) => (
               <button key={n.view.screen} className="card" onClick={() => { go(n.view); onClose(); }}>
                 <Icon name={n.icon} size={28} />
                 <h3>{t(n.key)}</h3>
