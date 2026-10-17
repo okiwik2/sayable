@@ -58,6 +58,17 @@ function useShortcuts() {
   }, []);
 }
 
+/** The browser's own long-press / right-click menu gets in the way of pressing and holding; keep it for text fields only. */
+function useNoContextMenu() {
+  useEffect(() => {
+    const block = (e: MouseEvent) => {
+      if (!(e.target as HTMLElement).closest?.('input, textarea, [contenteditable="true"], .allow-select')) e.preventDefault();
+    };
+    document.addEventListener('contextmenu', block);
+    return () => document.removeEventListener('contextmenu', block);
+  }, []);
+}
+
 function useConnectivity() {
   useEffect(() => {
     const on = () => {
@@ -125,6 +136,7 @@ export function App() {
   useThemeAttributes();
   useShortcuts();
   useConnectivity();
+  useNoContextMenu();
 
   useEffect(() => {
     void useStore.getState().init();

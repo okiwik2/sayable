@@ -268,7 +268,13 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  /* An AAC app is pressed and held a lot: no text selection, magnifier or long-press menus, except in text fields. */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
+input, textarea, select, [contenteditable='true'], .allow-select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+img { -webkit-user-drag: none; }
 :lang(zh-Hant) { font-family: var(--font-hant); }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
