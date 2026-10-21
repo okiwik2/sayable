@@ -121,7 +121,8 @@ export function chunkForSpeech(text: string, max = 180): string[] {
     }
     if (s.length > max) {
       // Very long sentence: split at commas or spaces.
-      const pieces = s.split(/(?<=[,，、])\s*|\s+/);
+      // No lookbehind here: Safari before iOS 16.4 can't parse it, and the whole app fails to load.
+      const pieces = s.replace(/([,，、])\s*/g, '$1\n').split(/\n|\s+/).filter(Boolean);
       for (const p of pieces) {
         if ((current + ' ' + p).length > max && current) {
           chunks.push(current.trim());

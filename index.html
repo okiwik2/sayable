@@ -15,6 +15,17 @@
   <body>
     <div id="root"></div>
     <noscript>Sayable needs JavaScript to run.</noscript>
+    <script>
+      // If the app fails to start (e.g. on an old iPad), show why instead of a blank page.
+      window.onerror = function (msg, src, line, col) {
+        var root = document.getElementById('root');
+        if (!root || root.children.length) return;
+        var p = document.createElement('pre');
+        p.style.cssText = 'white-space:pre-wrap;padding:16px;font:14px monospace;color:#900';
+        p.textContent = 'Sayable could not start:\n' + msg + '\n' + (src || '') + ':' + line + ':' + col;
+        root.appendChild(p);
+      };
+    </script>
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>
