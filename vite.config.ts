@@ -45,6 +45,8 @@ export default defineConfig(({ mode }) => ({
         globPatterns: ['**/*.{js,css,html,json,svg,woff2}', 'icons/*.png'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallback: 'index.html',
+        // Sayable Lite (dist/lite/) is a separate page; don't answer it with the full app.
+        navigateFallbackDenylist: [/\/lite\//],
         // Take control of the open page on first install, so it works offline straight away.
         // Updates still wait until the user chooses to update (never mid-message).
         clientsClaim: true,

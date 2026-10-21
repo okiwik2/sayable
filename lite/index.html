@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" manifest="sayable.appcache">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Sayable Lite" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <meta name="theme-color" content="#1f4e5f" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="stylesheet" href="app.css" />
+    <title>Sayable Lite</title>
+  </head>
+  <body>
+    <div id="bar">
+      <div id="msg" role="button" tabindex="0" aria-label="Speak message"></div>
+      <button type="button" class="b" id="speak" aria-label="Speak"><svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+      <button type="button" class="b" id="back" aria-label="Delete last word">&#9003;</button>
+      <button type="button" class="b" id="clear" aria-label="Clear">&#10005;</button>
+    </div>
+    <div id="nav"></div>
+    <div id="crumb"></div>
+    <div id="main"></div>
+    <div id="sheet" hidden></div>
+    <div id="note" hidden></div>
+    <noscript>Sayable needs JavaScript to run.</noscript>
+    <script>
+      // If the app fails to start, show why instead of a blank page.
+      window.onerror = function (msg, src, line) {
+        var m = document.getElementById('main');
+        if (!m || m.firstChild) return;
+        var p = document.createElement('pre');
+        p.className = 'err';
+        p.textContent = 'Sayable Lite could not start:\n' + msg + '\n' + (src || '') + ':' + line;
+        m.appendChild(p);
+      };
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
