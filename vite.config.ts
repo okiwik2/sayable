@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import legacy from '@vitejs/plugin-legacy';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => ({
@@ -11,6 +12,9 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    // Old iPads (iOS 10, Safari 10) can't run the modern build and show a white screen.
+    // This adds a second, transpiled build that only those browsers load.
+    legacy({ targets: ['safari >= 10', 'ios >= 10'], modernPolyfills: false }),
     VitePWA({
       // The native apps carry everything inside them; no service worker there.
       disable: mode === 'native',
