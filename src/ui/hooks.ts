@@ -183,6 +183,11 @@ export function useMediaQuery(query: string): boolean {
     const mq = matchMedia(query);
     const on = () => setMatches(mq.matches);
     on();
+    // Safari before iOS 14 only has the older addListener.
+    if (!mq.addEventListener) {
+      mq.addListener(on);
+      return () => mq.removeListener(on);
+    }
     mq.addEventListener('change', on);
     return () => mq.removeEventListener('change', on);
   }, [query]);
@@ -202,6 +207,19 @@ export function useSize<T extends HTMLElement>(): [React.RefObject<T | null>, { 
     // Measure before the first paint so a board never flashes at the wrong size.
     const r = el.getBoundingClientRect();
     setSize({ width: r.width, height: r.height });
+    // No ResizeObserver before iOS 13.4: re-measure when the window changes instead.
+    if (typeof ResizeObserver === 'undefined') {
+      const measure = () => {
+        const { width, height } = el.getBoundingClientRect();
+        setSize((s) => (Math.abs(s.width - width) < 1 && Math.abs(s.height - height) < 1 ? s : { width, height }));
+      };
+      window.addEventListener('resize', measure);
+      window.addEventListener('orientationchange', measure);
+      return () => {
+        window.removeEventListener('resize', measure);
+        window.removeEventListener('orientationchange', measure);
+      };
+    }
     const ro = new ResizeObserver(([entry]) => {
       if (!entry) return;
       const { width, height } = entry.contentRect;
