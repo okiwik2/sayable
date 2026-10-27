@@ -10,6 +10,7 @@ import { newId, listChanges, storageEstimate, requestPersistentStorage } from '.
 import { exportProfiles, validateBackup, importBackup, listRestorePoints, restoreFrom, downloadJson } from '../../services/backup';
 import { cleanupImages } from '../../services/images';
 import { saveAllToCache } from '../../services/offline';
+import { removeSavedVideos, saveVideos, streamsVideos } from '../../services/sign-videos';
 import { db } from '../../services/db';
 import { Choices, Range, Toggle, TextField } from '../common';
 import { Icon } from '../Icon';
@@ -455,6 +456,8 @@ function SignSettings() {
   // Sign videos can only be saved when they are published with the app (not on every copy of it).
   const [videosHosted, setVideosHosted] = useState<boolean | null>(null);
   useEffect(() => {
+    // The Play Store app saves videos from the dictionary itself.
+    if (streamsVideos) return setVideosHosted(true);
     let alive = true;
     void st.loadSigns().then((pack) => {
       const first = pack ? Object.values(pack.signs).find((x) => x.video)?.video : undefined;
@@ -470,16 +473,19 @@ function SignSettings() {
 
   const save = async (onlyFavourites: boolean) => {
     const pack = await st.loadSigns();
-    if (!pack || !('caches' in window)) return;
+    if (!pack || (!streamsVideos && !('caches' in window))) return;
     const itemIds = onlyFavourites ? st.overrides.filter((o) => o.favourite).map((o) => o.itemId) : Object.keys(pack.links);
-    const urls = new Set<string>();
+    const videos = new Map<string, string | undefined>();
     for (const id of itemIds) {
       const sid = pack.links[id]?.[0];
       const sign = sid ? pack.signs[sid] : undefined;
-      if (sign?.video) urls.add(sign.video);
+      if (sign?.video) videos.set(sign.video, sign.remoteVideo);
     }
-    const list = [...urls].map((path) => new URL(assetUrl(path), location.href).href);
-    const result = await saveAllToCache('nzsl-video', list, (done, total) => setProgress({ done, total }), 6);
+    const onProgress = (done: number, total: number) => setProgress({ done, total });
+    const list = [...videos.keys()].map((path) => new URL(assetUrl(path), location.href).href);
+    const result = streamsVideos
+      ? await saveVideos([...videos].flatMap(([path, url]) => (url ? [{ path, url }] : [])), onProgress)
+      : await saveAllToCache('nzsl-video', list, onProgress, 6);
     setProgress(null);
     if (result.total > 0 && result.saved === 0) st.toast({ text: t('signOfflineNone') });
     else st.toast({ text: t('signOfflineDone', { n: list.length - result.failed }), tone: 'success' });
@@ -507,7 +513,7 @@ function SignSettings() {
             <div className="row">
               <button className="btn" onClick={() => void save(true)}><Icon name="star" /> {t('signOfflineFavs')}</button>
               <button className="btn" onClick={() => void save(false)}><Icon name="download" /> {t('signOfflineAll')}</button>
-              <button className="btn btn-danger" onClick={async () => { await caches.delete('nzsl-video'); st.toast({ text: t('done') }); }}>
+              <button className="btn btn-danger" onClick={async () => { await (streamsVideos ? removeSavedVideos() : caches.delete('nzsl-video')); st.toast({ text: t('done') }); }}>
                 <Icon name="trash" /> {t('signOfflineRemove')}
               </button>
             </div>

@@ -11,6 +11,7 @@ import { assetUrl, useOnline, useStoredImage } from './hooks';
 import { openWordEditor } from './Editing';
 import { newId } from '../services/repo';
 import { saveImageBlob } from '../services/images';
+import { savedVideoUrl, saveVideo, streamsVideos } from '../services/sign-videos';
 
 export function ItemDetail() {
   const id = useStore((s) => s.detailItemId);
@@ -178,10 +179,21 @@ function SignMedia({ sign, online }: { sign: SignResource; online: boolean }) {
   const [loop, setLoop] = useState(settings.signLoop);
   const [playing, setPlaying] = useState(false);
   const blobUrl = useStoredImage(sign.blobId, 'full');
+  // Play Store app: the saved copy of this video (undefined while looking, null if not saved yet).
+  const [saved, setSaved] = useState<string | null | undefined>(undefined);
   useEffect(() => {
     setFailed(false);
     setDrawingFailed(false);
   }, [sign.id]);
+  useEffect(() => {
+    setSaved(undefined);
+    if (!streamsVideos || !sign.video) return;
+    let alive = true;
+    void savedVideoUrl(sign.video).then((url) => alive && setSaved(url));
+    return () => {
+      alive = false;
+    };
+  }, [sign.video]);
   useEffect(() => {
     if (ref.current) ref.current.playbackRate = slow ? 0.5 : settings.signSpeed || 1;
   }, [slow, settings.signSpeed, sign.id]);
@@ -189,8 +201,10 @@ function SignMedia({ sign, online }: { sign: SignResource; online: boolean }) {
   if (sign.type === 'link' && sign.url) {
     return <a className="btn" href={sign.url} target="_blank" rel="noopener noreferrer"><Icon name="external" /> {sign.url}</a>;
   }
-  const src = blobUrl ?? (sign.video ? assetUrl(sign.video) : online ? sign.remoteVideo : undefined);
+  const remote = online ? sign.remoteVideo : undefined;
+  const src = blobUrl ?? (streamsVideos ? saved ?? (saved === null ? remote : undefined) : sign.video ? assetUrl(sign.video) : remote);
   const hasVideo = !!src && !failed;
+  const looking = streamsVideos && !blobUrl && saved === undefined;
   const drawing = sign.image && !drawingFailed ? assetUrl(sign.image) : undefined;
   return (
     <div className={`sign-stage${drawing ? ' has-drawing' : ''}`}>
@@ -209,6 +223,10 @@ function SignMedia({ sign, online }: { sign: SignResource; online: boolean }) {
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
             onLoadedMetadata={(e) => (e.currentTarget.playbackRate = slow ? 0.5 : settings.signSpeed || 1)}
+            onLoadedData={() => {
+              // Play Store app: keep a copy of a streamed video so it plays offline next time.
+              if (streamsVideos && src === sign.remoteVideo && sign.video) void saveVideo(sign.video, sign.remoteVideo);
+            }}
             onError={() => {
               // The bundled copy is not available (offline, or not published with this copy of the app):
               // try the dictionary's own server.
@@ -218,6 +236,8 @@ function SignMedia({ sign, online }: { sign: SignResource; online: boolean }) {
             }}
             aria-label={t('signFor', { word: sign.gloss })}
           />
+        ) : looking ? (
+          <div className="sign-missing" />
         ) : (
           <div className="sign-missing">{online ? t('noSign') : t('offlineVideoMissing')}</div>
         )}

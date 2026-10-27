@@ -53,10 +53,28 @@ jobs:
           mv app/build/outputs/apk/release/app-release.apk "../Sayable-$VERSION.apk"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
+      # Google Play limits downloads to 200 MB, so the Play build leaves the sign videos out:
+      # it plays them from the NZSL dictionary and saves each one on the device (src/services/sign-videos.ts).
+      - name: Build signed Play Store bundle
+        env:
+          SAYABLE_KEYSTORE: ${{ runner.temp }}/sayable.jks
+          SAYABLE_KEYSTORE_PASSWORD: ${{ secrets.SAYABLE_KEYSTORE_PASSWORD }}
+          SAYABLE_KEY_ALIAS: ${{ secrets.SAYABLE_KEY_ALIAS }}
+          SAYABLE_KEY_PASSWORD: ${{ secrets.SAYABLE_KEY_PASSWORD }}
+          VITE_STORE: play
+        run: |
+          mv public/nzsl/video "$RUNNER_TEMP/nzsl-video"
+          npm run build:native
+          mv "$RUNNER_TEMP/nzsl-video" public/nzsl/video
+          cd android && ./gradlew bundleRelease --no-daemon
+          mv app/build/outputs/bundle/release/app-release.aab "../Sayable-$VERSION-play.aab"
+
       - uses: actions/upload-artifact@v4
         with:
           name: Sayable-android
-          path: Sayable-*.apk
+          path: |
+            Sayable-*.apk
+            Sayable-*.aab
 
       - name: Attach to a GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')

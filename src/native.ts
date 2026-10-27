@@ -24,7 +24,8 @@ export async function initNative() {
     if (st.view.screen !== 'board') st.go({ screen: 'board' });
   });
 
-  if (platform === 'android') void checkForUpdate();
+  // Google Play updates its own copy (and doesn't allow apps to offer downloads from elsewhere).
+  if (platform === 'android' && import.meta.env.VITE_STORE !== 'play') void checkForUpdate();
 }
 
 /** The Android app is shared as a download from GitHub; offer new versions when they appear. */
