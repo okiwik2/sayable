@@ -20,7 +20,8 @@
     "android": "npm run build:native && cap open android",
     "ios": "npm run build:native && cap open ios",
     "assets:videos": "node scripts/fetch-sign-videos.mjs",
-    "icons": "node scripts/make-icons.mjs && capacitor-assets generate --assetPath resources --android --ios"
+    "icons": "node scripts/make-icons.mjs && capacitor-assets generate --assetPath resources --android --ios",
+    "assets:nzsl-urls": "node scripts/update-nzsl-urls.mjs"
   },
   "dependencies": {
     "@capacitor-community/keep-awake": "8.0.1",
