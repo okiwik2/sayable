@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Sayable</string>
     <string name="title_activity_main">Sayable</string>
-    <string name="package_name">nz.sayable.app</string>
-    <string name="custom_url_scheme">nz.sayable.app</string>
+    <string name="package_name">com.unhandy.sayable</string>
+    <string name="custom_url_scheme">com.unhandy.sayable</string>
 </resources>

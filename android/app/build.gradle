@@ -10,7 +10,7 @@ android {
     namespace = "nz.sayable.app"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "nz.sayable.app"
+        applicationId "com.unhandy.sayable"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode appVersion[0] * 10000 + appVersion[1] * 100 + appVersion[2]

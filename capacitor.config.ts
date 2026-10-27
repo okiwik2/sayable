@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 // Native Android and iOS apps: the same web app (built with `npm run build:native`) inside a native shell.
 const config: CapacitorConfig = {
-  appId: 'nz.sayable.app',
+  appId: 'com.unhandy.sayable',
   appName: 'Sayable',
   webDir: 'dist',
   backgroundColor: '#f4f1ea',
