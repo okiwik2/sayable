@@ -54,7 +54,7 @@ Play takes an Android App Bundle (`.aab`), not an APK.
    - Feature graphic 1024×500
    - At least 2 phone screenshots, and 7-inch and 10-inch tablet screenshots
      (`node scripts/screenshot-devices.mjs` makes device screenshots)
-   - Category: *Communication* (or *Education*); contact email; website `https://okiwik2.github.io/sayable/`
+   - Category: *Communication* (or *Education*); contact email `okiwik2@gmail.com`; website `https://okiwik2.github.io/sayable/`
 
 ## 3. Closed test (personal accounts)
 

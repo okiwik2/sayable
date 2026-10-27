@@ -26,6 +26,8 @@
       offlineOn: 'Works offline.', offlineOff: 'Not saved for offline use yet. Open it once with internet.',
       noSpeech: 'This device has no voice for speaking.',
       full: 'Open the full version (for newer devices)',
+      privacy: 'Privacy policy: nothing you make leaves this device. No ads, no tracking.',
+      credits: 'Pictographic symbols: Sergio Palao. Origin: ARASAAC (arasaac.org). Licence: CC BY-NC-SA 4.0. Owner: Government of Aragón (Spain). Pictures made smaller for Sayable Lite. Sayable is free and for non-commercial use.',
     },
     zh: {
       core: '核心词', topics: '话题', places: '地点', phrases: '短语', back: '‹ 返回',
@@ -41,6 +43,8 @@
       offlineOn: '可以离线使用。', offlineOff: '还没有保存离线版本。请在有网络时打开一次。',
       noSpeech: '这台设备不能朗读。',
       full: '打开完整版（适用于较新的设备）',
+      privacy: '隐私政策：你做的内容都留在这台设备上。没有广告，也不追踪。',
+      credits: '图片符号：Sergio Palao。来源：ARASAAC (arasaac.org)。许可：CC BY-NC-SA 4.0。所有者：西班牙阿拉贡政府。Sayable Lite 使用缩小的图片。Sayable 免费，只用于非商业用途。',
     },
   };
 
@@ -252,6 +256,8 @@
     }
     h += '<button type="button" class="done" data-done="1">' + esc(t('done')) + '</button>';
     h += '<p>' + esc(offlineStatus()) + '</p><p><a href="../">' + esc(t('full')) + '</a></p>';
+    // Required by the symbols' licence (attribution, and saying the pictures were changed).
+    h += '<p>' + esc(t('credits')) + '</p><p><a href="../privacy.html">' + esc(t('privacy')) + '</a></p>';
     sheetEl.innerHTML = h;
   }
   function openSettings() {

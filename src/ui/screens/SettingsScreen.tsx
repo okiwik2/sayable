@@ -11,6 +11,9 @@ import { exportProfiles, validateBackup, importBackup, listRestorePoints, restor
 import { cleanupImages } from '../../services/images';
 import { saveAllToCache } from '../../services/offline';
 import { removeSavedVideos, saveVideos, streamsVideos } from '../../services/sign-videos';
+
+// An absolute address, so it also opens from the Android and iOS apps.
+const PRIVACY_URL = 'https://okiwik2.github.io/sayable/privacy.html';
 import { db } from '../../services/db';
 import { Choices, Range, Toggle, TextField } from '../common';
 import { Icon } from '../Icon';
@@ -708,7 +711,7 @@ function DataSettings() {
     <>
       <div className="section">
         <h2>{t('sData')}</h2>
-        <p className="banner info"><Icon name="shield" /> {t('privacyNote')}</p>
+        <p className="banner info"><Icon name="shield" /> {t('privacyNote')} <a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer">{t('privacyPolicy')}</a></p>
         {usage && <p>{t('storageUsed')}: {mb(usage.usage)}{usage.quota ? ` / ${mb(usage.quota)}` : ''}</p>}
         <div className="row">
           <button className="btn btn-primary" onClick={async () => downloadJson(await exportProfiles(), `sayable-backup-${new Date().toISOString().slice(0, 10)}.json`)}>
@@ -801,6 +804,7 @@ function About() {
       <p>{t('creditsSymbols')} <a href="https://arasaac.org" target="_blank" rel="noopener noreferrer">arasaac.org</a></p>
       <p>{t('creditsSigns')} <a href="https://www.nzsl.nz" target="_blank" rel="noopener noreferrer">www.nzsl.nz</a></p>
       <p className="muted">{t('creditsNC')}</p>
+      <p><a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer">{t('privacyPolicy')}</a></p>
       <h3>Notes</h3>
       <p className="muted">{t('disclaimerVocab')}</p>
       <p className="muted">{t('disclaimerZh')}</p>
