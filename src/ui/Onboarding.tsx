@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useStore, useT } from '../state/store';
 import type { Settings } from '../domain/settings';
 import { speech, voiceMatchesLang } from '../services/speech';
-import { Toggle } from './common';
+import { Toggle, VoiceHelp } from './common';
 import { Icon } from './Icon';
 import { assetUrl, symbolUrl } from './hooks';
 import { GuideToggle, useGuideAnnouncement } from './VoiceGuide';
@@ -161,7 +161,7 @@ export function Onboarding() {
               return (
                 <div key={lang} className="field">
                   <span className="label">{lang === 'en' ? t('englishVoice') : t('mandarinVoice')}</span>
-                  {!list.length && <p className="banner">{t('noVoice', { lang: lang === 'en' ? t('langEn') : t('langZh') })} {t('noVoiceHelp')}</p>}
+                  {!list.length && <p className="banner">{t('noVoice', { lang: lang === 'en' ? t('langEn') : t('langZh') })}<VoiceHelp /></p>}
                   <div className="onboard-options" role="radiogroup">
                     {list.slice(0, 8).map((v) => (
                       <Option key={v.id} quiet checked={s.voices[lang] === v.id} title={v.name} text={`${v.lang}${v.local ? '' : ` · ${t('voiceOnline')}`}`}

@@ -18,6 +18,10 @@ export function createNativeEngine(): SpeechEngine {
     }
   };
   void load();
+  // Coming back from Android's voice download screen (Settings › Add a voice): pick up new voices.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') void load();
+  });
 
   return {
     canPause: false,

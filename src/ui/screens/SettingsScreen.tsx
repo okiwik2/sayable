@@ -15,7 +15,7 @@ import { removeSavedVideos, saveVideos, streamsVideos } from '../../services/sig
 // An absolute address, so it also opens from the Android and iOS apps.
 const PRIVACY_URL = 'https://okiwik2.github.io/sayable/privacy.html';
 import { db } from '../../services/db';
-import { Choices, Range, Toggle, TextField } from '../common';
+import { Choices, Range, Toggle, TextField, VoiceHelp } from '../common';
 import { Icon } from '../Icon';
 import { assetUrl } from '../hooks';
 import { SymbolImage } from '../Tile';
@@ -261,7 +261,7 @@ function VoicePicker({ lang }: { lang: Lang }) {
         </div>
       ) : (
         <div className="banner">
-          <span>{t('noVoice', { lang: langName })} {t('noVoiceHelp')}</span>
+          <span>{t('noVoice', { lang: langName })}<VoiceHelp /></span>
         </div>
       )}
     </div>

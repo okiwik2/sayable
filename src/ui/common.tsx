@@ -4,6 +4,7 @@ import { usePress } from './hooks';
 import { createPortal } from 'react-dom';
 import { Icon } from './Icon';
 import { useStore, useT } from '../state/store';
+import { deviceKind, platform } from '../services/platform';
 
 let openDialogs = 0;
 
@@ -251,5 +252,27 @@ export function Toasts() {
         </div>
       ))}
     </div>
+  );
+}
+
+const VOICE_HELP = {
+  android: 'noVoiceHelpAndroid', ios: 'noVoiceHelpIos', windows: 'noVoiceHelpWindows', mac: 'noVoiceHelpMac', other: 'noVoiceHelpOther',
+} as const;
+
+/** How to add a speech voice on this device. The Android app can open the voice download screen itself. */
+export function VoiceHelp() {
+  const t = useT();
+  return (
+    <>
+      {' '}{t(VOICE_HELP[deviceKind()])}
+      {platform === 'android' && (
+        <>
+          {' '}
+          <button className="btn" onClick={() => void import('@capacitor-community/text-to-speech').then(({ TextToSpeech }) => TextToSpeech.openInstall()).catch(() => {})}>
+            <Icon name="download" /> {t('addVoice')}
+          </button>
+        </>
+      )}
+    </>
   );
 }

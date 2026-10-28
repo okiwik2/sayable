@@ -17,3 +17,14 @@ export function isNewer(a: string, b: string): boolean {
   }
   return false;
 }
+
+/** Which kind of device this is, for settings instructions. iPads report themselves as Macs, so touch tells them apart. */
+export function deviceKind(): 'android' | 'ios' | 'windows' | 'mac' | 'other' {
+  if (platform !== 'web') return platform;
+  const ua = navigator.userAgent;
+  if (/Android/i.test(ua)) return 'android';
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'ios';
+  if (/Windows/.test(ua)) return 'windows';
+  if (/Macintosh/.test(ua)) return 'mac';
+  return 'other';
+}
