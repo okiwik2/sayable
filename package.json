@@ -1,7 +1,7 @@
 {
   "name": "sayable",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An offline-first AAC (augmentative and alternative communication) app with English and Mandarin, ARASAAC symbols and NZSL sign resources.",
   "type": "module",
   "scripts": {

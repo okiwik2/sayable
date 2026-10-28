@@ -3,6 +3,24 @@
 import { TextToSpeech, QueueStrategy } from '@capacitor-community/text-to-speech';
 import type { SpeechEngine, Utterance } from './speech';
 
+/**
+ * Android names every voice by its language alone ("English United States"), so a list of ten US
+ * voices looks like one voice ten times. Number the ones that share a name, and add the engine's
+ * own short code where there is one (Google: "en-us-x-iob-local" -> "IOB").
+ */
+export function nameVoices<V extends { voiceURI: string; name: string }>(voices: V[]): V[] {
+  const counts = new Map<string, number>();
+  for (const v of voices) counts.set(v.name, (counts.get(v.name) ?? 0) + 1);
+  const seen = new Map<string, number>();
+  return voices.map((v) => {
+    if ((counts.get(v.name) ?? 0) < 2) return v;
+    const n = (seen.get(v.name) ?? 0) + 1;
+    seen.set(v.name, n);
+    const code = /-x-([a-z0-9]+)/i.exec(v.voiceURI)?.[1]?.toUpperCase();
+    return { ...v, name: `${v.name} ${n}${code ? ` (${code})` : ''}` };
+  });
+}
+
 export function createNativeEngine(): SpeechEngine {
   let voices: SpeechSynthesisVoice[] = [];
   let speaking = false;
@@ -11,7 +29,7 @@ export function createNativeEngine(): SpeechEngine {
   const load = async () => {
     try {
       const r = await TextToSpeech.getSupportedVoices();
-      voices = r.voices as unknown as SpeechSynthesisVoice[];
+      voices = nameVoices(r.voices as unknown as SpeechSynthesisVoice[]);
       voiceListeners.forEach((l) => l());
     } catch {
       /* no voices yet; SpeechService polls again */

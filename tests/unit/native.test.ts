@@ -66,3 +66,15 @@ describe('Android update check', () => {
     expect(isNewer('0.9.0', '1.0.0')).toBe(false);
   });
 });
+
+describe('Android voice names', () => {
+  it('tells apart voices that Android names only by language', async () => {
+    const { nameVoices } = await import('../../src/services/speech-native');
+    const named = nameVoices([
+      { voiceURI: 'en-us-x-iob-local', name: 'English United States' },
+      { voiceURI: 'en-us-x-tpf-network', name: 'English United States' },
+      { voiceURI: 'cmn-cn-x-ccc-local', name: 'Chinese China' },
+    ]);
+    expect(named.map((v) => v.name)).toEqual(['English United States 1 (IOB)', 'English United States 2 (TPF)', 'Chinese China']);
+  });
+});
